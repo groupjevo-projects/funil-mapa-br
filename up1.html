@@ -463,6 +463,16 @@
 
     .inline-decline[disabled] { opacity: .45; cursor: default; }
 
+    /* Mostrado no lugar do botao quando a Payt nao tem como cobrar em 1 clique. */
+    .checkout-unavailable {
+      margin: 0;
+      color: var(--muted);
+      font-size: .86rem;
+      line-height: 1.5;
+      text-align: center;
+    }
+    .checkout-unavailable strong { color: var(--ink); font-weight: 600; }
+
     .slot-label {
       display: block;
       margin-bottom: 10px;
@@ -1446,9 +1456,17 @@
       // appendChild MOVE o bloco, nao clona - e isso que preserva o que a Payt
       // ligou nos elementos. Por isso ele tambem pode ser remontado mais abaixo
       // quando a pessoa recusa e a oferta volta.
-      widget.hidden = false;
-      card.querySelector(".checkout-slot").appendChild(widget);
-      blockEmptyAnchorJump(widget);
+      const slot = card.querySelector(".checkout-slot");
+      if (paytCanOneClick()) {
+        widget.hidden = false;
+        slot.appendChild(widget);
+        blockEmptyAnchorJump(widget);
+      } else {
+        // Sem _o/_m a Payt aborta antes de ligar o clique e o botao fica inerte.
+        // Melhor dizer o que houve do que exibir um botao que nao faz nada.
+        card.querySelector(".slot-label").remove();
+        slot.innerHTML = '<p class="checkout-unavailable"><strong>Esta oferta só pode ser confirmada a partir da sua compra.</strong><br>Abra esta página pelo link que apareceu logo depois do pagamento, para o pedido anterior ser reconhecido.</p>';
+      }
 
       const declineWrap = card.querySelector(".inline-decline-wrap");
       (step.choices || []).forEach(choice => {
@@ -1464,6 +1482,19 @@
       messagesEl.appendChild(row);
       watchInstallments(widget);
       scrollToBottom();
+    }
+
+    // A Payt so consegue cobrar em 1 clique se souber o pedido anterior. Ela le
+    // isso de _o (id do pedido) e _m (meio de pagamento), que chegam na URL
+    // vinda do passo anterior do funil, ou de cookie gravado por essa URL. Sem
+    // os dois o init() dela lanca erro antes de ligar o clique no botao.
+    function paytCanOneClick() {
+      const q = new URLSearchParams(window.location.search);
+      const cookie = name => document.cookie
+        .split("; ")
+        .some(c => c.startsWith(name + "=") && c.slice(name.length + 1).length > 0);
+      const has = name => !!q.get(name) || cookie(name);
+      return has("_o") && has("_m");
     }
 
     // href="#" e o que a Payt manda usar, e o script dela intercepta o clique
