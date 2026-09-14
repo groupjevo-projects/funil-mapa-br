@@ -1274,8 +1274,8 @@
           "Posso entrar sem adicionar nada? Sim. Seu acesso já está confirmado e você pode ir direto para ele."
         ],
         offer: true,
+        checkout: true,
         choices: [
-          { text: "SIM, QUERO ADICIONAR O PROTOCOLO RECONEXÃO", action: "checkout", primary: true },
           { text: "Não, obrigada. Prefiro continuar com o acesso que já tenho.", next: "decline", secondary: true }
         ]
       },
@@ -1285,8 +1285,8 @@
           "Perfeito. Seu acesso anterior segue confirmado ✅",
           "O Protocolo é o plano de 14 dias que cuida do antes: clima, conversa e convite. Se mais adiante você quiser somar, ele continua disponível."
         ],
+        checkout: true,
         choices: [
-          { text: "Pensando melhor, quero adicionar", action: "checkout", primary: true },
           { text: "Não, obrigada. Seguir sem o Protocolo.", action: "decline", secondary: true }
         ]
       }
@@ -1408,7 +1408,7 @@
 
     function mountPaytCheckout() {
       const widget = document.getElementById("payt-oneclick");
-      if (!widget || !widget.hidden) return; // ja esta montado (ex.: vindo de "decline")
+      if (!widget) return;
 
       const row = document.createElement("div");
       row.className = "row";
@@ -1423,12 +1423,28 @@
         </div>
       `;
 
+      // appendChild MOVE o bloco, nao clona - e isso que preserva o que a Payt
+      // ligou nos elementos. Por isso ele tambem pode ser remontado mais abaixo
+      // quando a pessoa recusa e a oferta volta.
       widget.hidden = false;
       card.querySelector(".checkout-slot").appendChild(widget);
 
       row.appendChild(card);
       messagesEl.appendChild(row);
+      watchInstallments(widget);
       scrollToBottom();
+    }
+
+    // O <select> de parcelas nasce vazio: a Payt so o preenche depois de ler o
+    // token da compra anterior na URL. Vazio ele renderiza como uma caixinha
+    // branca sem opcao nenhuma, que parece defeito. Entao ele fica escondido
+    // ate ter opcao de verdade.
+    function watchInstallments(widget) {
+      const select = widget.querySelector("[payt_element='installment']");
+      if (!select) return;
+      const sync = () => { select.style.display = select.options.length ? "block" : "none"; };
+      sync();
+      new MutationObserver(sync).observe(select, { childList: true });
     }
 
     function addTyping() {
@@ -1477,12 +1493,6 @@
         state.answers[step.store] = choice.value;
       }
 
-      if (choice.action === "checkout") {
-        await sleep(180);
-        mountPaytCheckout();
-        return;
-      }
-
       if (choice.action === "decline") {
         window.location.href = DECLINE_URL;
         return;
@@ -1498,6 +1508,7 @@
       await botSpeak(step.bot || []);
       if (step.video) addVturbVideo();
       if (step.offer) addOfferCard();
+      if (step.checkout) mountPaytCheckout();
       renderChoices(step);
     }
 
