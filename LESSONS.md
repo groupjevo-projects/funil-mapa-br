@@ -6,6 +6,10 @@ Registre uma lesson somente após observar evidência suficiente. Cada entrada d
 
 - **Bump da query string de versão a cada deploy que muda `index.js`/`style.css`.** Confirmada no funil em inglês (`mapa-prazer-masculino-en`) em 2026-09-13: servir `index.js?v=X` com o mesmo `X` em deploys sucessivos deixou a produção mostrando o VSL antigo por horas, porque o asset vai com `Cache-Control: public, max-age=14400`. Aplicada preventivamente aqui desde a criação do repositório (`?v=20260914-1`). Status: herdada, ainda não observada neste funil.
 
+## Decisões registradas
+
+- **2026-09-14 — "UTM de cloak" e UTMify são coisas distintas neste funil.** O funil BR não tem cloak, então não existe nenhuma checagem de `utm_campaign` para liberar a página real — tráfego sem UTM vê a página normalmente. Isso NÃO torna a UTMify dispensável: ela é atribuição, não gate. O script em `index.html` captura as UTMs de entrada e as cola no link da Payt; o webhook da Payt no dashboard BRL da UTMify fecha o laço. Sem `data-utmify-replace-links="payt.site"` as vendas chegam sem campanha e o CPA por criativo se perde. Decisão do owner em 2026-09-14: manter. Não remover o script por parecer resíduo de cloak.
+
 ## Pendências abertas (não são lessons — são trabalho não feito)
 
 Criado em 2026-09-14 como porte do funil LATAM. Faltam, todos dependentes do owner:
