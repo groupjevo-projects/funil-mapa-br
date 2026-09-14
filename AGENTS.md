@@ -6,6 +6,8 @@ Repositório de produção do funil `mapa-prazer-masculino-br`. Site estático s
 
 Portado a partir de `funil-mapa-latam` (`mapa-prazer-masculino-latam`) e adaptado para o mercado brasileiro: idioma `pt-BR`, escada de preços em BRL, `offer_id` de tracking `br`.
 
+Domínio de produção: `https://mapadoprazer.site` (apex). `www` redireciona 308 para o apex. DNS na Hostinger (nameservers `lunar`/`solar.dns-parking.com`), sem Cloudflare na frente. Projeto Vercel: `funil-mapa-br`, deploy automático a cada push em `main`.
+
 **Não há cloak neste funil.** Por decisão do owner, este funil não tem página isca (`/w`), não tem variantes white dos upsells (`/up1w`, `/up2w`) e não tem Worker de cloaking na Cloudflare. Todo o tráfego vê a página real. Se um dia isso mudar, é uma decisão nova do owner — não replique o cloak do LATAM por analogia.
 
 ## Estrutura
