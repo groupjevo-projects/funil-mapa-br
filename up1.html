@@ -436,7 +436,32 @@
       background: #fbfaf8;
       display: grid;
       gap: 8px;
+      justify-items: center;
     }
+
+    /* Recusa fica junto do botao verde, dentro do balao, em vez de virar um
+       botao de escolha solto no rodape do chat. Mesma familia visual do verde,
+       menor, para nao competir com ele. */
+    .inline-decline-wrap { margin-top: 12px; text-align: center; }
+
+    .inline-decline {
+      display: inline-block;
+      background: #d83a2f;
+      color: #ffffff;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 11px 18px;
+      border: 0;
+      border-radius: 9px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .inline-decline:hover,
+    .inline-decline:focus-visible { background: #a32620; outline: 0; }
+
+    .inline-decline[disabled] { opacity: .45; cursor: default; }
 
     .slot-label {
       display: block;
@@ -1276,7 +1301,7 @@
         offer: true,
         checkout: true,
         choices: [
-          { text: "Não, obrigada. Prefiro continuar com o acesso que já tenho.", next: "decline", secondary: true }
+          { text: "Não, obrigada.", next: "decline", secondary: true }
         ]
       },
       decline: {
@@ -1287,7 +1312,7 @@
         ],
         checkout: true,
         choices: [
-          { text: "Não, obrigada. Seguir sem o Protocolo.", action: "decline", secondary: true }
+          { text: "Não, obrigada.", action: "decline", secondary: true }
         ]
       }
     };
@@ -1406,7 +1431,7 @@
       scrollToBottom();
     }
 
-    function mountPaytCheckout() {
+    function mountPaytCheckout(step) {
       const widget = document.getElementById("payt-oneclick");
       if (!widget) return;
 
@@ -1420,6 +1445,7 @@
         <div class="offer-body">
           <span class="slot-label">Confirme sua compra em 1 clique</span>
           <div class="checkout-slot"></div>
+          <div class="inline-decline-wrap"></div>
         </div>
       `;
 
@@ -1428,6 +1454,16 @@
       // quando a pessoa recusa e a oferta volta.
       widget.hidden = false;
       card.querySelector(".checkout-slot").appendChild(widget);
+
+      const declineWrap = card.querySelector(".inline-decline-wrap");
+      (step.choices || []).forEach(choice => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "inline-decline";
+        button.textContent = choice.text;
+        button.addEventListener("click", () => choose(choice, step));
+        declineWrap.appendChild(button);
+      });
 
       row.appendChild(card);
       messagesEl.appendChild(row);
@@ -1487,6 +1523,7 @@
 
     async function choose(choice, step) {
       choicesEl.innerHTML = "";
+      messagesEl.querySelectorAll(".inline-decline").forEach(b => { b.disabled = true; });
       addMessage(choice.text, "user");
 
       if (step.store) {
@@ -1508,8 +1545,14 @@
       await botSpeak(step.bot || []);
       if (step.video) addVturbVideo();
       if (step.offer) addOfferCard();
-      if (step.checkout) mountPaytCheckout();
-      renderChoices(step);
+      if (step.checkout) {
+        // A recusa vai dentro do balao, junto do botao da Payt - o rodape de
+        // escolhas fica vazio para nao existir um segundo CTA na tela.
+        choicesEl.innerHTML = "";
+        mountPaytCheckout(step);
+      } else {
+        renderChoices(step);
+      }
     }
 
     goTo("intro");
