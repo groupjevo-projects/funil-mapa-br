@@ -3,252 +3,1507 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Protocolo Reconexão a Dois: O Plano Guiado de 14 Dias | Mapa do Prazer Masculino</title>
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-
-  <!-- VTURB / converteai — preload do player do VSL.
-       TODO: o VSL em portugues deste upsell ainda nao existe. Trocar PENDING-UP1-BR
-       pelo id real do player e acrescentar o preload do main.m3u8 correspondente. -->
-  <script>!function(i,n){i._plt=i._plt||(n&&n.timeOrigin?n.timeOrigin+n.now():Date.now())}(window,performance);</script>
-  <link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" as="script">
-  <link rel="dns-prefetch" href="https://cdn.converteai.net">
-  <link rel="dns-prefetch" href="https://scripts.converteai.net">
-  <link rel="dns-prefetch" href="https://images.converteai.net">
-  <link rel="dns-prefetch" href="https://license.vturb.com">
-
+  <title>Protocolo Reconexão a Dois | Sofia Vilar</title>
   <style>
-    /* Paleta e tipografia vindas da pagina de vendas (style.css) */
     :root {
-      --black: #17120f;
-      --panel: #1a1a19;
-      --cream: #fff0dd;
-      --paper: #fff5e8;
-      --ink: #201714;
-      --red: #b9473c;
-      --green: #22c55e;
-      --muted: #6c5b50;
-      --line: #34322d;
+      --bg: #f7f7f4;
+      --surface: #ffffff;
+      --surface-soft: #fff4f1;
+      --ink: #211f20;
+      --muted: #665f61;
+      --line: #dfd7d3;
+      --red: #d83a2f;
+      --red-dark: #a32620;
+      --teal: #153d3a;
+      --teal-soft: #e8f0ee;
+      --gold: #b9822d;
+      --shadow: 0 20px 60px rgba(29, 28, 27, 0.13);
+      --radius: 8px;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
-    html { background: var(--black); scroll-behavior: smooth; }
+    html {
+      min-height: 100%;
+      width: 100%;
+      max-width: 100%;
+      background: var(--bg);
+    }
 
     body {
+      min-height: 100vh;
+      width: 100%;
+      max-width: 100%;
       margin: 0;
-      background: var(--black);
-      color: var(--cream);
-      font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.45;
+      letter-spacing: 0;
+      overflow-x: hidden;
+      background:
+        linear-gradient(180deg, rgba(216, 58, 47, 0.08), rgba(21, 61, 58, 0.04) 32%, transparent 72%),
+        var(--bg);
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
     }
 
     .page {
-      width: 100%;
-      max-width: 720px;
+      width: min(820px, calc(100% - 32px));
+      min-height: 100vh;
       margin: 0 auto;
+      padding: 16px 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 6px;
+      align-items: start;
+      align-content: start;
+      min-width: 0;
     }
 
-    /* ---------- Bloque VSL ---------- */
-    .vsl-section {
-      background: var(--black);
+    .conversion-hero {
+      padding: 10px 0 0;
       text-align: center;
-      padding: 22px 20px 28px;
+      border: 0;
+      border-radius: var(--radius);
+      background: transparent;
+      box-shadow: none;
+      min-width: 0;
     }
 
-    .vsl-section h1 {
-      max-width: 27ch;
-      margin: 0 auto 12px;
-      color: var(--cream);
-      font-family: Georgia, "Times New Roman", serif;
-      font-weight: 800;
-      font-size: clamp(18px, 4.4vw, 29px);
-      line-height: 1.16;
-      letter-spacing: -0.02em;
-      text-transform: uppercase;
-      text-wrap: balance;
-    }
-
-    .subhead-bar {
+    .hero-kicker {
       display: inline-block;
-      max-width: 24ch;
-      margin: 0 auto 20px;
-      padding: 5px 13px;
+      margin: 0;
+      padding: 5px 9px;
+      color: #211f20;
+      font-size: 0.78rem;
+      font-weight: 950;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 4px;
+      background: linear-gradient(90deg, #fff06a, #ffb35c, #ff7670, #ffd86b, #fff06a);
+      background-size: 320% 100%;
+      box-shadow: 0 0 0 1px rgba(163, 38, 32, 0.1), 0 8px 22px rgba(216, 58, 47, 0.16);
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.36);
+      animation: highlightShift 1800ms linear infinite;
+    }
+
+    h1 {
+      margin: 6px auto 0;
+      font-size: clamp(2rem, 4.9vw, 4rem);
+      line-height: 0.95;
+      letter-spacing: 0;
+      max-width: 18ch;
+    }
+
+    .danger-highlight {
+      color: var(--red-dark);
+    }
+
+    .hero-copy {
+      max-width: 31rem;
+      margin: 8px auto 0;
+      color: var(--muted);
+      font-size: 1rem;
+      overflow-wrap: break-word;
+    }
+
+    .hero-copy strong {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--red-dark);
+      font-size: 1.05rem;
+      font-weight: 900;
+      overflow-wrap: break-word;
+    }
+
+    .chat-shell {
+      min-height: min(500px, calc(100vh - 270px));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      min-width: 0;
+    }
+
+    .chat-header {
+      padding: 16px 18px;
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.92);
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .avatar {
+      width: 46px;
+      height: 46px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid #fff;
+      background: var(--surface-soft);
+      box-shadow: 0 0 0 1px var(--line), 0 8px 18px rgba(216, 58, 47, 0.18);
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 24%;
+      display: block;
+    }
+
+    .profile h2 {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.1;
+    }
+
+    .profile p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .status-pill {
+      min-width: max-content;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: var(--teal-soft);
+      color: var(--teal);
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+
+    .progress {
+      height: 3px;
+      background: #eee6e3;
+    }
+
+    .progress-bar {
+      width: 8%;
+      height: 100%;
+      background: var(--red);
+      transition: width 280ms ease;
+    }
+
+    .messages {
+      min-height: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 22px 18px 28px;
+      background:
+        linear-gradient(180deg, rgba(255, 244, 241, 0.58), rgba(255, 255, 255, 0) 180px),
+        var(--surface);
+    }
+
+    .row {
+      display: flex;
+      gap: 10px;
+      margin: 0 0 12px;
+      align-items: flex-end;
+      min-width: 0;
+      animation: rise 220ms ease-out;
+    }
+
+    .row.user {
+      justify-content: flex-end;
+    }
+
+    .mini-avatar {
+      display: none;
+    }
+
+    .bubble {
+      max-width: min(570px, 86%);
+      padding: 12px 14px;
+      border-radius: 16px 16px 16px 6px;
+      background: #f3f0ed;
+      color: var(--ink);
+      font-size: 0.96rem;
+      white-space: pre-line;
+    }
+
+    .bubble.user {
+      max-width: min(520px, 88%);
+      border-radius: 16px 16px 6px 16px;
+      background: var(--teal);
+      color: #fff;
+    }
+
+    .bubble.offer {
+      width: min(540px, 90%);
+      max-width: min(540px, 90%);
+      padding: 0;
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--line);
+    }
+
+    .offer-head {
+      padding: 16px;
+      background: var(--surface-soft);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .offer-head strong {
+      display: block;
+      font-size: 1.08rem;
+    }
+
+    .offer-head span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .offer-body {
+      padding: 14px 16px 16px;
+    }
+
+    .stack {
+      display: grid;
+      gap: 9px;
+      margin: 0 0 14px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .stack li {
+      display: grid;
+      grid-template-columns: 20px 1fr;
+      gap: 9px;
+      align-items: start;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .check {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: var(--teal);
+      font-size: 0.8rem;
+      font-weight: 900;
+    }
+
+    .price {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 6px 8px;
+      padding-top: 12px;
+      border-top: 1px solid var(--line);
+    }
+
+    .price-installments {
+      flex-basis: 100%;
+      margin-bottom: 2px;
+      color: #ffffff;
+      font-size: 0.94rem;
+      font-weight: 700;
+    }
+
+    .price-installments .installments-amount {
+      color: #25d366;
+    }
+
+    .price del {
+      order: 3;
+      margin-left: auto;
+      align-self: flex-start;
+      color: #e23b3b;
+      font-size: 0.78rem;
+    }
+
+    .price strong {
+      order: 1;
+      color: var(--red-dark);
+      font-size: 1.8rem;
+      line-height: 1;
+    }
+
+    .price small {
+      order: 2;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .typing {
+      width: 58px;
+      padding: 11px 12px;
+      display: inline-flex;
+      gap: 4px;
+      border-radius: 14px 14px 14px 5px;
+      background: #f3f0ed;
+    }
+
+    .typing span {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--muted);
+      opacity: 0.65;
+      animation: blink 960ms infinite;
+    }
+
+    .typing span:nth-child(2) {
+      animation-delay: 120ms;
+    }
+
+    .typing span:nth-child(3) {
+      animation-delay: 240ms;
+    }
+
+    .composer {
+      border-top: 1px solid var(--line);
+      background: var(--surface);
+      padding: 16px 18px;
+    }
+
+    .choices {
+      display: grid;
+      gap: 10px;
+    }
+
+    .choice {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      color: var(--ink);
+      text-align: left;
+      transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
+    }
+
+    .choice:hover,
+    .choice:focus-visible {
+      border-color: var(--red);
+      background: var(--surface-soft);
+      outline: 0;
+      transform: translateY(-1px);
+    }
+
+    .choice.primary {
+      border-color: var(--red);
       background: var(--red);
       color: #fff;
-      font-family: Georgia, "Times New Roman", serif;
-      font-weight: 700;
-      font-size: clamp(13px, 3vw, 18px);
-      line-height: 1.28;
-      letter-spacing: -0.01em;
-      text-transform: uppercase;
-      text-wrap: balance;
+      font-weight: 850;
+      text-align: center;
     }
 
-    .vsl-player {
-      width: min(400px, 92vw);
-      margin: 0 auto;
-      border-radius: 4px;
+    .choice.primary:hover,
+    .choice.primary:focus-visible {
+      background: var(--red-dark);
+    }
+
+    .choice.secondary {
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .checkout-slot {
+      margin-top: 10px;
+      padding: 12px;
+      border: 1px dashed #c9bbb6;
+      border-radius: var(--radius);
+      background: #fbfaf8;
+      display: grid;
+      gap: 8px;
+    }
+
+    .slot-label {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      text-align: center;
+    }
+
+    .demo-video-card {
+      width: min(540px, 90%);
+      max-width: min(540px, 90%);
+      padding: 0;
       overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--line);
     }
 
-    .vsl-player vturb-smartplayer {
+    .demo-video-card .offer-head {
+      background: linear-gradient(135deg, #fff4f1, #fffaf6);
+    }
+
+    .demo-kicker {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--red-dark);
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .vturb-frame {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 6px;
+      background: #211f20;
+    }
+
+    .vturb-frame vturb-smartplayer {
       display: block;
       width: 100%;
       max-width: 400px;
       margin: 0 auto;
     }
 
-    /* ---------- CTA ---------- */
-    .cta-wrap {
-      width: min(400px, 92vw);
-      margin: 22px auto 0;
-    }
-
-    .checkout-btn,
-    #kiwify-upsell-trigger-PENDING-UP1-BR {
-      display: inline-block;
-      border: 0;
-      cursor: pointer;
+    .vturb-player-placeholder {
+      position: relative;
       width: 100%;
-      padding: 16px 22px;
-      border-radius: 8px;
-      background: var(--green);
-      color: #fff;
-      font-family: Arial, Helvetica, sans-serif;
+      padding: 125% 0 0;
+      z-index: 0;
+      background: #000;
+    }
+
+    .video-caption {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.35;
+      text-align: center;
+    }
+
+    @media (max-width: 560px) {
+      .demo-video-card {
+        width: min(86vw, 340px);
+        max-width: min(86vw, 340px);
+      }
+    }
+
+    .modal {
+      width: min(430px, calc(100% - 32px));
+      border: 0;
+      border-radius: var(--radius);
+      padding: 0;
+      box-shadow: var(--shadow);
+    }
+
+    .modal::backdrop {
+      background: rgba(33, 31, 32, 0.44);
+    }
+
+    .modal-body {
+      padding: 20px;
+    }
+
+    .modal-body h2 {
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+    }
+
+    .modal-body p {
+      margin: 0 0 14px;
+      color: var(--muted);
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes blink {
+      0%, 80%, 100% {
+        transform: translateY(0);
+        opacity: 0.38;
+      }
+      40% {
+        transform: translateY(-3px);
+        opacity: 0.9;
+      }
+    }
+
+    @keyframes highlightShift {
+      0% {
+        background-position: 0% 50%;
+      }
+      100% {
+        background-position: 320% 50%;
+      }
+    }
+
+    @media (max-width: 920px) {
+      .page {
+        padding: 16px 0;
+      }
+
+      h1 {
+        max-width: 16ch;
+      }
+
+      .chat-shell {
+        min-height: 520px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .page {
+        width: 100vw;
+        max-width: 100vw;
+        min-height: 100vh;
+        padding: 0;
+        gap: 0;
+        overflow: hidden;
+      }
+
+      .conversion-hero {
+        width: 100vw;
+        max-width: 100vw;
+        padding: 16px 18px 8px;
+      }
+
+      h1 {
+        font-size: clamp(1.75rem, 9vw, 2.45rem);
+        max-width: 12ch;
+      }
+
+      .hero-copy {
+        font-size: 0.96rem;
+        width: auto;
+        max-width: 320px;
+      }
+
+      .chat-shell {
+        width: 100vw;
+        max-width: 100vw;
+        min-height: calc(100vh - 264px);
+        border: 0;
+        border-radius: 0;
+      }
+
+      .status-pill {
+        display: none;
+      }
+
+      .messages {
+        padding: 18px 12px 24px;
+      }
+
+      .composer {
+        padding: 12px;
+      }
+
+      .bubble {
+        max-width: min(83vw, 330px);
+        min-width: 0;
+        overflow-wrap: break-word;
+      }
+
+      .bubble.user {
+        max-width: min(86vw, 340px);
+      }
+
+      .bubble.offer {
+        width: min(86vw, 340px);
+        max-width: min(86vw, 340px);
+      }
+    }
+
+    @media (max-width: 360px) {
+      h1,
+      .hero-copy {
+        width: 284px;
+        max-width: 284px;
+      }
+    }
+    .confirmation-topline {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 10px;
+      border: 1px solid rgba(183, 246, 207, .3);
+      border-radius: 999px;
+      color: #d9fdd3;
+      background: rgba(37, 211, 102, .14);
+      font-size: .78rem;
       font-weight: 800;
-      font-size: clamp(15px, 3.6vw, 17.6px);
-      line-height: 1.3;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      text-align: center;
-      text-decoration: none;
-      box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
-      animation: ctaPulse 2.2s infinite;
     }
 
-    .checkout-btn:hover,
-    .checkout-btn:focus-visible,
-    #kiwify-upsell-trigger-PENDING-UP1-BR:hover,
-    #kiwify-upsell-trigger-PENDING-UP1-BR:focus-visible {
-      background: #1eb257;
-      outline: 0;
+    .confirmation-check {
+      display: grid;
+      width: 18px;
+      height: 18px;
+      place-items: center;
+      border-radius: 50%;
+      color: #075e54;
+      background: #d9fdd3;
+      font-size: .75rem;
     }
 
-    @keyframes ctaPulse {
-      0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6); }
-      70% { box-shadow: 0 0 0 16px rgba(34, 197, 94, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+    .order-status-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      max-width: 560px;
+      margin-top: 18px;
     }
 
-    /* Widget de upsell de 1 clique da Kiwify */
-    #kiwify-upsell-PENDING-UP1-BR { width: 100%; }
-
-    /* A recusa: visivel, mas sem competir com o botao verde. */
-    #kiwify-upsell-cancel-trigger-PENDING-UP1-BR {
-      margin-top: 14px;
-      color: rgba(255, 240, 221, 0.55);
-      font-size: 0.85rem;
-      line-height: 1.4;
-      text-align: center;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      cursor: pointer;
+    .order-status {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      min-width: 0;
+      padding: 9px 10px;
+      border: 1px solid rgba(255, 255, 255, .13);
+      border-radius: 9px;
+      color: rgba(255, 255, 255, .78);
+      background: rgba(0, 0, 0, .1);
+      font-size: .74rem;
     }
 
-    #kiwify-upsell-cancel-trigger-PENDING-UP1-BR:hover {
-      color: rgba(255, 240, 221, 0.8);
+    .order-status strong {
+      flex: 0 0 auto;
+      color: #b7f6cf;
+      font-size: 1rem;
     }
 
-    @media (max-width: 420px) {
-      .vsl-section { padding: 18px 16px 24px; }
-      .vsl-section h1 { max-width: 24ch; }
-      .subhead-bar { max-width: 22ch; }
+    .order-status span {
+      overflow-wrap: anywhere;
     }
+
+    /* WhatsApp-inspired conversion layer */
+    body {
+      background-color: #d9dbd5;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.24) 0 1px, transparent 1.5px),
+        radial-gradient(circle at 80% 70%, rgba(90,100,90,.12) 0 1px, transparent 1.5px),
+        linear-gradient(135deg, rgba(255,255,255,.16) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.16) 50%, rgba(255,255,255,.16) 75%, transparent 75%);
+      background-size: 34px 34px, 46px 46px, 92px 92px;
+    }
+
+    .page {
+      width: min(760px, calc(100% - 28px));
+      padding: 24px 0 34px;
+      gap: 0;
+    }
+
+    .conversion-hero {
+      padding: 20px 22px 18px;
+      text-align: left;
+      border-radius: 16px 16px 0 0;
+      background: #075e54;
+      box-shadow: 0 14px 28px rgba(39, 55, 50, .16);
+    }
+
+    .hero-kicker {
+      padding: 0;
+      color: #b7f6cf;
+      font-size: .7rem;
+      letter-spacing: .11em;
+      background: none;
+      box-shadow: none;
+      text-shadow: none;
+      animation: none;
+    }
+
+    h1 {
+      max-width: 20ch;
+      margin: 8px 0 0;
+      color: #fff;
+      font-size: clamp(1.9rem, 4.2vw, 3.35rem);
+      line-height: 1;
+    }
+
+    .danger-highlight {
+      color: #b7f6cf;
+    }
+
+    .hero-copy {
+      max-width: 38rem;
+      margin: 10px 0 0;
+      color: rgba(255, 255, 255, .8);
+      font-size: .94rem;
+    }
+
+      .hero-copy strong {
+        margin-bottom: 0;
+        color: #fff;
+        font-size: 1rem;
+      }
+
+    .chat-shell {
+      min-height: min(650px, calc(100vh - 210px));
+      border: 0;
+      border-radius: 0 0 16px 16px;
+      background: #efeae2;
+      box-shadow: 0 18px 36px rgba(39, 55, 50, .2);
+    }
+
+    .chat-header {
+      padding: 12px 16px;
+      border-bottom: 0;
+      background: #075e54;
+      color: #fff;
+    }
+
+    .avatar {
+      width: 42px;
+      height: 42px;
+      border: 2px solid rgba(255, 255, 255, .92);
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, .08);
+    }
+
+    .profile h2 {
+      color: #fff;
+      font-size: .98rem;
+    }
+
+    .profile p {
+      margin-top: 3px;
+      color: rgba(255, 255, 255, .72);
+      font-size: .78rem;
+    }
+
+    .status-pill {
+      padding: 5px 8px;
+      color: #d9fdd3;
+      background: rgba(37, 211, 102, .18);
+      font-size: .72rem;
+    }
+
+    .progress {
+      height: 3px;
+      background: rgba(0, 0, 0, .18);
+    }
+
+    .progress-bar {
+      background: #25d366;
+    }
+
+    .messages {
+      padding: 22px 18px 28px;
+      background-color: #efeae2;
+      background-image:
+        radial-gradient(circle at 12% 18%, rgba(123, 111, 99, .12) 0 1px, transparent 1.5px),
+        radial-gradient(circle at 78% 62%, rgba(123, 111, 99, .1) 0 1px, transparent 1.5px),
+        linear-gradient(45deg, rgba(255,255,255,.12) 25%, transparent 25%, transparent 75%, rgba(255,255,255,.12) 75%);
+      background-size: 42px 42px, 58px 58px, 84px 84px;
+    }
+
+    .row {
+      margin-bottom: 8px;
+    }
+
+    .bubble {
+      position: relative;
+      max-width: min(570px, 88%);
+      padding: 9px 12px;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 1px 1px rgba(60, 70, 65, .12);
+      font-size: .93rem;
+    }
+
+    .bubble.user {
+      max-width: min(520px, 88%);
+      border-radius: 8px;
+      background: #d9fdd3;
+      color: #111b21;
+    }
+
+    .bubble:not(.user):not(.offer)::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -7px;
+      border-top: 9px solid #fff;
+      border-left: 9px solid transparent;
+    }
+
+    .bubble.user::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: -7px;
+      border-top: 9px solid #d9fdd3;
+      border-right: 9px solid transparent;
+    }
+
+    .typing {
+      padding: 9px 11px;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 1px 1px rgba(60, 70, 65, .12);
+    }
+
+    .composer {
+      padding: 12px 14px 14px;
+      border-top: 1px solid rgba(84, 96, 90, .12);
+      background: #f0f2f5;
+    }
+
+    .choices {
+      gap: 8px;
+    }
+
+    .choice {
+      min-height: 44px;
+      padding: 10px 13px;
+      border: 1px solid #c6d5cf;
+      border-radius: 10px;
+      background: #fff;
+      color: #1f2d29;
+      box-shadow: 0 1px 1px rgba(60, 70, 65, .08);
+    }
+
+    .choice:hover,
+    .choice:focus-visible {
+      border-color: #00a884;
+      background: #f0fff8;
+      transform: translateY(-1px);
+    }
+
+    .choice.primary {
+      border-color: #00a884;
+      background: #00a884;
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(0, 168, 132, .2);
+    }
+
+    .choice.primary:hover,
+    .choice.primary:focus-visible {
+      background: #008f72;
+    }
+
+    .choice.secondary {
+      color: #52615b;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .offer-head {
+      padding: 15px;
+      background: #f0fff8;
+    }
+
+    .checkout-slot {
+      border-color: #b9d9cc;
+      background: #f7fffb;
+    }
+
+    .demo-video-card,
+    .bubble.offer {
+      border-color: #cbd8d2;
+      box-shadow: 0 1px 2px rgba(60, 70, 65, .14);
+    }
+
+    .demo-video-card .offer-head {
+      background: #f0fff8;
+    }
+
+    @media (max-width: 560px) {
+      .page {
+        width: 100vw;
+        padding: 0;
+      }
+
+      .conversion-hero {
+        padding: 18px 16px 15px;
+        border-radius: 0;
+      }
+
+      .order-status-grid {
+        grid-template-columns: 1fr;
+        max-width: 280px;
+        margin-top: 14px;
+      }
+
+      h1 {
+        max-width: 15ch;
+        font-size: clamp(1.7rem, 8.5vw, 2.35rem);
+      }
+
+      .chat-shell {
+        min-height: calc(100dvh - 220px);
+        border-radius: 0;
+      }
+
+      .messages {
+        min-height: 260px;
+        padding: 16px 10px 20px;
+      }
+
+      .bubble {
+        max-width: 91vw;
+        font-size: .92rem;
+      }
+
+      .bubble.user {
+        max-width: 88vw;
+      }
+
+      .composer {
+        padding: 10px 10px calc(12px + env(safe-area-inset-bottom));
+      }
+
+      .choice {
+        min-height: 50px;
+        padding: 12px 13px;
+        font-size: .94rem;
+      }
+    }
+    /* Paleta modelada a partir do projeto downsell enviado. */
+    :root {
+      --bg: #100e13;
+      --surface: #17131a;
+      --surface-soft: #241524;
+      --ink: #f5edf2;
+      --muted: #b9aeb8;
+      --line: rgba(244, 184, 221, .18);
+      --red: #f04c9a;
+      --red-dark: #d93686;
+      --teal: #f04c9a;
+      --teal-soft: rgba(240, 76, 154, .13);
+      --gold: #ff856f;
+      --shadow: 0 20px 70px rgba(0, 0, 0, .42);
+    }
+
+    html,
+    body {
+      background: #100e13;
+      color: var(--ink);
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 92% 8%, rgba(109, 32, 93, .18), transparent 28rem),
+        radial-gradient(circle at 10% 35%, rgba(240, 76, 154, .08), transparent 24rem),
+        #100e13;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      pointer-events: none;
+      opacity: .035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.3'/%3E%3C/svg%3E");
+    }
+
+    .conversion-hero {
+      padding: 26px 24px 22px;
+      border: 1px solid rgba(240, 76, 154, .24);
+      background:
+        radial-gradient(circle at 84% 15%, rgba(240, 76, 154, .18), transparent 18rem),
+        linear-gradient(100deg, rgba(16, 14, 19, .98), rgba(45, 18, 39, .74));
+      box-shadow: 0 18px 60px rgba(0, 0, 0, .28);
+    }
+
+    .hero-kicker {
+      color: #17131a;
+      background: linear-gradient(90deg, #e994c5, #f04c9a, #ff856f, #e994c5);
+      background-size: 260% 100%;
+      box-shadow: 0 0 0 1px rgba(240, 76, 154, .28), 0 8px 22px rgba(240, 76, 154, .18);
+    }
+
+    h1 { color: #f5edf2; }
+    .danger-highlight { color: #f04c9a; }
+    .hero-copy { color: #d5c8d2; }
+    .hero-copy strong { color: #f4d6e8; }
+
+    .chat-shell {
+      border-color: rgba(240, 76, 154, .28);
+      background: #17131a;
+      box-shadow: 0 20px 80px rgba(0, 0, 0, .45), 0 0 60px rgba(240, 76, 154, .08);
+    }
+
+    .chat-header,
+    .composer {
+      border-color: rgba(244, 184, 221, .18);
+      background: #141117;
+    }
+
+    .profile h2,
+    .profile p,
+    .status-pill { color: #f5edf2; }
+    .profile p { color: #b9aeb8; }
+    .status-pill { background: rgba(240, 76, 154, .13); }
+    .progress { background: rgba(244, 184, 221, .12); }
+    .progress-bar { background: linear-gradient(90deg, #f04c9a, #ff856f); }
+
+    .messages {
+      background:
+        radial-gradient(circle at 75% 0%, rgba(109, 32, 93, .18), transparent 22rem),
+        #100e13;
+    }
+
+    .bubble:not(.user) { background: #211624; color: #f5edf2; }
+    .bubble.user { background: #6d205d; color: #fff7fb; }
+    .typing { background: #211624; }
+    .typing span { background: #e994c5; }
+
+    .choice {
+      border-color: rgba(240, 76, 154, .28);
+      background: #17131a;
+      color: #f5edf2;
+    }
+    .choice:hover,
+    .choice:focus-visible { border-color: #f04c9a; background: #241524; }
+    .choice.primary { border-color: #25d366; background: linear-gradient(100deg, #0f7a45, #25d366); }
+    .choice.primary:hover,
+    .choice.primary:focus-visible { border-color: #5ff08a; background: linear-gradient(100deg, #129650, #3ee47a); }
+    .choice.secondary { color: #b9aeb8; }
+
+    .bubble.offer,
+    .demo-video-card { border-color: rgba(240, 76, 154, .35); background: #141117; }
+    .offer-head,
+    .demo-video-card .offer-head { background: linear-gradient(135deg, rgba(109, 32, 93, .5), rgba(240, 76, 154, .12)); border-color: rgba(244, 184, 221, .18); }
+    .offer-head strong,
+    .offer-head span,
+    .offer-body,
+    .stack li { color: #f5edf2; }
+    .offer-head span,
+    .stack li { color: #b9aeb8; }
+    .check { background: #f04c9a; }
+    .price { border-color: rgba(244, 184, 221, .18); }
+    .price-installments { color: #ffffff; }
+    .price-installments .installments-amount { color: #25d366; }
+    .price del { color: #ff6b6b; }
+    .price small { color: #b9aeb8; }
+    .price strong { color: #25d366; }
+    .checkout-slot { border-color: rgba(240, 76, 154, .35); background: #100e13; }
+
+    .slot-label,
+    .video-caption { color: #b9aeb8; }
+
+    .modal { background: #17131a; color: #f5edf2; }
+    .modal-body p { color: #b9aeb8; }
+
   </style>
 </head>
 <body>
   <main class="page">
-    <section class="vsl-section" aria-label="Recomendação opcional: Protocolo Reconexão a Dois: O Plano Guiado de 14 Dias">
-      <!-- RASCUNHO — refinar copy -->
-      <h1>Parabéns! Seu acesso ao Mapa do Prazer Masculino já está reservado</h1>
-      <span class="subhead-bar">Mas antes preciso te dar um aviso</span>
-
-      <div class="vsl-player" id="vslPlayer">
-        <vturb-smartplayer id="vid-pending-up1-br" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"><div class="vturb-player-placeholder" style="position: relative; width: 100%; padding: 125% 0 0; z-index: 0; background-color: black;"></div></vturb-smartplayer>
-        <script type="text/javascript">
-          (function () {
-            var s = document.createElement("script");
-            s.src = "https://scripts.converteai.net/078ca594-053b-427b-a22f-58f182182f25/players/PENDING-UP1-BR/v4/player.js";
-            s.async = true;
-            document.head.appendChild(s);
-          })();
-        </script>
+    <section class="conversion-hero" aria-label="Confirmação de compra e recomendação opcional">
+      <div class="confirmation-topline">
+        <span class="confirmation-check">✓</span>
+        <span>Compra e acesso confirmados</span>
       </div>
+      <h1>Sua compra e seu acesso <span class="danger-highlight">já estão confirmados!</span></h1>
+      <p class="hero-copy"><strong>Antes de entrar, quero te mostrar uma recomendação opcional que pode complementar sua experiência.</strong></p>
+    </section>
 
-      <div class="cta-wrap" id="ctaWrap" hidden>
-        <div id="kiwify-upsell-PENDING-UP1-BR" data-upsell-url="https://mapadoprazer.site/up2" data-downsell-url="https://mapadoprazer.site/down1" style="--kiwify-upsell-accept-bg:#27AF60;--kiwify-upsell-accept-color:#FFFFFF">
-          <button id="kiwify-upsell-trigger-PENDING-UP1-BR">Sim, quero o Protocolo Reconexão</button>
-          <div id="kiwify-upsell-cancel-trigger-PENDING-UP1-BR">Não, quero depender só das minhas mãos</div>
+    <section class="chat-shell" aria-label="Conversa com Sofia Vilar">
+      <div>
+        <header class="chat-header">
+          <div class="profile">
+            <div class="avatar" aria-hidden="true">
+              <img src="/up1-sofia.webp" alt="">
+            </div>
+            <div>
+              <h2>Sofia Vilar</h2>
+              <p>on-line · guia do Protocolo Reconexão</p>
+            </div>
+          </div>
+          <div class="status-pill">Acesso confirmado</div>
+        </header>
+        <div class="progress" aria-hidden="true">
+          <div id="progressBar" class="progress-bar"></div>
         </div>
       </div>
+
+      <div id="messages" class="messages" aria-live="polite" aria-atomic="false"></div>
+
+      <footer class="composer">
+        <div id="choices" class="choices" aria-label="Opções de resposta"></div>
+      </footer>
     </section>
+
+    <!--
+      O bloco de 1 clique da Payt fica declarado aqui, oculto, desde o
+      carregamento da pagina — nao e criado por innerHTML dentro do chat. O
+      script da Payt varre o DOM procurando [payt_action] e [payt_element] ao
+      rodar, entao os elementos precisam ja existir nesse momento;
+      mountPaytCheckout() apenas MOVE o bloco (nao clona) para dentro do balao
+      do chat, preservando o que a Payt tenha ligado neles.
+    -->
+    <div id="payt-oneclick" hidden>
+      <a href="#" payt_action="oneclick_buy" data-object="47XX2P-45WZJG" style="display: inline-block; background: #22c55e; color: #ffffff; font-family: system-ui, -apple-system, sans-serif; font-size: 17px; font-weight: 700; padding: 15px 22.5px; border-radius: 11px; text-decoration: none; text-align: center; cursor: pointer">SIM, QUERO GARANTIR MEU PLANO!</a>
+      <select payt_element="installment" data-object="47XX2P-45WZJG" style="display:block; margin:10px auto 0; max-width:240px; padding:10px; border:1px solid #cbd5e1; border-radius:6px; background:#fff; font-size:14px;"></select>
+    </div>
   </main>
 
   <script>
-    // ---- Configuracao ----
-    // O checkout e o widget de upsell de 1 clique da Kiwify. Nao leva link:
-    // a Kiwify reconhece a compra do passo anterior e cobra em um clique. Para
-    // onde vai depois fica declarado no proprio <div>: data-upsell-url se aceita,
-    // data-downsell-url se recusa.
-    // TODO: o id do widget (PENDING-UP1-BR) sai do painel Kiwify da oferta BR.
-    // O botao de compra aparece quando o VSL chega no pitch de preco:
-    // 6:35 = 395 s. Para revisar o botao sem esperar: abrir com ?preview=1.
-    const REVEAL_AT_SECONDS = 395;
+    // Quem recusa o Protocolo cai no downsell (/down1), nao direto no acesso.
+    const DECLINE_URL = "/down1";
+    const avatarSrc = "/up1-sofia.webp";
+    const VTURB_PLAYER_SCRIPT = "https://scripts.converteai.net/078ca594-053b-427b-a22f-58f182182f25/players/PENDING-UP1-BR/v4/player.js";
+    const VTURB_PLAYER_ID = "vid-pending-up1-br";
+    // Ao aceitar a oferta aparece o bloco de 1 clique da Payt (oferta
+    // "Protocolo Reconexao a Dois", R$147). Nao leva link proprio: a Payt
+    // reconhece a compra anterior e cobra em um clique, e o <select> deixa a
+    // pessoa escolher o parcelamento no cartao (no PIX e sempre 1x). O script
+    // que ativa tudo carrega no rodape da pagina e precisa que os elementos ja
+    // existam no DOM, por isso eles ficam declarados desde o carregamento,
+    // ocultos, mais acima.
+    // TODO: para onde a Payt manda depois da compra aprovada se configura no
+    // painel dela, nao aqui. A pagina de obrigado deste upsell e /tks.up1.
 
-    const ctaWrap = document.getElementById("ctaWrap");
+    const messagesEl = document.querySelector("#messages");
+    const choicesEl = document.querySelector("#choices");
+    const progressBar = document.querySelector("#progressBar");
 
-    let revealed = false;
-    function revealCta() {
-      if (revealed) return;
-      revealed = true;
-      ctaWrap.hidden = false;
-      ctaWrap.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    const state = {
+      answers: {},
+      progress: 8
+    };
+
+    // A primeira resposta depois da escolha reflete o que a usuaria marcou.
+    const profiles = {
+      momento: {
+        echo: "Você quer saber a hora certa de propor, sem forçar e sem deixar esfriar."
+      },
+      conversa: {
+        echo: "Você quer conseguir tocar no assunto sem o clima pesar."
+      },
+      rotina: {
+        echo: "Você quer tirar vocês dois do piloto automático."
+      }
+    };
+
+    const flow = {
+      intro: {
+        progress: 12,
+        bot: [
+          "Sua compra e seu acesso já estão confirmados ✅",
+          "Antes de entrar, uma recomendação opcional que pode complementar sua experiência.",
+          "O Mapa te deu a técnica. Só que a técnica sozinha não resolve a parte mais difícil: criar o momento e propor sem que pareça cobrança.",
+          "Me diz uma coisa: hoje, o que mais trava na hora de colocar em prática?"
+        ],
+        choices: [
+          { text: "Achar a hora certa de propor.", value: "momento", next: "diagnosis" },
+          { text: "Falar sobre isso sem o clima pesar.", value: "conversa", next: "diagnosis" },
+          { text: "A rotina — a gente nem tenta mais.", value: "rotina", next: "diagnosis" }
+        ],
+        store: "profile"
+      },
+      diagnosis: {
+        progress: 32,
+        bot: [
+          () => profiles[state.answers.profile].echo,
+          "E é justamente aí que quase todo mundo trava. Não é falta de vontade nem de técnica: é que ninguém ensina a reconstruir clima no meio da rotina, com cansaço e mil outras coisas na frente.",
+          "Foi por isso que eu criei o Protocolo Reconexão a Dois: um plano guiado de 14 dias que cuida da parte de antes."
+        ],
+        choices: [
+          { text: "Me mostra como funciona", next: "demo" },
+          { text: "Quero entender rápido", next: "demo" }
+        ]
+      },
+      demo: {
+        progress: 50,
+        video: true,
+        bot: [
+          "Material educativo, para maiores de 18 anos. O conteúdo completo fica na área privada.",
+          "Deixa eu te mostrar a lógica do plano.",
+          "Um passo curto por dia, na ordem.\nOs primeiros dias só reabrem o canal.\nO convite vem depois, quando já existe clima para ele.",
+          "Nada de conversa difícil no dia 1. É isso que costuma estragar a tentativa."
+        ],
+        choices: [
+          { text: "Entendi a lógica", next: "mechanism" },
+          { text: "Como é o dia a dia?", next: "mechanism" }
+        ]
+      },
+      mechanism: {
+        progress: 66,
+        bot: [
+          "Não é sobre fazer mais. É sobre fazer na ordem certa.",
+          "São 14 dias, um passo por dia, cada um levando poucos minutos. Você não precisa combinar nada com ele antes — o plano é seu.",
+          "Resumindo:\nMapa → a técnica em si.\nProtocolo → criar o momento, convidar e propor sem pressão."
+        ],
+        choices: [
+          { text: "O que inclui?", next: "offer" },
+          { text: "Quero ver a recomendação", next: "offer" }
+        ]
+      },
+      offer: {
+        progress: 84,
+        bot: [
+          "Sua compra anterior e seu acesso já estão confirmados, mesmo que você decida não adicionar nada.",
+          "Se escolher somar, o Protocolo Reconexão a Dois fica disponível no mesmo acesso, por R$147. Você escolhe o parcelamento no cartão na hora de confirmar.",
+          "Material educativo. Não substitui orientação profissional. Vá no seu ritmo e com o consentimento dos dois.",
+          "Antes de decidir, algumas dúvidas frequentes:",
+          "É outro produto? Sim, é um complemento opcional. Sua compra anterior e seu acesso já estão confirmados mesmo que você não adicione.",
+          "É parecido com o Mapa? Não. O Mapa é a técnica. O Protocolo é o que vem antes dela: clima, conversa e convite.",
+          "Ele precisa saber que estou seguindo um plano? Não. Nenhum dos passos exige avisar ou combinar nada com ele antes.",
+          "E se ele não corresponder? O plano trabalha leitura de sinais justamente por isso: tem passo para avançar e tem passo para recuar sem desgaste.",
+          "É outra cobrança? Sim. Só se você aceitar adicionar é cobrado R$147, à vista ou parcelado no cartão. Não há cobrança adicional se escolher seguir só com a compra anterior.",
+          "Posso entrar sem adicionar nada? Sim. Seu acesso já está confirmado e você pode ir direto para ele."
+        ],
+        offer: true,
+        choices: [
+          { text: "SIM, QUERO ADICIONAR O PROTOCOLO RECONEXÃO", action: "checkout", primary: true },
+          { text: "Não, obrigada. Prefiro continuar com o acesso que já tenho.", next: "decline", secondary: true }
+        ]
+      },
+      decline: {
+        progress: 92,
+        bot: [
+          "Perfeito. Seu acesso anterior segue confirmado ✅",
+          "O Protocolo é o plano de 14 dias que cuida do antes: clima, conversa e convite. Se mais adiante você quiser somar, ele continua disponível."
+        ],
+        choices: [
+          { text: "Pensando melhor, quero adicionar", action: "checkout", primary: true },
+          { text: "Não, obrigada. Seguir sem o Protocolo.", action: "decline", secondary: true }
+        ]
+      }
+    };
+
+    function sleep(ms) {
+      return new Promise(resolve => window.setTimeout(resolve, ms));
     }
 
-    function watchVideoTime() {
-      // Igual a pagina de vendas: revelar o botao quando o VSL chega
-      // no ponto da oferta.
-      const timer = setInterval(function () {
-        const sp = window.smartplayer;
-        const instances = sp && sp.instances;
-        let t = null;
-        if (instances && instances.length) {
-          for (let i = 0; i < instances.length; i++) {
-            const v = instances[i] && instances[i].video;
-            if (v && typeof v.currentTime === "number") { t = v.currentTime; break; }
-          }
-        }
-        if (t === null) {
-          const el = document.querySelector("vturb-smartplayer video");
-          if (el && typeof el.currentTime === "number") t = el.currentTime;
-        }
-        if (t !== null && t >= REVEAL_AT_SECONDS) {
-          clearInterval(timer);
-          revealCta();
-        }
-      }, 1000);
+    function resolveText(item) {
+      return typeof item === "function" ? item() : item;
     }
 
-    if (new URLSearchParams(location.search).has("preview") || REVEAL_AT_SECONDS <= 0) {
-      revealCta();
-    } else {
-      watchVideoTime();
+    function scrollToBottom() {
+      messagesEl.scrollTop = messagesEl.scrollHeight;
     }
+
+    function setProgress(value) {
+      state.progress = value;
+      progressBar.style.width = `${value}%`;
+    }
+
+    function avatarNode() {
+      const avatar = document.createElement("div");
+      avatar.className = "mini-avatar";
+      avatar.innerHTML = `<img src="${avatarSrc}" alt="">`;
+      return avatar;
+    }
+
+    function addMessage(text, sender = "bot") {
+      const row = document.createElement("div");
+      row.className = `row ${sender}`;
+
+      const bubble = document.createElement("div");
+      bubble.className = `bubble ${sender === "user" ? "user" : ""}`;
+      bubble.textContent = text;
+
+      if (sender === "bot") row.appendChild(avatarNode());
+      row.appendChild(bubble);
+      messagesEl.appendChild(row);
+      scrollToBottom();
+    }
+
+    function addOfferCard() {
+      const row = document.createElement("div");
+      row.className = "row";
+      row.appendChild(avatarNode());
+
+      const card = document.createElement("div");
+      card.className = "bubble offer";
+      card.innerHTML = `
+        <div class="offer-head">
+          <strong>Protocolo Reconexão a Dois</strong>
+          <span>O Plano Guiado de 14 Dias.</span>
+        </div>
+        <div class="offer-body">
+          <ul class="stack">
+            <li><span class="check">1</span><span>Semana 1 — Reabrir o canal: 7 passos curtos para sair do automático, sem nenhuma conversa difícil.</span></li>
+            <li><span class="check">2</span><span>Semana 2 — Do clima ao convite: como propor sem soar cobrança, no momento em que há abertura.</span></li>
+            <li><span class="check">3</span><span>Roteiros de conversa: o que dizer para falar de desejo, limites e preferências sem travar.</span></li>
+            <li><span class="check">4</span><span>Leitura de sinais: quando avançar, quando recuar e como recuar sem desgaste.</span></li>
+            <li><span class="check">✓</span><span>Um passo por dia, poucos minutos, na ordem — sem pular etapas.</span></li>
+            <li><span class="check">✓</span><span>Garantia de 7 dias.</span></li>
+          </ul>
+          <div class="price">
+            <strong>R$147</strong>
+            <small>à vista ou parcelado no cartão</small>
+          </div>
+          <p class="video-caption">Acesso imediato, no mesmo login do Mapa · Garantia de 7 dias.</p>
+        </div>
+      `;
+
+      row.appendChild(card);
+      messagesEl.appendChild(row);
+      scrollToBottom();
+    }
+
+    function loadVturbPlayer() {
+      if (document.querySelector(`script[data-vturb-player="${VTURB_PLAYER_ID}"]`)) return;
+      const script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = VTURB_PLAYER_SCRIPT;
+      script.async = true;
+      script.dataset.vturbPlayer = VTURB_PLAYER_ID;
+      document.head.appendChild(script);
+    }
+
+    function addVturbVideo() {
+      loadVturbPlayer();
+
+      const row = document.createElement("div");
+      row.className = "row";
+      row.appendChild(avatarNode());
+
+      const card = document.createElement("div");
+      card.className = "demo-video-card";
+      card.innerHTML = `
+        <div class="offer-head">
+          <span class="demo-kicker">Como o plano funciona · 14 dias</span>
+          <strong>O Plano Guiado</strong>
+          <span>Material educativo. O conteúdo completo fica na área privada.</span>
+        </div>
+        <div class="offer-body">
+          <div class="vturb-frame"></div>
+          <p class="video-caption">Um passo por dia, na ordem. Sem pular etapas.</p>
+        </div>
+      `;
+
+      const player = document.createElement("vturb-smartplayer");
+      player.id = VTURB_PLAYER_ID;
+      player.setAttribute("style", "display: block; margin: 0 auto; width: 100%; max-width: 400px;");
+      player.innerHTML = '<div class="vturb-player-placeholder"></div>';
+      card.querySelector(".vturb-frame").appendChild(player);
+
+      row.appendChild(card);
+      messagesEl.appendChild(row);
+      scrollToBottom();
+    }
+
+    function mountPaytCheckout() {
+      const widget = document.getElementById("payt-oneclick");
+      if (!widget || !widget.hidden) return; // ja esta montado (ex.: vindo de "decline")
+
+      const row = document.createElement("div");
+      row.className = "row";
+      row.appendChild(avatarNode());
+
+      const card = document.createElement("div");
+      card.className = "bubble offer";
+      card.innerHTML = `
+        <div class="offer-body">
+          <span class="slot-label">Confirme sua compra em 1 clique</span>
+          <div class="checkout-slot"></div>
+        </div>
+      `;
+
+      widget.hidden = false;
+      card.querySelector(".checkout-slot").appendChild(widget);
+
+      row.appendChild(card);
+      messagesEl.appendChild(row);
+      scrollToBottom();
+    }
+
+    function addTyping() {
+      const row = document.createElement("div");
+      row.className = "row";
+      row.dataset.typing = "true";
+      row.appendChild(avatarNode());
+
+      const typing = document.createElement("div");
+      typing.className = "typing";
+      typing.setAttribute("aria-label", "Sofia está digitando");
+      typing.innerHTML = "<span></span><span></span><span></span>";
+      row.appendChild(typing);
+      messagesEl.appendChild(row);
+      scrollToBottom();
+      return row;
+    }
+
+    async function botSpeak(lines) {
+      for (const item of lines) {
+        const typing = addTyping();
+        await sleep(520 + Math.min(resolveText(item).length * 8, 700));
+        typing.remove();
+        addMessage(resolveText(item));
+        await sleep(180);
+      }
+    }
+
+    function renderChoices(step) {
+      choicesEl.innerHTML = "";
+      step.choices.forEach(choice => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = `choice ${choice.primary ? "primary" : ""} ${choice.secondary ? "secondary" : ""}`;
+        button.textContent = choice.text;
+        button.addEventListener("click", () => choose(choice, step));
+        choicesEl.appendChild(button);
+      });
+    }
+
+    async function choose(choice, step) {
+      choicesEl.innerHTML = "";
+      addMessage(choice.text, "user");
+
+      if (step.store) {
+        state.answers[step.store] = choice.value;
+      }
+
+      if (choice.action === "checkout") {
+        await sleep(180);
+        mountPaytCheckout();
+        return;
+      }
+
+      if (choice.action === "decline") {
+        window.location.href = DECLINE_URL;
+        return;
+      }
+
+      await sleep(180);
+      goTo(choice.next);
+    }
+
+    async function goTo(id) {
+      const step = flow[id];
+      setProgress(step.progress);
+      await botSpeak(step.bot || []);
+      if (step.video) addVturbVideo();
+      if (step.offer) addOfferCard();
+      renderChoices(step);
+    }
+
+    goTo("intro");
   </script>
 
-  <script src="https://snippets.kiwify.com/upsell-v2/upsell.min.js"></script>
+  <script type="text/javascript" src="https://checkout.payt.com.br/multiple-oneclickbuyscript/45GX73.js"></script>
 </body>
 </html>
