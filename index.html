@@ -1,17 +1,17 @@
 <!doctype html>
 <html lang="pt-BR">
   <head>
-    <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" async defer data-utmify-prevent-subids data-utmify-replace-links="pay.kiwify.com"></script>
+    <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" async defer data-utmify-prevent-subids data-utmify-replace-links="payt.site"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Uma experiência de desbloqueio, aula e conteúdo educativo contínuo." />
     <title>Mapa do Prazer Masculino</title>
 
-    <!-- VSL (VTURB): o vídeo em português ainda não foi entregue. Quando o player
-         existir, troque PENDING-BR pelo id real aqui e no index.js, e acrescente o
-         preload do main.m3u8 correspondente. -->
+    <!-- VSL (VTURB 69c1e55d137969468e801497): early hints so the player starts loading ASAP -->
     <script>!function(i,n){i._plt=i._plt||(n&&n.timeOrigin?n.timeOrigin+n.now():Date.now())}(window,performance);</script>
+    <link rel="preload" href="https://scripts.converteai.net/078ca594-053b-427b-a22f-58f182182f25/players/69c1e55d137969468e801497/v4/player.js" as="script">
     <link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" as="script">
+    <link rel="preload" href="https://cdn.converteai.net/078ca594-053b-427b-a22f-58f182182f25/69c1e515596c6131b74423fb/main.m3u8" as="fetch">
     <link rel="dns-prefetch" href="https://cdn.converteai.net">
     <link rel="dns-prefetch" href="https://scripts.converteai.net">
     <link rel="dns-prefetch" href="https://images.converteai.net">
@@ -20,8 +20,8 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <script type="module" src="./index.js?v=20260914-1"></script>
-    <link rel="stylesheet" href="./style.css?v=20260914-1">
+    <script type="module" src="./index.js?v=20260914-2"></script>
+    <link rel="stylesheet" href="./style.css?v=20260914-2">
 
     <script>
       (function () {
@@ -68,7 +68,7 @@
         // Single source of truth for checkout clicks - the links carry no inline handler.
         // Os domínios de pagamento mudam conforme a plataforma. Ficam listados aqui
         // para o evento não depender da palavra "checkout" aparecer na URL.
-        var CHECKOUT_HOSTS = ['pay.kiwify.com', 'pay.hotmart.com', 'pay.mycheckoutt.com', 'checkout.'];
+        var CHECKOUT_HOSTS = ['payt.site', 'checkout.payt.com.br', 'pay.kiwify.com', 'pay.hotmart.com', 'pay.mycheckoutt.com', 'checkout.'];
         document.addEventListener('click', function (e) {
           var link = e.target && e.target.closest && e.target.closest('a');
           if (!link || !link.href) return;
@@ -98,14 +98,13 @@
 
     <div id="root"></div>
     <div id="checkout-btn-wrapper" style="display: none; text-align: center; margin-top: 25px; padding-bottom: 40px; width: 100%; position: relative; z-index: 50;">
-        <a href="#checkout-pending" class="checkout-btn">SIM, QUERO GARANTIR MEU ACESSO AGORA</a>
+        <a href="https://payt.site/4pC2KXv" class="checkout-btn">SIM, QUERO GARANTIR MEU ACESSO AGORA</a>
     </div>
     <script>
-      // O pitch de vendas começa aos 5:58 do VSL, e é aí que o botão de checkout
-      // aparece - nunca antes. Reajustar quando o VSL em português estiver pronto,
-      // se a minutagem do pitch mudar.
+      // O pitch de vendas começa aos 5:50 do VSL em português, e é aí que o botão
+      // de checkout aparece - nunca antes.
       (function () {
-        var REVEAL_AT = 358;
+        var REVEAL_AT = 350;
         var wrapper = document.getElementById('checkout-btn-wrapper');
         var shown = false;
         var timer;
@@ -135,7 +134,7 @@
               var el = nodes[i];
               if (el === mine || wrapper.contains(el) || el.contains(wrapper)) continue;
               var href = (el.getAttribute && el.getAttribute('href')) || '';
-              var isCheckout = /kiwify\.com|pay\.hotmart\.com|mycheckoutt\.com/.test(href) ||
+              var isCheckout = /payt\.site|payt\.com\.br|kiwify\.com|pay\.hotmart\.com|mycheckoutt\.com/.test(href) ||
                 /GARANTIR MEU ACESSO/i.test(el.textContent || '');
               if (!isCheckout) continue;
               var box = el.closest('div, section') || el;
