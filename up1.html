@@ -1301,20 +1301,9 @@
         offer: true,
         checkout: true,
         choices: [
-          { text: "Não, obrigada.", next: "decline", secondary: true }
-        ]
-      },
-      decline: {
-        progress: 92,
-        bot: [
-          "Perfeito. Seu acesso anterior segue confirmado ✅",
-          "O Protocolo é o plano de 14 dias que cuida do antes: clima, conversa e convite. Se mais adiante você quiser somar, ele continua disponível."
-        ],
-        checkout: true,
-        choices: [
           { text: "Não, obrigada.", action: "decline", secondary: true }
         ]
-      }
+      },
     };
 
     function sleep(ms) {
@@ -1435,8 +1424,13 @@
       const widget = document.getElementById("payt-oneclick");
       if (!widget) return;
 
+      // Se ja houve um balao de checkout, ele fica com o slot vazio depois que
+      // o bloco da Payt e movido daqui. Some com ele em vez de deixar a caixa
+      // pontilhada vazia na conversa.
+      messagesEl.querySelectorAll(".row.checkout-row").forEach(old => old.remove());
+
       const row = document.createElement("div");
-      row.className = "row";
+      row.className = "row checkout-row";
       row.appendChild(avatarNode());
 
       const card = document.createElement("div");
@@ -1454,6 +1448,7 @@
       // quando a pessoa recusa e a oferta volta.
       widget.hidden = false;
       card.querySelector(".checkout-slot").appendChild(widget);
+      blockEmptyAnchorJump(widget);
 
       const declineWrap = card.querySelector(".inline-decline-wrap");
       (step.choices || []).forEach(choice => {
@@ -1469,6 +1464,20 @@
       messagesEl.appendChild(row);
       watchInstallments(widget);
       scrollToBottom();
+    }
+
+    // href="#" e o que a Payt manda usar, e o script dela intercepta o clique
+    // quando consegue ler o token da compra anterior na URL. Quando nao
+    // consegue (teste direto, link aberto fora do funil), ele nao intercepta e
+    // o "#" rola a pagina para o topo, o que parece defeito. Isto so barra a
+    // navegacao para "#": qualquer handler da Payt continua rodando normal.
+    function blockEmptyAnchorJump(widget) {
+      const anchor = widget.querySelector("[payt_action]");
+      if (!anchor || anchor.dataset.noJump) return;
+      anchor.dataset.noJump = "1";
+      anchor.addEventListener("click", e => {
+        if ((anchor.getAttribute("href") || "") === "#") e.preventDefault();
+      });
     }
 
     // O <select> de parcelas nasce vazio: a Payt so o preenche depois de ler o
