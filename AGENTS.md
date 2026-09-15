@@ -24,7 +24,7 @@ Domínio de produção: `https://mapadoprazer.site` (apex). `www` redireciona 30
 
 ## Escada de preços
 
-Front-end em teste A/B (R$47 / R$67 / R$97, definido no nível da oferta — não aparece em copy na página) → UP1 R$147 → DS1 R$97 (âncora R$147) → UP2 R$297 (5x de R$59,40, âncora R$897).
+Front-end em teste A/B (R$47 / R$67 / R$97, definido no nível da oferta — não aparece em copy na página) → UP1 R$197 → DS1 R$97 (âncora R$197) → UP2 R$297 (5x de R$59,40, âncora R$897).
 
 ## Tracking
 

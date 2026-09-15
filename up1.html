@@ -328,6 +328,95 @@
       border-radius: 14px;
     }
 
+    .bubble.bonus-box {
+      width: min(540px, 92%);
+      max-width: min(540px, 92%);
+      padding: 0;
+      overflow: hidden;
+      background: #151118;
+      border: 1px solid rgba(240, 76, 154, .38);
+      border-radius: 14px;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, .5), 0 0 30px rgba(240, 76, 154, .14);
+    }
+
+    .bonus-box-head {
+      padding: 13px 16px;
+      background: linear-gradient(135deg, rgba(109, 32, 93, .65), rgba(240, 76, 154, .25));
+      border-bottom: 1px solid rgba(244, 184, 221, .2);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .bonus-box-head strong {
+      color: #f5edf2;
+      font-size: 0.95rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .bonus-box-body {
+      padding: 12px 14px;
+      display: grid;
+      gap: 8px;
+      background: #17131a;
+    }
+
+    .bonus-pill {
+      padding: 10px 12px;
+      background: rgba(255, 255, 255, .03);
+      border: 1px solid rgba(240, 76, 154, .22);
+      border-radius: 10px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      transition: transform 140ms ease, border-color 140ms ease, background 140ms ease;
+    }
+
+    .bonus-pill:hover {
+      border-color: rgba(240, 76, 154, .5);
+      transform: translateY(-1px);
+      background: rgba(240, 76, 154, .06);
+    }
+
+    .bonus-pill-icon {
+      font-size: 1.15rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .bonus-pill-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .bonus-pill-title {
+      color: #f5edf2;
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin: 0 0 2px;
+      line-height: 1.25;
+    }
+
+    .bonus-pill-desc {
+      color: #b9aeb8;
+      font-size: 0.8rem;
+      line-height: 1.35;
+      margin: 0;
+    }
+
+    .bonus-box-foot {
+      padding: 10px 14px;
+      background: rgba(240, 76, 154, .08);
+      border-top: 1px solid rgba(244, 184, 221, .14);
+      text-align: center;
+      color: #f4b8dd;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
     .offer-head {
       padding: 18px 18px 16px;
       background: linear-gradient(135deg, rgba(109, 32, 93, .5), rgba(240, 76, 154, .14));
@@ -684,6 +773,7 @@
       }
 
       .bubble.offer,
+      .bubble.bonus-box,
       .bubble.image-card {
         width: min(90vw, 350px);
         max-width: min(90vw, 350px);
@@ -766,13 +856,13 @@
 
     const flow = {
       etapa1: {
-        progress: 15,
+        progress: 10,
         bot: [
           "Parabéns, minha linda! Com essa decisão, você acabou de se tornar uma mulher muito diferente da maioria.",
           "Uma mulher que se importa com o seu relacionamento, entende a importância da vida íntima e quer dominar habilidades que vão te transformar em uma verdadeira leoa na cama.",
           "O Mapa do Prazer Masculino te deu a técnica da massagem com as mãos para levá-lo ao delírio.",
           "Só que deixa eu te falar uma coisa com total honestidade: você não pode fazer sexo só com as mãos, né?",
-          "Afinal... todo mundo quer a penetração. Me conta uma coisa: hoje, como costuma ser a penetração entre vocês?"
+          "Mas antes, preciso que me conte uma coisa: como costuma ser o momento da penetração entre vocês?"
         ],
         choices: [
           { text: "Sinto que caiu na repetição do vai-e-vem.", value: "A", next: "etapa2" },
@@ -782,86 +872,104 @@
         store: "etapa1_choice"
       },
       etapa2: {
-        progress: 35,
+        progress: 25,
         bot: [
           () => {
             if (state.answers.etapa1_choice === "B") {
-              return "Esse é o sinal mais claro de que o estímulo de sempre já não está sendo suficiente para a mente dele...";
+              return "Entendi perfeitamente... Esse é o sinal mais claro de que o estímulo de sempre já não é suficiente para a mente dele.";
             }
             if (state.answers.etapa1_choice === "C") {
-              return "Você tocou exatamente no ponto: falta aquele desejo animal e incontrolável que faz um homem perder o juízo...";
+              return "Entendi exatamente o que você quer dizer: falta aquela chama ardente e incontrolável que faz um homem perder o juízo.";
             }
-            return "É exatamente isso que acontece com quase todo casal com o passar do tempo...";
+            return "Entendi com clareza. É exatamente isso o que acontece com quase todo casal com o passar dos anos.";
           },
-          "Olha só essa informação: 98% dos homens sentem apenas um único estímulo durante a vida inteira: o vai-e-vem.",
-          "Só que com o tempo, esse movimento vai enfraquecendo na mente dele. É como uma esponja de lavar louça: vai desgastando, ficando repetitiva e perdendo a capacidade de excitar de verdade.",
-          "Mas e se eu te mostrar como criar 5 tipos de estímulos intensos — aperto, sucção, compressão, massagem e pulsação — usando apenas a sua vagina no pênis dele?",
-          "Qual dessas reações você mais sonha em ver nele na próxima vez que você subir por cima?"
+          "Na sexologia clínica e nas pesquisas com casais, existe um dado comprovado que assusta quase todo mundo: mais de 98% dos homens passam a vida inteira conhecendo apenas um único tipo de estímulo mecânico durante o sexo, que é o atrito linear do vai-e-vem.",
+          "E sabe por que isso acontece? Porque a maioria das pessoas acredita que o prazer dele depende apenas de empurrar para dentro e para fora. Só que esse atrito repetitivo ativa apenas a camada superficial de terminações nervosas da pele do pênis, deixando os receptores mais profundos completamente adormecidos.",
+          "Com o tempo, o cérebro dele se acostuma com essa mesma sensação repetida. É por isso que muitos homens acabam precisando ir cada vez mais rápido só para conseguir terminar, enquanto outros perdem a ereção ou sentem que o sexo virou automático.",
+          "Mas e se eu te disser que a sua anatomia íntima foi desenhada para criar 5 tipos de estímulos simultâneos: aperto, sucção, compressão contínua, massagem circular e pulsação ritmada, usando apenas a sua musculatura no pênis dele?",
+          "Sem você precisar fazer força, sem cansar as pernas e sem dor na lombar.",
+          "Me diz com sinceridade: você já imaginava que era possível ter esse nível de controle por cima?"
         ],
         choices: [
-          { text: "Os olhos dele arregalarem de choque e surpresa.", value: "A", next: "etapa3" },
-          { text: "Ele agarrar minha cintura com força e gemer sem ar.", value: "B", next: "etapa3" },
-          { text: "Ele ficar louco de medo de me perder para outro.", value: "C", next: "etapa3" }
+          { text: "Nunca imaginei que isso fosse possível!", value: "A", next: "etapa3" },
+          { text: "Quero muito saber como funciona na prática!", value: "B", next: "etapa3" },
+          { text: "Eu sempre achei que precisava cansar as pernas...", value: "C", next: "etapa3" }
         ],
         store: "etapa2_choice"
       },
       etapa3: {
-        progress: 55,
+        progress: 45,
         bot: [
           () => {
-            if (state.answers.etapa2_choice === "C") {
-              return "Esse é o maior segredo da mente masculina: quando um homem tem uma leoa na cama, nasce nele um medo terrível e inconsciente de perdê-la.";
+            if (state.answers.etapa2_choice === "A") {
+              return "Pois é! Quase nenhuma mulher é ensinada sobre isso, mas quando você ativa esses pontos de contato, o jogo vira na mesma hora.";
             }
             if (state.answers.etapa2_choice === "B") {
-              return "As mãos dele vão cravar na sua cintura e na cama, tentando segurar a intensidade do prazer...";
+              return "E você vai ver que é surpreendentemente natural e gostoso de fazer quando você aprende o encaixe certo.";
             }
-            return "A boca dele vai abrir na hora como se estivesse prestes a gritar, sem entender de onde veio tanta sensação...";
+            return "Você não tem culpa nenhuma de pensar assim! Quase todo mundo acha que subir por cima é exercício físico, quando na verdade é pura física de alinhamento pélvico.";
           },
-          "Todo homem que encontra uma mulher verdadeiramente habilidosa, que sabe inovar e faz coisas selvagens, passa a enxergá-la como única no mundo. Isso libera hormônios no cérebro dele semelhantes ao vício.",
-          "E a chave mestra para comandar esse jogo é a técnica que eu chamo de Sentada da Donzela dentro do treinamento A Cavalgada Proibida.",
-          { type: "image", src: "/up1-cavalgada-app.webp", alt: "A Cavalgada Proibida — Área de Membros" },
-          "Tudo em vídeo-aulas práticas e discretas organizadas dentro do mesmo aplicativo do Mapa, sem complicação e direto ao ponto."
+          "E deixa eu te fazer uma pergunta que eu amo fazer para as minhas alunas...",
+          "Quando você subir por cima aplicando essa técnica pela primeira vez e ele sentir essa pressão profunda, qual dessas reações você mais sonha em ver nele?"
         ],
         choices: [
-          { text: "Mas se eu apertar tanto, ele não vai gozar rápido demais?", value: "A", next: "etapa4" },
-          { text: "Quero muito aprender a fazer isso sem me cansar!", value: "B", next: "etapa4" }
+          { text: "Os olhos dele arregalarem de choque e surpresa.", value: "A", next: "etapa4" },
+          { text: "Ele agarrar minha cintura com força e gemer sem ar.", value: "B", next: "etapa4" },
+          { text: "Ele ficar louco de medo de me perder para outro.", value: "C", next: "etapa4" }
         ],
         store: "etapa3_choice"
       },
       etapa4: {
-        progress: 75,
+        progress: 65,
         bot: [
           () => {
             if (state.answers.etapa3_choice === "A") {
-              return "Essa é a dúvida que quase toda aluna tem, e a resposta é exatamente o segredo do método...";
+              return "Entendi perfeitamente! E você vai amar ver isso acontecendo ao vivo...\n\nA reação clássica dele é essa: os olhos arregalam na hora, a respiração dele trava por alguns segundos e a boca fica entreaberta, sem entender de onde veio tanta intensidade e controle.";
             }
-            return "É muito mais simples e confortável do que você imagina, e você nunca mais vai cansar as pernas...";
+            if (state.answers.etapa3_choice === "B") {
+              return "Nossa, entendi exatamente o que você busca... e é uma das sensações mais poderosas para uma mulher!\n\nQuando a sucção interna e o aperto começam a pulsar, a reação involuntária dele é cravar os dedos na sua cintura ou no lençol para tentar se segurar, porque a sensação de perda de controle é absoluta.";
+            }
+            return "Entendi muito bem. Esse é um reflexo psicológico comprovado na mente masculina.\n\nQuando um homem percebe que a parceira dele domina habilidades tão raras na cama, nasce nele uma admiração profunda e um medo inconsciente de perdê-la, porque ele sabe que nunca mais vai encontrar nada igual.";
           },
-          "Muitas mulheres pensam que ao apertar e sugar, o homem vai ejacular em 2 minutos. Mas é o contrário!",
-          "A Cavalgada Proibida ensina técnicas de compressão rítmica para retardar a ejaculação dele quantas vezes você quiser.",
-          "É como abrir uma torneira forte com o ralo completamente tampado: o esperma vai acumulando, acumulando e represando...",
-          "E quando você finalmente libera a Sentada da Donzela, ele ejacula com tanta pressão e intensidade que o corpo inteiro dele entra em espasmos musculares de puro êxtase.",
+          "Todo homem que encontra uma mulher verdadeiramente habilidosa, que sabe inovar e faz coisas selvagens, passa a enxergá-la como única no mundo. Isso libera hormônios no cérebro dele semelhantes ao apego profundo.",
+          "E a chave mestra para comandar esse jogo é a técnica que eu chamo de Sentada da Donzela dentro do treinamento A Cavalgada Proibida.",
+          { type: "image", src: "/up1-cavalgada-app.webp", alt: "A Cavalgada Proibida: Área de Membros" },
+          "Tudo em vídeo-aulas práticas e discretas organizadas dentro da sua Área de Membros, exatamente no mesmo aplicativo do Mapa do Prazer, sem complicação e direto ao ponto."
+        ],
+        choices: [
+          { text: "Mas se eu apertar tanto, ele não vai gozar rápido demais?", value: "A", next: "etapa5" },
+          { text: "Quero muito aprender a fazer isso sem me cansar!", value: "B", next: "etapa5" }
+        ],
+        store: "etapa4_choice"
+      },
+      etapa5: {
+        progress: 80,
+        bot: [
+          () => {
+            if (state.answers.etapa4_choice === "A") {
+              return "Essa é a dúvida que quase toda aluna tem, e a resposta é exatamente o segredo do método!\n\nMuitas mulheres pensam que ao apertar e sugar, o homem vai ejacular em 2 minutos. Mas é o contrário! A Cavalgada Proibida ensina técnicas de compressão rítmica para retardar a ejaculação dele quantas vezes você quiser.";
+            }
+            return "É muito mais simples e confortável do que você imagina, e você nunca mais vai cansar as pernas!\n\nCom o alinhamento pélvico correto, o peso do seu corpo faz a pressão pelo encaixe, e não pela força muscular das coxas.";
+          },
+          "É como abrir uma torneira forte com o ralo completamente tampado: a pressão vai acumulando, acumulando e represando...",
+          "E quando você finalmente libera a Sentada da Donzela, ele atinge um clímax com tanta intensidade que o corpo inteiro dele entra em espasmos musculares de puro êxtase.",
           "Ele simplesmente nunca mais vai esquecer o que viveu com você."
         ],
         choices: [
-          { text: "Quero ver como garantir A Cavalgada Proibida", primary: true, next: "etapa5" }
+          { text: "Quero ver como garantir A Cavalgada Proibida com os Bônus", primary: true, next: "etapa6" }
         ]
       },
-      etapa5: {
+      etapa6: {
         progress: 95,
         bot: [
           "Sua compra anterior e seu acesso ao Mapa já estão 100% confirmados e garantidos.",
-          "Mas hoje, para você completar o ciclo — das mãos até a penetração definitiva —, preparei uma condição personalizada.",
-          "O curso completo A Cavalgada Proibida custa originalmente R$297.",
-          "E ao garantir sua vaga agora nesta tela, você ainda recebe 5 Bônus Exclusivos gratuitos:",
-          "🎁 Bônus 1: O Hiperorgasmo Tântrico — como atingir orgasmos 10x mais intensos que o comum.",
-          "🎁 Bônus 2: Os Pontos de Kamara — os pontos energéticos secretos do corpo feminino para explodir sua sensibilidade.",
-          "🎁 Bônus 3: Pompoarismo Invisível do Dia a Dia — micro-exercícios de 2 minutos para fazer em qualquer lugar e turbinar seu tônus e aperto sem aparelhos.",
-          "🎁 Bônus 4: As 7 Variações da Dominância Doce — ângulos por cima que não cansam as pernas nem a lombar.",
-          "🎁 Bônus 5: Roteiro de Sussurros de Comando — palavras e provocações para sussurrar no ouvido dele durante o ato e fazê-lo perder o controle.",
+          "Mas hoje, para você completar o ciclo, das mãos até a penetração definitiva, preparei uma condição única e exclusiva nesta tela.",
+          "O treinamento completo A Cavalgada Proibida custa originalmente R$297.",
+          "E para quebrar qualquer dúvida e te entregar a experiência mais completa da sua vida, eu liberei uma caixinha especial com 5 Bônus Exclusivos inclusos de presente para você:",
+          { type: "bonus_box" },
           "E você ainda leva 2 presentes surpresa adicionais que já deixei preparados dentro da plataforma!",
           "Tudo isso somado vale mais de R$497.",
-          "Mas hoje, nesta oportunidade única de confirmação, você adiciona o pacote completo por apenas R$147 à vista — ou 12x de R$12,25.",
+          "Mas hoje, nesta oportunidade exclusiva de confirmação, você adiciona o pacote completo por apenas R$197 à vista (ou 12x de R$19,70).",
           "É pagamento único em 1 clique: você não digita o cartão de novo, o sistema adiciona com total discrição e segurança, com 7 dias de garantia incondicional."
         ],
         offer: true,
@@ -924,6 +1032,65 @@
       scrollToBottom();
     }
 
+    function addBonusBox() {
+      const row = document.createElement("div");
+      row.className = "row";
+      row.appendChild(avatarNode());
+
+      const box = document.createElement("div");
+      box.className = "bubble bonus-box";
+      box.innerHTML = `
+        <div class="bonus-box-head">
+          <span style="font-size:1.15rem;">🎁</span>
+          <strong>PACOTE VIP: 5 BÔNUS EXCLUSIVOS INCLUSOS</strong>
+        </div>
+        <div class="bonus-box-body">
+          <div class="bonus-pill">
+            <div class="bonus-pill-icon">🎁</div>
+            <div class="bonus-pill-content">
+              <div class="bonus-pill-title">Bônus 1: O Hiperorgasmo Tântrico</div>
+              <div class="bonus-pill-desc">Como atingir orgasmos 10x mais intensos que o comum.</div>
+            </div>
+          </div>
+          <div class="bonus-pill">
+            <div class="bonus-pill-icon">🎁</div>
+            <div class="bonus-pill-content">
+              <div class="bonus-pill-title">Bônus 2: Os Pontos de Kamara</div>
+              <div class="bonus-pill-desc">Os pontos energéticos secretos do corpo feminino para explodir sua sensibilidade.</div>
+            </div>
+          </div>
+          <div class="bonus-pill">
+            <div class="bonus-pill-icon">🎁</div>
+            <div class="bonus-pill-content">
+              <div class="bonus-pill-title">Bônus 3: Pompoarismo Invisível do Dia a Dia</div>
+              <div class="bonus-pill-desc">Micro-exercícios de 2 minutos para fazer em qualquer lugar e turbinar seu tônus e aperto sem aparelhos.</div>
+            </div>
+          </div>
+          <div class="bonus-pill">
+            <div class="bonus-pill-icon">🎁</div>
+            <div class="bonus-pill-content">
+              <div class="bonus-pill-title">Bônus 4: As 7 Variações da Dominância Doce</div>
+              <div class="bonus-pill-desc">Ângulos por cima que não cansam as pernas nem a lombar.</div>
+            </div>
+          </div>
+          <div class="bonus-pill">
+            <div class="bonus-pill-icon">🎁</div>
+            <div class="bonus-pill-content">
+              <div class="bonus-pill-title">Bônus 5: Roteiro de Sussurros de Comando</div>
+              <div class="bonus-pill-desc">Palavras e provocações para sussurrar no ouvido dele durante o ato e fazê-lo perder o controle.</div>
+            </div>
+          </div>
+        </div>
+        <div class="bonus-box-foot">
+          ✨ Total em Bônus: R$ 388 · Hoje: R$ 0 (Incluso de Presente)
+        </div>
+      `;
+
+      row.appendChild(box);
+      messagesEl.appendChild(row);
+      scrollToBottom();
+    }
+
     function addOfferCard() {
       const row = document.createElement("div");
       row.className = "row";
@@ -941,15 +1108,15 @@
             <li><span class="check">1</span><span><strong>Os 5 Estímulos Vaginais:</strong> aperto, sucção, compressão, massagem e pulsação no pênis dele.</span></li>
             <li><span class="check">2</span><span><strong>A Sentada da Donzela:</strong> a técnica para cavalgar sem cansar e levar o homem ao delírio.</span></li>
             <li><span class="check">3</span><span><strong>Retardo e Clímax Represado:</strong> como ditar o tempo dele e provocar espasmos intensos.</span></li>
-            <li><span class="check">🎁</span><span><strong>Bônus 1 & 2:</strong> O Hiperorgasmo Tântrico + Os Pontos de Kamara.</span></li>
-            <li><span class="check">🎁</span><span><strong>Bônus 3, 4 & 5:</strong> Pompoarismo Invisível + Dominância Doce + Sussurros de Comando.</span></li>
+            <li><span class="check">🎁</span><span><strong>Caixinha VIP com 5 Bônus:</strong> Hiperorgasmo, Pontos de Kamara, Pompoarismo, Dominância Doce e Sussurros.</span></li>
+            <li><span class="check">🎁</span><span><strong>2 Presentes Surpresa:</strong> Efeito Ímã + Playlist Frequência Secreta.</span></li>
             <li><span class="check">✓</span><span><strong>Garantia Incondicional de 7 Dias:</strong> risco zero para você experimentar.</span></li>
           </ul>
           <div class="price">
-            <span class="price-installments">12x de <span class="installments-amount">R$12,25</span></span>
-            <strong>R$147</strong>
+            <span class="price-installments">12x de <span class="installments-amount">R$19,70</span></span>
+            <strong>R$197</strong>
             <small>à vista</small>
-            <del>R$397</del>
+            <del>R$497</del>
           </div>
           <p class="video-caption">Acesso imediato no mesmo login do Mapa · Pagamento único · Garantia de 7 dias</p>
         </div>
@@ -1056,6 +1223,14 @@
           await sleep(3000);
           typing.remove();
           addImageMessage(item.src, item.alt || "");
+          await sleep(350);
+          continue;
+        }
+        if (typeof item === "object" && item.type === "bonus_box") {
+          const typing = addTyping();
+          await sleep(3000);
+          typing.remove();
+          addBonusBox();
           await sleep(350);
           continue;
         }
