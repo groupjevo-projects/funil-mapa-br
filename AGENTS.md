@@ -15,8 +15,8 @@ Domínio de produção: `https://mapadoprazer.site` (apex). `www` redireciona 30
 | Rota       | Arquivo         | Papel                                                     |
 |------------|-----------------|-----------------------------------------------------------|
 | `/`        | `index.html` + `index.js` + `style.css` | Gate de toque + página de vendas com VSL |
-| `/up1`     | `up1.html`      | Upsell 1 — Protocolo Reconexão a Dois (página estilo VSL)  |
-| `/down1`   | `down1.html`    | Downsell 1 — mesmo produto do UP1, condição especial       |
+| `/up1`     | `up1.html`      | Upsell 1 — A Cavalgada Proibida (chat guiado interativo Sofia Villar) |
+| `/down1`   | `down1.html`    | Downsell 1 — A Cavalgada Proibida (condição especial R$97)       |
 | `/up2`, `/upsell2` | `upsell2.html` | Upsell 2 — Método das Deusas (chat guiado)         |
 | `/tks`     | `tks.html`      | Obrigado / instruções de acesso                            |
 

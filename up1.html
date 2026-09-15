@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Protocolo Reconexão em Casal | Sofia Villar</title>
+  <title>A Cavalgada Proibida | Sofia Villar</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -714,7 +714,7 @@
         <span>Compra e acesso confirmados</span>
       </div>
       <h1>Sua compra e seu acesso <span class="danger-highlight">já estão confirmados!</span></h1>
-      <p class="hero-copy"><strong>Antes de entrar, quero te mostrar uma recomendação opcional que pode complementar sua experiência.</strong></p>
+      <p class="hero-copy"><strong>Antes de entrar, quero te mostrar uma recomendação opcional que vai transformar sua experiência na cama.</strong></p>
     </section>
 
     <section class="chat-shell" aria-label="Conversa com Sofia Villar">
@@ -726,7 +726,7 @@
             </div>
             <div>
               <h2>Sofia Villar</h2>
-              <p>on-line · guia do Protocolo Reconexão</p>
+              <p>on-line · guia da Cavalgada Proibida</p>
             </div>
           </div>
           <div class="status-pill">Acesso confirmado</div>
@@ -743,22 +743,15 @@
       </footer>
     </section>
 
-    <!--
-      O bloco de 1 clique da Payt fica declarado aqui, oculto, desde o
-      carregamento da pagina — nao e criado por innerHTML dentro do chat. O
-      script da Payt varre o DOM procurando [payt_action] e [payt_element] ao
-      rodar, entao os elementos precisam ja existir nesse momento;
-      mountPaytCheckout() apenas MOVE o bloco (nao clona) para dentro do balao
-      do chat, preservando o que a Payt tenha ligado neles.
-    -->
+    <!-- Bloco de 1 clique Payt (UP1) -->
     <div id="payt-oneclick" hidden>
-      <a href="#" payt_action="oneclick_buy" data-object="47XX2P-45WZJG" class="payt-btn">SIM, QUERO GARANTIR MEU PLANO!</a>
+      <a href="#" payt_action="oneclick_buy" data-object="47XX2P-45WZJG" class="payt-btn">SIM, QUERO DOMINAR A CAVALGADA!</a>
       <select payt_element="installment" data-object="47XX2P-45WZJG" class="payt-select"></select>
     </div>
   </main>
 
   <script>
-    // Quem recusa o Protocolo cai no downsell (/down1), nao direto no acesso.
+    // Quem recusa a Cavalgada Proibida cai no downsell (/down1)
     const DECLINE_URL = "/down1";
     const avatarSrc = "/up1-sofia.webp";
 
@@ -775,15 +768,16 @@
       etapa1: {
         progress: 15,
         bot: [
-          "Pronto, minha linda: sua compra e seu acesso ao Mapa já estão confirmados ✅",
-          "Antes de você entrar, uma recomendação opcional que vai complementar sua experiência.",
-          "O Mapa do Prazer Masculino te deu a técnica…Só que a técnica sozinha não resolve a parte mais difícil: criar o momento e propor sem que pareça cobrança.",
-          "Me diz uma coisa: hoje, o que mais trava na hora de colocar em prática?"
+          "Parabéns, minha linda! Com essa decisão, você acabou de se tornar uma mulher muito diferente da maioria.",
+          "Uma mulher que se importa com o seu relacionamento, entende a importância da vida íntima e quer dominar habilidades que vão te transformar em uma verdadeira leoa na cama.",
+          "O Mapa do Prazer Masculino te deu a técnica da massagem com as mãos para levá-lo ao delírio.",
+          "Só que deixa eu te falar uma coisa com total honestidade: você não pode fazer sexo só com as mãos, né?",
+          "Afinal... todo mundo quer a penetração. Me conta uma coisa: hoje, como costuma ser a penetração entre vocês?"
         ],
         choices: [
-          { text: "Achar a hora certa de propor.", value: "A", next: "etapa2" },
-          { text: "Falar sobre isso sem que o clima pese.", value: "B", next: "etapa2" },
-          { text: "A rotina, a gente nem tenta mais.", value: "C", next: "etapa2" }
+          { text: "Sinto que caiu na repetição do vai-e-vem.", value: "A", next: "etapa2" },
+          { text: "Ele empurra rápido demais só pra conseguir terminar.", value: "B", next: "etapa2" },
+          { text: "É gostoso, mas sinto que falta aquela loucura selvagem.", value: "C", next: "etapa2" }
         ],
         store: "etapa1_choice"
       },
@@ -792,36 +786,45 @@
         bot: [
           () => {
             if (state.answers.etapa1_choice === "B") {
-              return 'Você quer as palavras certas: para guiar ele na hora, e também para as noites em que ele chega dizendo "hoje não, amor".';
+              return "Esse é o sinal mais claro de que o estímulo de sempre já não está sendo suficiente para a mente dele...";
             }
             if (state.answers.etapa1_choice === "C") {
-              return "Você quer tirar vocês dois do piloto automático, mesmo nos dias em que o cansaço fala mais alto.";
+              return "Você tocou exatamente no ponto: falta aquele desejo animal e incontrolável que faz um homem perder o juízo...";
             }
-            return "Você quer saber a hora certa de convidar, com leveza, sem forçar e sem deixar esfriar.";
+            return "É exatamente isso que acontece com quase todo casal com o passar do tempo...";
           },
-          "E é justamente aí que quase toda mulher trava.",
-          "Não é falta de vontade nem de técnica: em dez anos acompanhando casais, eu vi que o inimigo nunca é você nem é ele, mas sim a rotina que come a energia dos dois, o cansaço e aquele medo silencioso de ser sempre a única que busca.",
-          "Foi por isso que eu criei o Protocolo Reconexão em Casal: um plano guiado de 14 dias que cuida exatamente dessa parte."
+          "Olha só essa informação: 98% dos homens sentem apenas um único estímulo durante a vida inteira: o vai-e-vem.",
+          "Só que com o tempo, esse movimento vai enfraquecendo na mente dele. É como uma esponja de lavar louça: vai desgastando, ficando repetitiva e perdendo a capacidade de excitar de verdade.",
+          "Mas e se eu te mostrar como criar 5 tipos de estímulos intensos — aperto, sucção, compressão, massagem e pulsação — usando apenas a sua vagina no pênis dele?",
+          "Qual dessas reações você mais sonha em ver nele na próxima vez que você subir por cima?"
         ],
         choices: [
-          { text: "Quero saber como funciona", primary: true, next: "etapa3" }
-        ]
+          { text: "Os olhos dele arregalarem de choque e surpresa.", value: "A", next: "etapa3" },
+          { text: "Ele agarrar minha cintura com força e gemer sem ar.", value: "B", next: "etapa3" },
+          { text: "Ele ficar louco de medo de me perder para outro.", value: "C", next: "etapa3" }
+        ],
+        store: "etapa2_choice"
       },
       etapa3: {
         progress: 55,
         bot: [
-          "É um material educativo, para maiores de 18 anos. O conteúdo completo fica numa área de membros privada, e você recebe o acesso junto com o Mapa.",
-          "Deixa eu te mostrar a lógica do plano.",
-          "É um passo curto por dia, na ordem. E cada dia tem três versões: 3, 7 ou 15 minutos e você adapta de acordo com o seu dia.",
-          "Os primeiros dias só reabrem o clima. Gestos pequenos, fora da cama, para a noite não começar fria.",
-          "O convite vem depois, quando já existe clima para ele, e com as palavras prontas, no seu jeito doce ou divertido.",
-          { type: "image", src: "/up1-protocolo-app.webp", alt: "Protocolo Reconexão em Casal — Área de Membros" },
-          "É assim que o Protocolo chega pra você: tudo organizado dentro do aplicativo que já encontra com o Mapa, sem precisar imprimir nada, montar ou decorar.",
-          "E os Roteiros de Conversa vêm prontos ali dentro."
+          () => {
+            if (state.answers.etapa2_choice === "C") {
+              return "Esse é o maior segredo da mente masculina: quando um homem tem uma leoa na cama, nasce nele um medo terrível e inconsciente de perdê-la.";
+            }
+            if (state.answers.etapa2_choice === "B") {
+              return "As mãos dele vão cravar na sua cintura e na cama, tentando segurar a intensidade do prazer...";
+            }
+            return "A boca dele vai abrir na hora como se estivesse prestes a gritar, sem entender de onde veio tanta sensação...";
+          },
+          "Todo homem que encontra uma mulher verdadeiramente habilidosa, que sabe inovar e faz coisas selvagens, passa a enxergá-la como única no mundo. Isso libera hormônios no cérebro dele semelhantes ao vício.",
+          "E a chave mestra para comandar esse jogo é a técnica que eu chamo de Sentada da Donzela dentro do treinamento A Cavalgada Proibida.",
+          { type: "image", src: "/up1-cavalgada-app.webp", alt: "A Cavalgada Proibida — Área de Membros" },
+          "Tudo em vídeo-aulas práticas e discretas organizadas dentro do mesmo aplicativo do Mapa, sem complicação e direto ao ponto."
         ],
         choices: [
-          { text: "Entendi, quero ver mais", value: "A", next: "etapa4" },
-          { text: "Como é o dia a dia?", value: "B", next: "etapa4" }
+          { text: "Mas se eu apertar tanto, ele não vai gozar rápido demais?", value: "A", next: "etapa4" },
+          { text: "Quero muito aprender a fazer isso sem me cansar!", value: "B", next: "etapa4" }
         ],
         store: "etapa3_choice"
       },
@@ -829,43 +832,42 @@
         progress: 75,
         bot: [
           () => {
-            if (state.answers.etapa3_choice === "B") {
-              return "O dia a dia é mais simples do que parece. Olha só: Não é sobre fazer mais. É sobre fazer na ordem certa.";
+            if (state.answers.etapa3_choice === "A") {
+              return "Essa é a dúvida que quase toda aluna tem, e a resposta é exatamente o segredo do método...";
             }
-            return "Não é sobre fazer mais, é sobre fazer na ordem certa.";
+            return "É muito mais simples e confortável do que você imagina, e você nunca mais vai cansar as pernas...";
           },
-          "São 14 dias, um passo por dia, cada um levando pouco tempo, de 3, 7 ou 15 minutos adaptados conforme o seu dia. Você não precisa combinar nada com ele antes, o plano é seu.",
-          "Resumindo:\n\nO Mapa → a técnica em si.\nProtocolo Reconexão → criar o momento, convidar e propor sem pressão."
+          "Muitas mulheres pensam que ao apertar e sugar, o homem vai ejacular em 2 minutos. Mas é o contrário!",
+          "A Cavalgada Proibida ensina técnicas de compressão rítmica para retardar a ejaculação dele quantas vezes você quiser.",
+          "É como abrir uma torneira forte com o ralo completamente tampado: o esperma vai acumulando, acumulando e represando...",
+          "E quando você finalmente libera a Sentada da Donzela, ele ejacula com tanta pressão e intensidade que o corpo inteiro dele entra em espasmos musculares de puro êxtase.",
+          "Ele simplesmente nunca mais vai esquecer o que viveu com você."
         ],
         choices: [
-          { text: "Quero ver a recomendação", primary: true, next: "etapa5" }
+          { text: "Quero ver como garantir A Cavalgada Proibida", primary: true, next: "etapa5" }
         ]
       },
       etapa5: {
         progress: 95,
         bot: [
-          "Sua compra anterior e seu acesso já estão confirmados, mesmo que você decida não adicionar nada.",
-          "Então deixa eu te mostrar, com calma, tudo o que eu preparei aqui dentro.",
-          "Primeiro, o Planner de 14 Dias Anti-Rotina. Um passo por dia, na ordem certa, que vem com três versões: A de 3, 7 ou 15 minutos. No dia em que você chega arrasada, faz 3 minutos e pronto, o plano se adapta à sua vida, não o contrário.",
-          "A Semana 1 é só para reabrir o clima. Dentro dela vai o guia do “De colegas de quarto a Amantes” que mostra como fazer gestos diários no dia a dia para impedir que vocês comecem a noite de vocês de forma fria.",
-          "A Semana 2 é o convite. Quando já existe clima, você propõe e vive o encontro com leveza, sem que soe como cobrança, sem aquele peso de \"precisamos conversar\".",
-          "E junto você também recebe “Os 3 Roteiros de Conversa Sem Vergonha”. São frases prontas, para você adaptar ao seu jeito e começar a falar com ele do jeito que achar melhor pra você.",
-          "Dentro do plano você também receberá:\n\n• O Convite Brincalhão: como propor, com um sorriso, sem que jamais soe como exigência.\n\n• O Guia na Cama: como dizer suavemente o que fazer e pedir o que você gosta, sem quebrar a magia do momento.\n\n• O Amparo Amoroso: o que dizer na noite em que ele chega exausto, pra transformar aquele \"hoje não, amor\" num momento prazeroso. Sem que sua autoestima se machuque nem por um segundo.",
-          "E tem mais duas coisas que eu costumo vender separado. Hoje elas vão junto, sem custo nenhum.",
-          "Áudios de Bolso de 2 Minutos: mini-áudios com a minha voz, pra você colocar o fone dois minutos antes de entrar no quarto. Soltar a ansiedade, respirar fundo e entrar segura, presente, conectada com você mesma. Normalmente eu vendo esse tipo de conteúdo por R$97, hoje vai com você.",
-          "O Efeito Ímã: Como Despertar a Iniciativa Dele: esse é o mais especial, porque responde à coisa que mais dói: ser sempre a única que busca. Você aprende a fechar cada encontro deixando uma marca tão boa nele que, nos dias seguintes, a vontade de te procurar nasce dele. Normalmente eu vendo por R$147, hoje também vai com você.",
-          "Pra você ter uma ideia: uma única consulta de casal comigo custa entre R$300 e R$600, e quase nunca é só uma sessão.",
-          "Só os dois bônus já somam R$244. Com o plano completo de 14 dias e os três roteiros, tudo isso vale R$397.",
-          "Mas hoje, porque você acabou de entrar no Mapa e eu quero muito que isso funcione na sua casa já na primeira semana, você adiciona ao seu pedido por R$147 à vista - ou 12x de R$12,25.",
-          "Olha bem: é o mesmo preço que o Efeito Ímã sozinho. Só que você leva o pacote inteiro.",
-          "É menos do que um jantar simples para dois. Com um impacto que pode mudar os próximos anos de vocês.",
-          "E você ainda leva isso tudo com uma garantia incondicional de 7 dias. Você entra, abre o planner, ouve os áudios, e caso se arrependa você pode pedir todo seu dinheiro de volta.",
-          "É pagamento único, Você não digita o cartão de novo, o sistema adiciona à sua compra de hoje. E no extrato aparece com um nome neutro e discreto, igual à compra anterior."
+          "Sua compra anterior e seu acesso ao Mapa já estão 100% confirmados e garantidos.",
+          "Mas hoje, para você completar o ciclo — das mãos até a penetração definitiva —, preparei uma condição personalizada.",
+          "O curso completo A Cavalgada Proibida custa originalmente R$297.",
+          "E ao garantir sua vaga agora nesta tela, você ainda recebe 5 Bônus Exclusivos gratuitos:",
+          "🎁 Bônus 1: O Hiperorgasmo Tântrico — como atingir orgasmos 10x mais intensos que o comum.",
+          "🎁 Bônus 2: Os Pontos de Kamara — os pontos energéticos secretos do corpo feminino para explodir sua sensibilidade.",
+          "🎁 Bônus 3: Pompoarismo Invisível do Dia a Dia — micro-exercícios de 2 minutos para fazer em qualquer lugar e turbinar seu tônus e aperto sem aparelhos.",
+          "🎁 Bônus 4: As 7 Variações da Dominância Doce — ângulos por cima que não cansam as pernas nem a lombar.",
+          "🎁 Bônus 5: Roteiro de Sussurros de Comando — palavras e provocações para sussurrar no ouvido dele durante o ato e fazê-lo perder o controle.",
+          "E você ainda leva 2 presentes surpresa adicionais que já deixei preparados dentro da plataforma!",
+          "Tudo isso somado vale mais de R$497.",
+          "Mas hoje, nesta oportunidade única de confirmação, você adiciona o pacote completo por apenas R$147 à vista — ou 12x de R$12,25.",
+          "É pagamento único em 1 clique: você não digita o cartão de novo, o sistema adiciona com total discrição e segurança, com 7 dias de garantia incondicional."
         ],
         offer: true,
         checkout: true,
         choices: [
-          { text: "Não, obrigada.", action: "decline", secondary: true }
+          { text: "Não, obrigada. Prefiro ficar só com as massagens com as mãos.", action: "decline", secondary: true }
         ]
       }
     };
@@ -931,17 +933,17 @@
       card.className = "bubble offer";
       card.innerHTML = `
         <div class="offer-head">
-          <strong>Protocolo Reconexão em Casal</strong>
-          <span>O Plano Guiado de 14 Dias.</span>
+          <strong>A Cavalgada Proibida</strong>
+          <span>O Guia Definitivo da Penetração Tântrica</span>
         </div>
         <div class="offer-body">
           <ul class="stack">
-            <li><span class="check">1</span><span><strong>Semana 1:</strong> Guia "De colegas de quarto a Amantes" — gestos diários para reabrir o clima sem frieza.</span></li>
-            <li><span class="check">2</span><span><strong>Semana 2:</strong> O Convite — propor e viver o encontro com leveza, sem peso de cobrança.</span></li>
-            <li><span class="check">3</span><span><strong>Os 3 Roteiros de Conversa Sem Vergonha:</strong> Convite Brincalhão, Guia na Cama e Amparo Amoroso.</span></li>
-            <li><span class="check">🎁</span><span><strong>Bônus 1 (Incluso):</strong> Áudios de Bolso de 2 Minutos para soltar a ansiedade antes de entrar no quarto (R$97).</span></li>
-            <li><span class="check">🎁</span><span><strong>Bônus 2 (Incluso):</strong> O Efeito Ímã — Como Despertar a Iniciativa Dele nos dias seguintes (R$147).</span></li>
-            <li><span class="check">✓</span><span><strong>Garantia incondicional de 7 dias:</strong> risco zero para você testar.</span></li>
+            <li><span class="check">1</span><span><strong>Os 5 Estímulos Vaginais:</strong> aperto, sucção, compressão, massagem e pulsação no pênis dele.</span></li>
+            <li><span class="check">2</span><span><strong>A Sentada da Donzela:</strong> a técnica para cavalgar sem cansar e levar o homem ao delírio.</span></li>
+            <li><span class="check">3</span><span><strong>Retardo e Clímax Represado:</strong> como ditar o tempo dele e provocar espasmos intensos.</span></li>
+            <li><span class="check">🎁</span><span><strong>Bônus 1 & 2:</strong> O Hiperorgasmo Tântrico + Os Pontos de Kamara.</span></li>
+            <li><span class="check">🎁</span><span><strong>Bônus 3, 4 & 5:</strong> Pompoarismo Invisível + Dominância Doce + Sussurros de Comando.</span></li>
+            <li><span class="check">✓</span><span><strong>Garantia Incondicional de 7 Dias:</strong> risco zero para você experimentar.</span></li>
           </ul>
           <div class="price">
             <span class="price-installments">12x de <span class="installments-amount">R$12,25</span></span>
@@ -949,7 +951,7 @@
             <small>à vista</small>
             <del>R$397</del>
           </div>
-          <p class="video-caption">Acesso imediato · Pagamento único · Garantia incondicional de 7 dias</p>
+          <p class="video-caption">Acesso imediato no mesmo login do Mapa · Pagamento único · Garantia de 7 dias</p>
         </div>
       `;
 
@@ -972,7 +974,7 @@
       card.className = "bubble offer";
       card.innerHTML = `
         <div class="offer-body">
-          <span class="slot-label">Confirme sua compra em 1 clique</span>
+          <span class="slot-label">Confirme sua inscrição em 1 clique</span>
           <div class="checkout-slot"></div>
           <div class="inline-decline-wrap"></div>
         </div>
@@ -1005,7 +1007,6 @@
       anchor.dataset.noJump = "1";
       anchor.addEventListener("click", e => {
         if ((anchor.getAttribute("href") || "") === "#") {
-          // Se nao ha token anterior, impede salto para o topo
           if (!window.location.search.includes("_o")) {
             e.preventDefault();
           }
@@ -1038,14 +1039,13 @@
     }
 
     function calcDelay(text) {
-      // Média de ~3 segundos para mensagens normais e ~5 segundos para mensagens mais longas
       const len = text.length;
       if (len <= 70) {
-        return 2800 + Math.min(len * 6, 400); // 2.8s a 3.2s (média 3s)
+        return 2800 + Math.min(len * 6, 400); // 2.8s a 3.2s
       } else if (len <= 150) {
         return 3200 + Math.round((len - 70) * 12); // 3.2s a 4.1s
       } else {
-        return Math.min(4200 + Math.round((len - 150) * 8), 5400); // 4.2s a 5.4s (média ~5s)
+        return Math.min(4200 + Math.round((len - 150) * 8), 5400); // 4.2s a 5.4s
       }
     }
 
@@ -1053,7 +1053,7 @@
       for (const item of lines) {
         if (typeof item === "object" && item.type === "image") {
           const typing = addTyping();
-          await sleep(3000); // ~3s de digitação antes do card de imagem
+          await sleep(3000);
           typing.remove();
           addImageMessage(item.src, item.alt || "");
           await sleep(350);
