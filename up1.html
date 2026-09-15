@@ -1037,22 +1037,34 @@
       return row;
     }
 
+    function calcDelay(text) {
+      // Média de ~3 segundos para mensagens normais e ~5 segundos para mensagens mais longas
+      const len = text.length;
+      if (len <= 70) {
+        return 2800 + Math.min(len * 6, 400); // 2.8s a 3.2s (média 3s)
+      } else if (len <= 150) {
+        return 3200 + Math.round((len - 70) * 12); // 3.2s a 4.1s
+      } else {
+        return Math.min(4200 + Math.round((len - 150) * 8), 5400); // 4.2s a 5.4s (média ~5s)
+      }
+    }
+
     async function botSpeak(lines) {
       for (const item of lines) {
         if (typeof item === "object" && item.type === "image") {
           const typing = addTyping();
-          await sleep(400);
+          await sleep(3000); // ~3s de digitação antes do card de imagem
           typing.remove();
           addImageMessage(item.src, item.alt || "");
-          await sleep(200);
+          await sleep(350);
           continue;
         }
         const text = resolveText(item);
         const typing = addTyping();
-        await sleep(Math.min(280 + text.length * 3.5, 600));
+        await sleep(calcDelay(text));
         typing.remove();
         addMessage(text);
-        await sleep(150);
+        await sleep(300);
       }
     }
 
@@ -1082,7 +1094,7 @@
         return;
       }
 
-      await sleep(180);
+      await sleep(500);
       goTo(choice.next);
     }
 
@@ -1095,6 +1107,7 @@
         choicesEl.innerHTML = "";
         mountPaytCheckout(step);
       } else {
+        await sleep(400);
         renderChoices(step);
       }
     }

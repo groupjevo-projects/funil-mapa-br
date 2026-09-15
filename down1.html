@@ -3,326 +3,525 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Protocolo Reconexão a Dois: O Plano Guiado de 14 Dias | Condição especial</title>
+  <title>Protocolo Reconexão em Casal: Condição Especial | Sofia Villar</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <style>
-    /* Paleta e tipografia da pagina de vendas (style.css) */
     :root {
-      --black: #17120f;
-      --panel: #1c1613;
-      --panel-2: #221a16;
-      --cream: #fff0dd;
-      --ink: #201714;
-      --red: #b9473c;
+      --bg: #100e13;
+      --surface: #17131a;
+      --surface-soft: #241524;
+      --surface-2: #1e1822;
+      --ink: #f5edf2;
+      --muted: #b9aeb8;
+      --line: rgba(244, 184, 221, .18);
+      --red: #f04c9a;
+      --red-dark: #d93686;
+      --pink: #f04c9a;
       --green: #22c55e;
-      --accent: #e2a24f;
-      --muted: #a2907f;
-      --line: #3a322c;
+      --shadow: 0 20px 70px rgba(0, 0, 0, .42);
+      --radius: 12px;
     }
 
-    * { box-sizing: border-box; }
-    html { background: var(--black); scroll-behavior: smooth; }
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
     body {
+      min-height: 100%;
+      width: 100%;
+      max-width: 100%;
       margin: 0;
-      background: var(--black);
-      color: var(--cream);
-      font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.6;
+      background: #100e13;
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.55;
+      overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 92% 8%, rgba(109, 32, 93, .22), transparent 28rem),
+        radial-gradient(circle at 10% 35%, rgba(240, 76, 154, .1), transparent 24rem),
+        #100e13;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      pointer-events: none;
+      opacity: .035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.3'/%3E%3C/svg%3E");
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
     }
 
     .page {
       width: 100%;
-      max-width: 600px;
+      max-width: 640px;
       margin: 0 auto;
-      padding: 0 22px;
+      padding: 32px 20px 48px;
     }
 
-    section { padding: 40px 0; }
-    section + section { border-top: 1px solid var(--line); }
+    section {
+      padding: 36px 0;
+    }
 
-    .kicker,
-    .section-kicker {
-      display: flex;
+    section + section {
+      border-top: 1px solid var(--line);
+    }
+
+    .badge-topline {
+      display: inline-flex;
       align-items: center;
-      gap: 10px;
-      margin: 0 0 18px;
-      color: var(--accent);
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
+      gap: 8px;
+      padding: 6px 14px;
+      border: 1px solid rgba(240, 76, 154, .35);
+      border-radius: 999px;
+      color: #fce7f3;
+      background: rgba(240, 76, 154, .14);
+      font-size: .8rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
+      margin-bottom: 16px;
     }
-    .kicker::before {
-      content: "";
-      width: 28px;
-      height: 1px;
-      background: var(--accent);
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--pink);
+      display: inline-block;
     }
 
     h1 {
-      margin: 0 0 20px;
-      color: var(--cream);
-      font-family: Georgia, "Times New Roman", serif;
-      font-weight: 700;
-      font-size: clamp(30px, 8vw, 46px);
-      line-height: 1.12;
+      margin: 0 0 16px;
+      color: #f5edf2;
+      font-size: clamp(1.85rem, 5vw, 2.75rem);
+      line-height: 1.15;
       letter-spacing: -0.02em;
       text-wrap: balance;
     }
-    h1 em,
-    h3 em { color: var(--accent); font-style: italic; }
+
+    .danger-highlight {
+      color: var(--pink);
+    }
 
     .lead {
       margin: 0;
       color: var(--muted);
-      font-size: 1rem;
+      font-size: 1.02rem;
+      line-height: 1.5;
     }
 
-    /* ---------- Tarjeta de oferta ---------- */
+    /* ---------- Card de Oferta ---------- */
     .offer-card {
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: linear-gradient(180deg, var(--panel-2), var(--panel));
-      padding: 26px 22px 24px;
+      border: 1px solid rgba(240, 76, 154, .35);
+      border-radius: 16px;
+      background: #141117;
+      box-shadow: 0 20px 80px rgba(0, 0, 0, .45), 0 0 60px rgba(240, 76, 154, .08);
+      overflow: hidden;
       text-align: center;
     }
 
-    .offer-label {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      margin: 0 0 16px;
-      color: var(--muted);
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
+    .offer-head {
+      padding: 22px 22px 18px;
+      background: linear-gradient(135deg, rgba(109, 32, 93, .5), rgba(240, 76, 154, .14));
+      border-bottom: 1px solid rgba(244, 184, 221, .18);
     }
-    .offer-label::after {
-      content: "";
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
+
+    .offer-badge {
+      display: inline-block;
+      margin-bottom: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(37, 211, 102, .15);
+      border: 1px solid rgba(37, 211, 102, .3);
+      color: #d9fdd3;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
     }
 
     .offer-card h2 {
       margin: 0;
-      color: var(--cream);
-      font-family: Georgia, "Times New Roman", serif;
-      font-weight: 700;
-      font-size: clamp(26px, 6.4vw, 34px);
-      line-height: 1.1;
+      color: #f5edf2;
+      font-size: clamp(1.5rem, 4.5vw, 2rem);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
     }
-    .offer-card h2 em { color: var(--accent); font-style: italic; }
 
     .offer-name-sub {
       margin: 6px 0 0;
-      color: var(--muted);
-      font-family: Georgia, "Times New Roman", serif;
-      font-style: italic;
-      font-size: 1.05rem;
+      color: #d5c8d2;
+      font-size: 0.96rem;
     }
 
     .offer-desc {
-      max-width: 34ch;
-      margin: 14px auto 0;
+      max-width: 42ch;
+      margin: 12px auto 0;
       color: var(--muted);
-      font-size: 0.92rem;
+      font-size: 0.94rem;
+      line-height: 1.45;
     }
 
-    .price {
+    .offer-body {
+      padding: 22px;
+      background: #17131a;
+      text-align: left;
+    }
+
+    .stack {
+      display: grid;
+      gap: 11px;
+      margin: 0 0 22px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .stack li {
+      display: grid;
+      grid-template-columns: 24px 1fr;
+      gap: 10px;
+      align-items: start;
+      color: #d5c8d2;
+      font-size: 0.92rem;
+      line-height: 1.4;
+    }
+
+    .stack li strong {
+      color: #f5edf2;
+    }
+
+    .check {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: var(--pink);
+      font-size: 0.78rem;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .price-box {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 2px;
-      margin: 22px 0 8px;
+      text-align: center;
+      padding-top: 18px;
+      border-top: 1px solid rgba(244, 184, 221, .18);
+      margin-bottom: 18px;
     }
+
     .price-old {
-      color: var(--muted);
-      font-size: 0.9rem;
+      color: #ff6b6b;
+      font-size: 0.92rem;
+      font-weight: 600;
       text-decoration: line-through;
     }
+
     .price-now {
-      color: var(--cream);
-      font-family: Georgia, "Times New Roman", serif;
-      font-weight: 700;
-      font-size: clamp(38px, 10vw, 52px);
+      margin: 4px 0 2px;
+      color: #25d366;
+      font-size: clamp(2.4rem, 8vw, 3.4rem);
+      font-weight: 900;
       line-height: 1;
+      letter-spacing: -0.02em;
     }
+
+    .price-now small {
+      font-size: 1.3rem;
+      font-weight: 800;
+    }
+
     .price-tag {
-      margin-top: 4px;
       color: var(--muted);
-      font-size: 0.72rem;
+      font-size: 0.76rem;
       font-weight: 700;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     .discount-badge {
       display: inline-block;
-      margin: 0 0 20px;
-      padding: 5px 12px;
+      margin: 12px auto 0;
+      padding: 6px 14px;
       border-radius: 999px;
-      background: var(--red);
-      color: #fff;
-      font-size: 0.72rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
+      background: rgba(240, 76, 154, .18);
+      border: 1px solid rgba(240, 76, 154, .35);
+      color: #fce7f3;
+      font-size: 0.78rem;
+      font-weight: 850;
+      letter-spacing: 0.06em;
+      text-align: center;
     }
 
-    /* ---------- Botones ---------- */
-    .checkout-btn,
-    #kiwify-upsell-trigger-PENDING-DS1-BR {
-      display: block;
-      width: 100%;
-      padding: 17px 20px;
-      border: 0;
-      border-radius: 10px;
-      background: var(--green);
-      color: #fff;
-      font-family: Arial, Helvetica, sans-serif;
-      font-weight: 800;
-      font-size: clamp(14px, 3.4vw, 16px);
-      letter-spacing: 0.4px;
-      text-transform: uppercase;
+    /* ---------- Slot de Checkout Payt ---------- */
+    .checkout-slot {
+      margin-top: 18px;
+      padding: 16px;
+      border: 1px dashed rgba(240, 76, 154, .35);
+      border-radius: var(--radius);
+      background: #100e13;
       text-align: center;
-      cursor: pointer;
-      box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+    }
+
+    .slot-label {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .payt-btn {
+      display: block !important;
+      width: 100% !important;
+      max-width: 380px !important;
+      margin: 0 auto !important;
+      background: linear-gradient(100deg, #16a34a, #22c55e) !important;
+      color: #ffffff !important;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif !important;
+      font-size: 17px !important;
+      font-weight: 850 !important;
+      padding: 16px 20px !important;
+      border-radius: 10px !important;
+      text-decoration: none !important;
+      text-align: center !important;
+      cursor: pointer !important;
+      box-shadow: 0 6px 24px rgba(34, 197, 94, .35) !important;
+      transition: transform 160ms ease, box-shadow 160ms ease !important;
+      letter-spacing: 0.02em !important;
+      line-height: 1.2 !important;
       animation: ctaPulse 2.4s infinite;
     }
-    .checkout-btn:hover,
-    .checkout-btn:focus-visible,
-    #kiwify-upsell-trigger-PENDING-DS1-BR:hover,
-    #kiwify-upsell-trigger-PENDING-DS1-BR:focus-visible { background: #1eb257; outline: 0; }
+
+    .payt-btn:hover {
+      transform: translateY(-1px) !important;
+      box-shadow: 0 8px 28px rgba(34, 197, 94, .5) !important;
+    }
+
+    .payt-select {
+      display: none;
+      margin: 12px auto 0;
+      width: 100%;
+      max-width: 260px;
+      padding: 10px 12px;
+      border: 1px solid rgba(240, 76, 154, .3);
+      border-radius: 8px;
+      background: #17131a;
+      color: #f5edf2;
+      font-size: 14px;
+      font-weight: 600;
+      outline: none;
+    }
 
     @keyframes ctaPulse {
       0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.55); }
-      70% { box-shadow: 0 0 0 16px rgba(34, 197, 94, 0); }
+      70% { box-shadow: 0 0 0 14px rgba(34, 197, 94, 0); }
       100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
     }
 
     .cta-note {
-      margin: 10px 0 0;
+      margin: 12px 0 4px;
       color: var(--muted);
-      font-size: 0.8rem;
-    }
-    .secure {
-      margin: 4px 0 16px;
-      color: rgba(255, 240, 221, 0.4);
-      font-size: 0.72rem;
-    }
-
-    .decline,
-    #kiwify-upsell-cancel-trigger-PENDING-DS1-BR {
-      display: block;
-      width: 100%;
-      margin: 0;
-      padding: 8px 4px;
-      border: 0;
-      background: none;
-      color: var(--muted);
-      font-family: Arial, Helvetica, sans-serif;
       font-size: 0.82rem;
       text-align: center;
+    }
+
+    .secure {
+      margin: 0 0 14px;
+      color: rgba(245, 237, 242, 0.45);
+      font-size: 0.75rem;
+      text-align: center;
+    }
+
+    .decline-wrap {
+      margin-top: 14px;
+      text-align: center;
+    }
+
+    .decline-link {
+      display: inline-block;
+      background: transparent;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 12px;
+      border: 0;
+      text-align: center;
+      cursor: pointer;
       text-decoration: underline;
       text-underline-offset: 3px;
-      cursor: pointer;
+      transition: color 140ms ease;
     }
-    .decline:hover,
-    #kiwify-upsell-cancel-trigger-PENDING-DS1-BR:hover { color: var(--cream); }
 
-    /* ---------- Secciones de texto ---------- */
-    .section-kicker { color: var(--muted); }
+    .decline-link:hover,
+    .decline-link:focus-visible {
+      color: #f5edf2;
+      outline: 0;
+    }
+
+    /* ---------- Seções Informativas ---------- */
+    .section-kicker {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 14px;
+      color: var(--pink);
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
     .section-kicker::before {
       content: "";
-      width: 28px;
-      height: 1px;
-      background: var(--muted);
+      width: 24px;
+      height: 2px;
+      background: var(--pink);
     }
 
     h3 {
-      margin: 0 0 16px;
-      color: var(--cream);
-      font-family: Georgia, "Times New Roman", serif;
-      font-weight: 700;
-      font-size: clamp(22px, 5.6vw, 30px);
-      line-height: 1.2;
+      margin: 0 0 14px;
+      color: #f5edf2;
+      font-size: clamp(1.4rem, 4vw, 1.85rem);
+      line-height: 1.25;
+      letter-spacing: -0.01em;
       text-wrap: balance;
     }
+
+    h3 em {
+      font-style: normal;
+      color: var(--pink);
+    }
+
     .ds-why p,
-    .ds-final p { margin: 0; color: var(--muted); font-size: 0.96rem; }
+    .ds-final p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.55;
+    }
 
-    .ds-final .checkout-btn { margin-top: 22px; }
-    .ds-final .decline { margin-top: 14px; }
-
-    /* ---------- Widget de upsell de 1 clique da Kiwify ---------- */
-    #kiwify-upsell-PENDING-DS1-BR { margin-top: 18px; width: 100%; }
-
-    /* ---------- Pie ---------- */
     .ds-footer {
       text-align: center;
-      padding: 34px 0 44px;
+      padding: 34px 0 20px;
     }
+
     .ds-footer .respect {
-      margin: 0 0 20px;
-      color: var(--muted);
+      margin: 0 0 18px;
+      color: #d5c8d2;
+      font-size: 0.96rem;
       font-style: italic;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 1rem;
     }
+
     .ds-footer .brand {
       margin: 0;
-      color: var(--cream);
-      font-family: Georgia, "Times New Roman", serif;
+      color: #f5edf2;
       font-weight: 700;
-      font-size: 1.25rem;
+      font-size: 1.15rem;
     }
+
     .ds-footer .brand-sub {
-      margin: 6px 0 0;
+      margin: 4px 0 0;
       color: var(--muted);
       font-size: 0.82rem;
     }
+
     .ds-footer .copy {
-      margin: 16px 0 0;
-      color: rgba(255, 240, 221, 0.3);
+      margin: 18px 0 0;
+      color: rgba(245, 237, 242, 0.3);
       font-size: 0.74rem;
+    }
+
+    @media (max-width: 560px) {
+      .page {
+        padding: 24px 16px 36px;
+      }
+
+      .offer-body {
+        padding: 18px 16px;
+      }
+
+      .payt-btn {
+        font-size: 16px !important;
+        padding: 15px 16px !important;
+      }
     }
   </style>
 </head>
 <body>
   <main class="page">
-    <!-- RASCUNHO — refinar copy -->
-
     <section class="ds-intro">
-      <p class="kicker">Uma condição especial para você</p>
-      <h1>Sei que o preço talvez tenha te feito <em>pensar duas vezes.</em></h1>
-      <p class="lead">Por isso, antes de você sair, consegui liberar uma condição diferente para que o investimento não seja o motivo de deixar esta experiência para depois.</p>
+      <div class="badge-topline">
+        <span class="badge-dot"></span>
+        <span>Uma condição especial para você</span>
+      </div>
+      <h1>Sei que o preço talvez tenha te feito <span class="danger-highlight">pensar duas vezes.</span></h1>
+      <p class="lead">Por isso, antes de você sair, liberei uma condição diferente para que o investimento não seja o motivo de deixar esta experiência para depois.</p>
     </section>
 
-    <section class="ds-offer">
+    <section class="ds-offer" id="oferta">
       <div class="offer-card">
-        <p class="offer-label">Condição especial liberada</p>
-        <h2>Protocolo Reconexão <em>a Dois</em></h2>
-        <p class="offer-name-sub">O Plano Guiado de 14 Dias</p>
-        <p class="offer-desc">O mesmo acesso completo, agora por uma condição que cabe melhor neste momento.</p>
-
-        <div class="price">
-          <span class="price-old">de R$147,00</span>
-          <span class="price-now">R$97,00</span>
-          <span class="price-tag">À VISTA</span>
+        <div class="offer-head">
+          <span class="offer-badge">Condição especial liberada</span>
+          <h2>Protocolo Reconexão em Casal</h2>
+          <p class="offer-name-sub">O Plano Guiado de 14 Dias</p>
+          <p class="offer-desc">O mesmo acesso completo, o planner diário e todos os bônus inclusos, agora por uma condição que cabe melhor neste momento.</p>
         </div>
-        <span class="discount-badge">34% DE DESCONTO EXCEPCIONAL</span>
 
-        <p class="cta-note">Pagamento único · sem parcelas</p>
-        <p class="secure">Pagamento seguro processado pela Payt</p>
+        <div class="offer-body">
+          <ul class="stack">
+            <li><span class="check">1</span><span><strong>Semana 1 — Reabrir o Canal:</strong> Guia "De colegas de quarto a Amantes" para criar cumplicidade no dia a dia.</span></li>
+            <li><span class="check">2</span><span><strong>Semana 2 — Do Clima ao Convite:</strong> Como propor com leveza e sem soar cobrança.</span></li>
+            <li><span class="check">3</span><span><strong>Os 3 Roteiros de Conversa Sem Vergonha:</strong> O Convite Brincalhão, O Guia na Cama e O Amparo Amoroso.</span></li>
+            <li><span class="check">🎁</span><span><strong>Bônus 1 (Incluso):</strong> Áudios de Bolso de 2 Minutos para antes de entrar no quarto (R$97).</span></li>
+            <li><span class="check">🎁</span><span><strong>Bônus 2 (Incluso):</strong> O Efeito Ímã — Como Despertar a Iniciativa Dele (R$147).</span></li>
+            <li><span class="check">✓</span><span><strong>Garantia incondicional de 7 dias:</strong> se arrepender, devolvemos 100% do seu valor.</span></li>
+          </ul>
 
-        <div id="kiwify-upsell-PENDING-DS1-BR" data-upsell-url="https://mapadoprazer.site/up2" data-downsell-url="" style="--kiwify-upsell-accept-bg:#27AF60;--kiwify-upsell-accept-color:#FFFFFF">
-          <button id="kiwify-upsell-trigger-PENDING-DS1-BR">Sim, quero o Protocolo Reconexão com desconto</button>
-          <div id="kiwify-upsell-cancel-trigger-PENDING-DS1-BR">Não, quero depender só das minhas mãos</div>
+          <div class="price-box">
+            <span class="price-old">De R$147,00</span>
+            <div class="price-now">R$97<small>,00</small></div>
+            <span class="price-tag">À VISTA OU PARCELADO NO CARTÃO</span>
+            <span class="discount-badge">34% DE DESCONTO EXCEPCIONAL</span>
+          </div>
+
+          <div class="checkout-slot">
+            <span class="slot-label">Confirme sua adesão com 1 clique</span>
+
+            <!-- Botão de compra Payt — cole onde quiser que o cliente clique -->
+            <a href="#" payt_action="oneclick_buy" data-object="RB55ZE-45WZJG" class="payt-btn" style="display: inline-block; background: #22c55e; color: #ffffff; font-family: system-ui, -apple-system, sans-serif; font-size: 18px; font-weight: 700; padding: 16px 24px; border-radius: 8px; text-decoration: none; text-align: center; cursor: pointer">ADQUIRIR COM DESCONTO</a>
+
+            <!-- Select de parcelas visível — o comprador escolhe quantas parcelas no cartão.
+                 Para PIX é sempre 1x; o script ignora esse select. -->
+            <select payt_element="installment" data-object="RB55ZE-45WZJG" class="payt-select" style="display:block; margin:10px auto 0; max-width:240px; padding:10px; border:1px solid #cbd5e1; border-radius:6px; background:#fff; font-size:14px;"></select>
+
+            <p class="cta-note">Acesso imediato no mesmo login do Mapa · Pagamento único</p>
+            <p class="secure">🔒 Pagamento seguro processado pela Payt</p>
+
+            <div class="decline-wrap">
+              <a href="/tks" class="decline-link">Não, obrigada. Vou seguir apenas com o Mapa do Prazer.</a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -330,47 +529,51 @@
     <section class="ds-why">
       <p class="section-kicker">Por que esta condição existe?</p>
       <h3>Não é uma nova cobrança.<br><em>É uma nova possibilidade.</em></h3>
-      <p>Sei que cada pessoa vive um momento diferente. Por isso esta condição com desconto foi pensada para reduzir a barreira do investimento e te permitir começar no seu ritmo, sem deixar esta decisão para um futuro indefinido.</p>
+      <p>Sei que cada pessoa vive um momento diferente. Por isso esta condição com desconto foi pensada para reduzir a barreira do investimento e te permitir começar no seu ritmo, com acompanhamento, sem deixar esta decisão para um futuro indefinido.</p>
     </section>
 
     <section class="ds-final">
       <p class="section-kicker">A decisão continua sendo sua</p>
       <h3>Se fizer sentido para você,<br><em>esta condição está disponível agora.</em></h3>
-      <p>Você pode acessar o plano completo por R$97,00 à vista, ou seguir sem esta oferta.</p>
-      <button class="checkout-btn" type="button" data-checkout>Quero aproveitar o desconto</button>
-      <button class="decline" type="button" data-decline>Não, obrigada. Vou seguir sem o Protocolo Reconexão.</button>
+      <p>Você pode acessar o plano completo por apenas R$97,00 à vista (ou parcelado no cartão), ou seguir direto para o seu acesso original.</p>
+      
+      <div style="margin-top: 24px; text-align: center;">
+        <button type="button" class="payt-btn" onclick="document.getElementById('oferta').scrollIntoView({behavior: 'smooth', block: 'center'})" style="border: 0;">QUERO APROVEITAR O DESCONTO</button>
+        <div class="decline-wrap" style="margin-top: 14px;">
+          <a href="/tks" class="decline-link">Não, obrigada. Vou seguir apenas com o Mapa do Prazer.</a>
+        </div>
+      </div>
     </section>
 
     <footer class="ds-footer">
       <p class="respect">Tudo bem. Sua decisão merece ser respeitada.</p>
-      <p class="brand">Protocolo Reconexão a Dois</p>
-      <p class="brand-sub">Um plano de reconexão, presença e ritmo a dois.</p>
+      <p class="brand">Protocolo Reconexão em Casal</p>
+      <p class="brand-sub">Sofia Villar · Guia do Protocolo Reconexão · Mapa do Prazer Masculino</p>
       <p class="copy">© 2026</p>
     </footer>
   </main>
 
   <script>
-    // O checkout e o widget de upsell de 1 clique da Kiwify (mais abaixo, no
-    // card da oferta). Nao leva link proprio: a Kiwify reconhece a compra
-    // anterior e cobra em um clique. Para onde vai depois fica declarado no
-    // proprio <div>: data-upsell-url se aceita.
-    // Quem recusa a condicao no CTA final vai para o acesso ja comprado.
-    // TODO: o id do widget (PENDING-DS1-BR) sai do painel Kiwify da oferta BR.
-    const DECLINE_URL = "/tks";
-    const kiwifyWidget = document.getElementById("kiwify-upsell-PENDING-DS1-BR");
+    // Gerenciamento do select de parcelas da Payt
+    const select = document.querySelector("[payt_element='installment'][data-object='RB55ZE-45WZJG']");
+    if (select) {
+      const sync = () => { select.style.display = select.options.length ? "block" : "none"; };
+      sync();
+      new MutationObserver(sync).observe(select, { childList: true });
+    }
 
-    // O segundo botao (no fim da pagina) repete a mesma oferta; em vez de
-    // duplicar o widget da Kiwify, apenas leva ate ele.
-    document.querySelectorAll("[data-checkout]").forEach(function (b) {
-      b.addEventListener("click", function () {
-        kiwifyWidget.scrollIntoView({ behavior: "smooth", block: "center" });
+    // Previne salto de âncora '#' caso clicado fora do fluxo com token
+    const anchor = document.querySelector("[payt_action='oneclick_buy'][data-object='RB55ZE-45WZJG']");
+    if (anchor) {
+      anchor.addEventListener("click", e => {
+        if ((anchor.getAttribute("href") || "") === "#" && !window.location.search.includes("_o")) {
+          e.preventDefault();
+        }
       });
-    });
-    document.querySelectorAll("[data-decline]").forEach(function (b) {
-      b.addEventListener("click", function () { window.location.href = DECLINE_URL; });
-    });
+    }
   </script>
 
-  <script src="https://snippets.kiwify.com/upsell-v2/upsell.min.js"></script>
+  <!-- Script da Payt — cole UMA VEZ antes do </body> da página -->
+  <script type="text/javascript" src="https://checkout.payt.com.br/multiple-oneclickbuyscript/45GX73.js"></script>
 </body>
 </html>

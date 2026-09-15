@@ -57,6 +57,30 @@
       "destination": "/tks-up1.html"
     },
     {
+      "source": "/tks.downsell1",
+      "destination": "/tks-down1.html"
+    },
+    {
+      "source": "/tks.downsell1/",
+      "destination": "/tks-down1.html"
+    },
+    {
+      "source": "/tks-downsell1",
+      "destination": "/tks-down1.html"
+    },
+    {
+      "source": "/tks/downsell1",
+      "destination": "/tks-down1.html"
+    },
+    {
+      "source": "/tks.down1",
+      "destination": "/tks-down1.html"
+    },
+    {
+      "source": "/tks-down1",
+      "destination": "/tks-down1.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
