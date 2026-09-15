@@ -3,52 +3,67 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Protocolo Reconexão a Dois | Sofia Vilar</title>
+  <title>Protocolo Reconexão em Casal | Sofia Villar</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <style>
     :root {
-      --bg: #f7f7f4;
-      --surface: #ffffff;
-      --surface-soft: #fff4f1;
-      --ink: #211f20;
-      --muted: #665f61;
-      --line: #dfd7d3;
-      --red: #d83a2f;
-      --red-dark: #a32620;
-      --teal: #153d3a;
-      --teal-soft: #e8f0ee;
-      --gold: #b9822d;
-      --shadow: 0 20px 60px rgba(29, 28, 27, 0.13);
-      --radius: 8px;
+      --bg: #100e13;
+      --surface: #17131a;
+      --surface-soft: #241524;
+      --ink: #f5edf2;
+      --muted: #b9aeb8;
+      --line: rgba(244, 184, 221, .18);
+      --red: #f04c9a;
+      --red-dark: #d93686;
+      --teal: #f04c9a;
+      --teal-soft: rgba(240, 76, 154, .13);
+      --gold: #ff856f;
+      --green: #22c55e;
+      --shadow: 0 20px 70px rgba(0, 0, 0, .42);
+      --radius: 12px;
     }
 
     * {
       box-sizing: border-box;
     }
 
-    html {
+    html,
+    body {
       min-height: 100%;
       width: 100%;
       max-width: 100%;
-      background: var(--bg);
+      margin: 0;
+      background: #100e13;
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.45;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
     body {
       min-height: 100vh;
-      width: 100%;
-      max-width: 100%;
-      margin: 0;
-      color: var(--ink);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.45;
-      letter-spacing: 0;
-      overflow-x: hidden;
       background:
-        linear-gradient(180deg, rgba(216, 58, 47, 0.08), rgba(21, 61, 58, 0.04) 32%, transparent 72%),
-        var(--bg);
+        radial-gradient(circle at 92% 8%, rgba(109, 32, 93, .22), transparent 28rem),
+        radial-gradient(circle at 10% 35%, rgba(240, 76, 154, .1), transparent 24rem),
+        #100e13;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      pointer-events: none;
+      opacity: .035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.3'/%3E%3C/svg%3E");
     }
 
     button,
-    input {
+    input,
+    select {
       font: inherit;
     }
 
@@ -57,80 +72,91 @@
     }
 
     .page {
-      width: min(820px, calc(100% - 32px));
+      width: min(760px, calc(100% - 28px));
       min-height: 100vh;
       margin: 0 auto;
-      padding: 16px 0;
+      padding: 24px 0 34px;
       display: grid;
       grid-template-columns: 1fr;
-      gap: 6px;
+      gap: 0;
       align-items: start;
       align-content: start;
       min-width: 0;
     }
 
     .conversion-hero {
-      padding: 10px 0 0;
-      text-align: center;
-      border: 0;
-      border-radius: var(--radius);
-      background: transparent;
-      box-shadow: none;
+      padding: 22px 24px 20px;
+      text-align: left;
+      border-radius: 16px 16px 0 0;
+      border: 1px solid rgba(240, 76, 154, .24);
+      background:
+        radial-gradient(circle at 84% 15%, rgba(240, 76, 154, .18), transparent 18rem),
+        linear-gradient(100deg, rgba(16, 14, 19, .98), rgba(45, 18, 39, .74));
+      box-shadow: 0 18px 60px rgba(0, 0, 0, .28);
       min-width: 0;
     }
 
-    .hero-kicker {
-      display: inline-block;
-      margin: 0;
-      padding: 5px 9px;
-      color: #211f20;
-      font-size: 0.78rem;
-      font-weight: 950;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      border-radius: 4px;
-      background: linear-gradient(90deg, #fff06a, #ffb35c, #ff7670, #ffd86b, #fff06a);
-      background-size: 320% 100%;
-      box-shadow: 0 0 0 1px rgba(163, 38, 32, 0.1), 0 8px 22px rgba(216, 58, 47, 0.16);
-      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.36);
-      animation: highlightShift 1800ms linear infinite;
+    .confirmation-topline {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 12px;
+      border: 1px solid rgba(183, 246, 207, .3);
+      border-radius: 999px;
+      color: #d9fdd3;
+      background: rgba(37, 211, 102, .14);
+      font-size: .8rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .confirmation-check {
+      display: grid;
+      width: 18px;
+      height: 18px;
+      place-items: center;
+      border-radius: 50%;
+      color: #075e54;
+      background: #d9fdd3;
+      font-size: .75rem;
+      font-weight: 900;
     }
 
     h1 {
-      margin: 6px auto 0;
-      font-size: clamp(2rem, 4.9vw, 4rem);
-      line-height: 0.95;
-      letter-spacing: 0;
-      max-width: 18ch;
+      margin: 10px 0 0;
+      color: #f5edf2;
+      font-size: clamp(1.85rem, 4.2vw, 3.2rem);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      max-width: 22ch;
     }
 
     .danger-highlight {
-      color: var(--red-dark);
+      color: #f04c9a;
     }
 
     .hero-copy {
-      max-width: 31rem;
-      margin: 8px auto 0;
-      color: var(--muted);
-      font-size: 1rem;
+      max-width: 38rem;
+      margin: 10px 0 0;
+      color: #d5c8d2;
+      font-size: 0.96rem;
+      line-height: 1.45;
       overflow-wrap: break-word;
     }
 
     .hero-copy strong {
       display: block;
-      margin-bottom: 3px;
-      color: var(--red-dark);
-      font-size: 1.05rem;
-      font-weight: 900;
-      overflow-wrap: break-word;
+      color: #f4d6e8;
+      font-weight: 600;
     }
 
     .chat-shell {
-      min-height: min(500px, calc(100vh - 270px));
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--surface);
-      box-shadow: var(--shadow);
+      min-height: min(650px, calc(100vh - 210px));
+      border: 1px solid rgba(240, 76, 154, .28);
+      border-top: 0;
+      border-radius: 0 0 16px 16px;
+      background: #17131a;
+      box-shadow: 0 20px 80px rgba(0, 0, 0, .45), 0 0 60px rgba(240, 76, 154, .08);
       overflow: hidden;
       display: grid;
       grid-template-rows: auto 1fr auto;
@@ -138,73 +164,77 @@
     }
 
     .chat-header {
-      padding: 16px 18px;
+      padding: 14px 18px;
       display: flex;
       justify-content: space-between;
       gap: 14px;
       align-items: center;
-      border-bottom: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.92);
+      border-bottom: 1px solid rgba(244, 184, 221, .18);
+      background: #141117;
+      color: #fff;
     }
 
     .profile {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       min-width: 0;
     }
 
     .avatar {
-      width: 46px;
-      height: 46px;
+      width: 44px;
+      height: 44px;
       flex: 0 0 auto;
       border-radius: 50%;
       overflow: hidden;
-      border: 2px solid #fff;
+      border: 2px solid rgba(240, 76, 154, .6);
       background: var(--surface-soft);
-      box-shadow: 0 0 0 1px var(--line), 0 8px 18px rgba(216, 58, 47, 0.18);
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, .2), 0 4px 14px rgba(240, 76, 154, .25);
     }
 
     .avatar img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 24%;
+      object-position: center 20%;
       display: block;
     }
 
     .profile h2 {
       margin: 0;
-      font-size: 1rem;
-      line-height: 1.1;
+      color: #f5edf2;
+      font-size: 1.02rem;
+      line-height: 1.15;
+      font-weight: 700;
     }
 
     .profile p {
-      margin: 4px 0 0;
-      color: var(--muted);
-      font-size: 0.82rem;
+      margin: 3px 0 0;
+      color: #b9aeb8;
+      font-size: 0.8rem;
     }
 
     .status-pill {
       min-width: max-content;
-      padding: 8px 10px;
+      padding: 6px 11px;
       border-radius: 999px;
-      background: var(--teal-soft);
-      color: var(--teal);
-      font-size: 0.78rem;
+      background: rgba(240, 76, 154, .14);
+      color: #fce7f3;
+      font-size: 0.76rem;
       font-weight: 800;
+      border: 1px solid rgba(240, 76, 154, .25);
     }
 
     .progress {
       height: 3px;
-      background: #eee6e3;
+      background: rgba(244, 184, 221, .12);
     }
 
     .progress-bar {
-      width: 8%;
+      width: 12%;
       height: 100%;
-      background: var(--red);
-      transition: width 280ms ease;
+      background: linear-gradient(90deg, #f04c9a, #ff856f);
+      transition: width 320ms ease;
     }
 
     .messages {
@@ -213,8 +243,8 @@
       overflow-x: hidden;
       padding: 22px 18px 28px;
       background:
-        linear-gradient(180deg, rgba(255, 244, 241, 0.58), rgba(255, 255, 255, 0) 180px),
-        var(--surface);
+        radial-gradient(circle at 75% 0%, rgba(109, 32, 93, .18), transparent 22rem),
+        #100e13;
     }
 
     .row {
@@ -231,126 +261,185 @@
     }
 
     .mini-avatar {
-      display: none;
+      width: 28px;
+      height: 28px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 1px solid rgba(240, 76, 154, .5);
+      background: var(--surface-soft);
+    }
+
+    .mini-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
     }
 
     .bubble {
       max-width: min(570px, 86%);
-      padding: 12px 14px;
-      border-radius: 16px 16px 16px 6px;
-      background: #f3f0ed;
-      color: var(--ink);
-      font-size: 0.96rem;
+      padding: 12px 15px;
+      border-radius: 16px 16px 16px 5px;
+      background: #211624;
+      color: #f5edf2;
+      font-size: 0.95rem;
+      line-height: 1.45;
       white-space: pre-line;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .24);
+      border: 1px solid rgba(244, 184, 221, .1);
     }
 
     .bubble.user {
       max-width: min(520px, 88%);
-      border-radius: 16px 16px 6px 16px;
-      background: var(--teal);
-      color: #fff;
+      border-radius: 16px 16px 5px 16px;
+      background: #6d205d;
+      color: #fff7fb;
+      border-color: rgba(240, 76, 154, .3);
+    }
+
+    .bubble.image-card {
+      width: min(520px, 92%);
+      max-width: min(520px, 92%);
+      padding: 8px;
+      overflow: hidden;
+      background: #17131a;
+      border: 1px solid rgba(240, 76, 154, .35);
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .4);
+    }
+
+    .bubble.image-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 10px;
     }
 
     .bubble.offer {
-      width: min(540px, 90%);
-      max-width: min(540px, 90%);
+      width: min(540px, 92%);
+      max-width: min(540px, 92%);
       padding: 0;
       overflow: hidden;
-      background: var(--surface);
-      border: 1px solid var(--line);
+      background: #141117;
+      border: 1px solid rgba(240, 76, 154, .35);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, .45);
+      border-radius: 14px;
     }
 
     .offer-head {
-      padding: 16px;
-      background: var(--surface-soft);
-      border-bottom: 1px solid var(--line);
+      padding: 18px 18px 16px;
+      background: linear-gradient(135deg, rgba(109, 32, 93, .5), rgba(240, 76, 154, .14));
+      border-bottom: 1px solid rgba(244, 184, 221, .18);
     }
 
     .offer-head strong {
       display: block;
-      font-size: 1.08rem;
+      font-size: 1.15rem;
+      color: #f5edf2;
+      letter-spacing: -0.01em;
     }
 
     .offer-head span {
       display: block;
       margin-top: 4px;
-      color: var(--muted);
-      font-size: 0.9rem;
+      color: #d5c8d2;
+      font-size: 0.92rem;
     }
 
     .offer-body {
-      padding: 14px 16px 16px;
+      padding: 16px 18px 18px;
+      background: #17131a;
     }
 
     .stack {
       display: grid;
-      gap: 9px;
-      margin: 0 0 14px;
+      gap: 11px;
+      margin: 0 0 16px;
       padding: 0;
       list-style: none;
     }
 
     .stack li {
       display: grid;
-      grid-template-columns: 20px 1fr;
-      gap: 9px;
+      grid-template-columns: 24px 1fr;
+      gap: 10px;
       align-items: start;
-      color: var(--muted);
+      color: #d5c8d2;
       font-size: 0.92rem;
+      line-height: 1.4;
+    }
+
+    .stack li strong {
+      color: #f5edf2;
     }
 
     .check {
-      width: 20px;
-      height: 20px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
       display: grid;
       place-items: center;
       color: #fff;
-      background: var(--teal);
-      font-size: 0.8rem;
+      background: #f04c9a;
+      font-size: 0.78rem;
       font-weight: 900;
+      flex-shrink: 0;
     }
 
     .price {
       display: flex;
       flex-wrap: wrap;
       align-items: baseline;
-      gap: 6px 8px;
-      padding-top: 12px;
-      border-top: 1px solid var(--line);
+      gap: 6px 10px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(244, 184, 221, .18);
     }
 
     .price-installments {
       flex-basis: 100%;
-      margin-bottom: 2px;
+      margin-bottom: 3px;
       color: #ffffff;
-      font-size: 0.94rem;
+      font-size: 1.05rem;
       font-weight: 700;
     }
 
     .price-installments .installments-amount {
       color: #25d366;
+      font-size: 1.25rem;
+      font-weight: 900;
     }
 
     .price del {
       order: 3;
       margin-left: auto;
       align-self: flex-start;
-      color: #e23b3b;
-      font-size: 0.78rem;
+      color: #ff6b6b;
+      font-size: 0.88rem;
+      font-weight: 600;
     }
 
     .price strong {
       order: 1;
-      color: var(--red-dark);
-      font-size: 1.8rem;
+      color: #25d366;
+      font-size: 1.95rem;
       line-height: 1;
+      font-weight: 900;
     }
 
     .price small {
       order: 2;
-      color: var(--muted);
+      color: #b9aeb8;
+      font-size: 0.85rem;
+    }
+
+    .video-caption {
+      margin: 12px 0 0;
+      color: #b9aeb8;
       font-size: 0.82rem;
+      line-height: 1.35;
+      text-align: center;
     }
 
     .typing {
@@ -359,14 +448,15 @@
       display: inline-flex;
       gap: 4px;
       border-radius: 14px 14px 14px 5px;
-      background: #f3f0ed;
+      background: #211624;
+      border: 1px solid rgba(244, 184, 221, .1);
     }
 
     .typing span {
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: var(--muted);
+      background: #e994c5;
       opacity: 0.65;
       animation: blink 960ms infinite;
     }
@@ -380,8 +470,8 @@
     }
 
     .composer {
-      border-top: 1px solid var(--line);
-      background: var(--surface);
+      border-top: 1px solid rgba(244, 184, 221, .18);
+      background: #141117;
       padding: 16px 18px;
     }
 
@@ -393,181 +483,132 @@
     .choice {
       width: 100%;
       min-height: 48px;
-      padding: 12px 14px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--surface);
-      color: var(--ink);
+      padding: 12px 16px;
+      border: 1px solid rgba(240, 76, 154, .28);
+      border-radius: 10px;
+      background: #17131a;
+      color: #f5edf2;
+      font-weight: 600;
+      font-size: 0.95rem;
       text-align: left;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, .2);
       transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
     }
 
     .choice:hover,
     .choice:focus-visible {
-      border-color: var(--red);
-      background: var(--surface-soft);
+      border-color: #f04c9a;
+      background: #241524;
       outline: 0;
       transform: translateY(-1px);
     }
 
     .choice.primary {
-      border-color: var(--red);
-      background: var(--red);
+      border-color: #25d366;
+      background: linear-gradient(100deg, #0f7a45, #25d366);
       color: #fff;
       font-weight: 850;
       text-align: center;
+      box-shadow: 0 4px 14px rgba(37, 211, 102, .25);
     }
 
     .choice.primary:hover,
     .choice.primary:focus-visible {
-      background: var(--red-dark);
-    }
-
-    .choice.secondary {
-      color: var(--muted);
-      text-align: center;
+      border-color: #5ff08a;
+      background: linear-gradient(100deg, #129650, #3ee47a);
     }
 
     .checkout-slot {
-      margin-top: 10px;
-      padding: 12px;
-      border: 1px dashed #c9bbb6;
+      margin-top: 12px;
+      padding: 14px;
+      border: 1px dashed rgba(240, 76, 154, .35);
       border-radius: var(--radius);
-      background: #fbfaf8;
+      background: #100e13;
       display: grid;
       gap: 8px;
       justify-items: center;
     }
 
-    /* Recusa fica junto do botao verde, dentro do balao, em vez de virar um
-       botao de escolha solto no rodape do chat. Mesma familia visual do verde,
-       menor, para nao competir com ele. */
-    .inline-decline-wrap { margin-top: 12px; text-align: center; }
-
-    .inline-decline {
-      display: inline-block;
-      background: #d83a2f;
-      color: #ffffff;
-      font-family: system-ui, -apple-system, sans-serif;
-      font-size: 14px;
-      font-weight: 700;
-      padding: 11px 18px;
-      border: 0;
-      border-radius: 9px;
-      text-align: center;
-      cursor: pointer;
-    }
-
-    .inline-decline:hover,
-    .inline-decline:focus-visible { background: #a32620; outline: 0; }
-
-    .inline-decline[disabled] { opacity: .45; cursor: default; }
-
-    /* Mostrado no lugar do botao quando a Payt nao tem como cobrar em 1 clique. */
-    .checkout-unavailable {
-      margin: 0;
-      color: var(--muted);
-      font-size: .86rem;
-      line-height: 1.5;
-      text-align: center;
-    }
-    .checkout-unavailable strong { color: var(--ink); font-weight: 600; }
-
     .slot-label {
       display: block;
       margin-bottom: 10px;
-      color: var(--muted);
-      font-size: 0.78rem;
+      color: #b9aeb8;
+      font-size: 0.8rem;
+      text-align: center;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .payt-btn {
+      display: block !important;
+      width: 100% !important;
+      max-width: 380px !important;
+      margin: 0 auto !important;
+      background: linear-gradient(100deg, #16a34a, #22c55e) !important;
+      color: #ffffff !important;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif !important;
+      font-size: 16px !important;
+      font-weight: 850 !important;
+      padding: 15px 18px !important;
+      border-radius: 10px !important;
+      text-decoration: none !important;
+      text-align: center !important;
+      cursor: pointer !important;
+      box-shadow: 0 6px 20px rgba(34, 197, 94, .32) !important;
+      transition: transform 160ms ease, box-shadow 160ms ease !important;
+      letter-spacing: 0.02em !important;
+      line-height: 1.2 !important;
+    }
+
+    .payt-btn:hover {
+      transform: translateY(-1px) !important;
+      box-shadow: 0 8px 24px rgba(34, 197, 94, .45) !important;
+    }
+
+    .payt-select {
+      display: none;
+      margin: 10px auto 0;
+      width: 100%;
+      max-width: 280px;
+      padding: 10px 12px;
+      border: 1px solid rgba(240, 76, 154, .3);
+      border-radius: 8px;
+      background: #17131a;
+      color: #f5edf2;
+      font-size: 14px;
+      font-weight: 600;
+      outline: none;
+    }
+
+    .inline-decline-wrap {
+      margin-top: 14px;
       text-align: center;
     }
 
-    .demo-video-card {
-      width: min(540px, 90%);
-      max-width: min(540px, 90%);
-      padding: 0;
-      overflow: hidden;
-      background: var(--surface);
-      border: 1px solid var(--line);
-    }
-
-    .demo-video-card .offer-head {
-      background: linear-gradient(135deg, #fff4f1, #fffaf6);
-    }
-
-    .demo-kicker {
-      display: block;
-      margin-bottom: 5px;
-      color: var(--red-dark);
-      font-size: 0.72rem;
-      font-weight: 900;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .vturb-frame {
-      position: relative;
-      width: 100%;
-      max-width: 400px;
-      margin: 0 auto;
-      overflow: hidden;
-      border-radius: 6px;
-      background: #211f20;
-    }
-
-    .vturb-frame vturb-smartplayer {
-      display: block;
-      width: 100%;
-      max-width: 400px;
-      margin: 0 auto;
-    }
-
-    .vturb-player-placeholder {
-      position: relative;
-      width: 100%;
-      padding: 125% 0 0;
-      z-index: 0;
-      background: #000;
-    }
-
-    .video-caption {
-      margin: 12px 0 0;
-      color: var(--muted);
-      font-size: 0.86rem;
-      line-height: 1.35;
-      text-align: center;
-    }
-
-    @media (max-width: 560px) {
-      .demo-video-card {
-        width: min(86vw, 340px);
-        max-width: min(86vw, 340px);
-      }
-    }
-
-    .modal {
-      width: min(430px, calc(100% - 32px));
+    .inline-decline {
+      display: inline-block;
+      background: transparent;
+      color: #b9aeb8;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 14px;
       border: 0;
-      border-radius: var(--radius);
-      padding: 0;
-      box-shadow: var(--shadow);
+      text-align: center;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 140ms ease;
     }
 
-    .modal::backdrop {
-      background: rgba(33, 31, 32, 0.44);
+    .inline-decline:hover,
+    .inline-decline:focus-visible {
+      color: #f5edf2;
+      outline: 0;
     }
 
-    .modal-body {
-      padding: 20px;
-    }
-
-    .modal-body h2 {
-      margin: 0 0 8px;
-      font-size: 1.1rem;
-    }
-
-    .modal-body p {
-      margin: 0 0 14px;
-      color: var(--muted);
+    .inline-decline[disabled] {
+      opacity: .45;
+      cursor: default;
     }
 
     @keyframes rise {
@@ -592,60 +633,34 @@
       }
     }
 
-    @keyframes highlightShift {
-      0% {
-        background-position: 0% 50%;
-      }
-      100% {
-        background-position: 320% 50%;
-      }
-    }
-
-    @media (max-width: 920px) {
-      .page {
-        padding: 16px 0;
-      }
-
-      h1 {
-        max-width: 16ch;
-      }
-
-      .chat-shell {
-        min-height: 520px;
-      }
-    }
-
     @media (max-width: 560px) {
       .page {
         width: 100vw;
         max-width: 100vw;
         min-height: 100vh;
         padding: 0;
-        gap: 0;
         overflow: hidden;
       }
 
       .conversion-hero {
-        width: 100vw;
-        max-width: 100vw;
-        padding: 16px 18px 8px;
+        padding: 18px 16px 16px;
+        border-radius: 0;
+        border-left: 0;
+        border-right: 0;
+        border-top: 0;
       }
 
       h1 {
-        font-size: clamp(1.75rem, 9vw, 2.45rem);
-        max-width: 12ch;
+        font-size: clamp(1.7rem, 8.5vw, 2.35rem);
+        max-width: 15ch;
       }
 
       .hero-copy {
-        font-size: 0.96rem;
-        width: auto;
-        max-width: 320px;
+        font-size: 0.92rem;
       }
 
       .chat-shell {
-        width: 100vw;
-        max-width: 100vw;
-        min-height: calc(100vh - 264px);
+        min-height: calc(100dvh - 200px);
         border: 0;
         border-radius: 0;
       }
@@ -655,500 +670,40 @@
       }
 
       .messages {
-        padding: 18px 12px 24px;
-      }
-
-      .composer {
-        padding: 12px;
-      }
-
-      .bubble {
-        max-width: min(83vw, 330px);
-        min-width: 0;
-        overflow-wrap: break-word;
-      }
-
-      .bubble.user {
-        max-width: min(86vw, 340px);
-      }
-
-      .bubble.offer {
-        width: min(86vw, 340px);
-        max-width: min(86vw, 340px);
-      }
-    }
-
-    @media (max-width: 360px) {
-      h1,
-      .hero-copy {
-        width: 284px;
-        max-width: 284px;
-      }
-    }
-    .confirmation-topline {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 6px 10px;
-      border: 1px solid rgba(183, 246, 207, .3);
-      border-radius: 999px;
-      color: #d9fdd3;
-      background: rgba(37, 211, 102, .14);
-      font-size: .78rem;
-      font-weight: 800;
-    }
-
-    .confirmation-check {
-      display: grid;
-      width: 18px;
-      height: 18px;
-      place-items: center;
-      border-radius: 50%;
-      color: #075e54;
-      background: #d9fdd3;
-      font-size: .75rem;
-    }
-
-    .order-status-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      max-width: 560px;
-      margin-top: 18px;
-    }
-
-    .order-status {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      min-width: 0;
-      padding: 9px 10px;
-      border: 1px solid rgba(255, 255, 255, .13);
-      border-radius: 9px;
-      color: rgba(255, 255, 255, .78);
-      background: rgba(0, 0, 0, .1);
-      font-size: .74rem;
-    }
-
-    .order-status strong {
-      flex: 0 0 auto;
-      color: #b7f6cf;
-      font-size: 1rem;
-    }
-
-    .order-status span {
-      overflow-wrap: anywhere;
-    }
-
-    /* WhatsApp-inspired conversion layer */
-    body {
-      background-color: #d9dbd5;
-      background-image:
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,.24) 0 1px, transparent 1.5px),
-        radial-gradient(circle at 80% 70%, rgba(90,100,90,.12) 0 1px, transparent 1.5px),
-        linear-gradient(135deg, rgba(255,255,255,.16) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.16) 50%, rgba(255,255,255,.16) 75%, transparent 75%);
-      background-size: 34px 34px, 46px 46px, 92px 92px;
-    }
-
-    .page {
-      width: min(760px, calc(100% - 28px));
-      padding: 24px 0 34px;
-      gap: 0;
-    }
-
-    .conversion-hero {
-      padding: 20px 22px 18px;
-      text-align: left;
-      border-radius: 16px 16px 0 0;
-      background: #075e54;
-      box-shadow: 0 14px 28px rgba(39, 55, 50, .16);
-    }
-
-    .hero-kicker {
-      padding: 0;
-      color: #b7f6cf;
-      font-size: .7rem;
-      letter-spacing: .11em;
-      background: none;
-      box-shadow: none;
-      text-shadow: none;
-      animation: none;
-    }
-
-    h1 {
-      max-width: 20ch;
-      margin: 8px 0 0;
-      color: #fff;
-      font-size: clamp(1.9rem, 4.2vw, 3.35rem);
-      line-height: 1;
-    }
-
-    .danger-highlight {
-      color: #b7f6cf;
-    }
-
-    .hero-copy {
-      max-width: 38rem;
-      margin: 10px 0 0;
-      color: rgba(255, 255, 255, .8);
-      font-size: .94rem;
-    }
-
-      .hero-copy strong {
-        margin-bottom: 0;
-        color: #fff;
-        font-size: 1rem;
-      }
-
-    .chat-shell {
-      min-height: min(650px, calc(100vh - 210px));
-      border: 0;
-      border-radius: 0 0 16px 16px;
-      background: #efeae2;
-      box-shadow: 0 18px 36px rgba(39, 55, 50, .2);
-    }
-
-    .chat-header {
-      padding: 12px 16px;
-      border-bottom: 0;
-      background: #075e54;
-      color: #fff;
-    }
-
-    .avatar {
-      width: 42px;
-      height: 42px;
-      border: 2px solid rgba(255, 255, 255, .92);
-      box-shadow: 0 0 0 1px rgba(0, 0, 0, .08);
-    }
-
-    .profile h2 {
-      color: #fff;
-      font-size: .98rem;
-    }
-
-    .profile p {
-      margin-top: 3px;
-      color: rgba(255, 255, 255, .72);
-      font-size: .78rem;
-    }
-
-    .status-pill {
-      padding: 5px 8px;
-      color: #d9fdd3;
-      background: rgba(37, 211, 102, .18);
-      font-size: .72rem;
-    }
-
-    .progress {
-      height: 3px;
-      background: rgba(0, 0, 0, .18);
-    }
-
-    .progress-bar {
-      background: #25d366;
-    }
-
-    .messages {
-      padding: 22px 18px 28px;
-      background-color: #efeae2;
-      background-image:
-        radial-gradient(circle at 12% 18%, rgba(123, 111, 99, .12) 0 1px, transparent 1.5px),
-        radial-gradient(circle at 78% 62%, rgba(123, 111, 99, .1) 0 1px, transparent 1.5px),
-        linear-gradient(45deg, rgba(255,255,255,.12) 25%, transparent 25%, transparent 75%, rgba(255,255,255,.12) 75%);
-      background-size: 42px 42px, 58px 58px, 84px 84px;
-    }
-
-    .row {
-      margin-bottom: 8px;
-    }
-
-    .bubble {
-      position: relative;
-      max-width: min(570px, 88%);
-      padding: 9px 12px;
-      border-radius: 8px;
-      background: #fff;
-      box-shadow: 0 1px 1px rgba(60, 70, 65, .12);
-      font-size: .93rem;
-    }
-
-    .bubble.user {
-      max-width: min(520px, 88%);
-      border-radius: 8px;
-      background: #d9fdd3;
-      color: #111b21;
-    }
-
-    .bubble:not(.user):not(.offer)::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -7px;
-      border-top: 9px solid #fff;
-      border-left: 9px solid transparent;
-    }
-
-    .bubble.user::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: -7px;
-      border-top: 9px solid #d9fdd3;
-      border-right: 9px solid transparent;
-    }
-
-    .typing {
-      padding: 9px 11px;
-      border-radius: 8px;
-      background: #fff;
-      box-shadow: 0 1px 1px rgba(60, 70, 65, .12);
-    }
-
-    .composer {
-      padding: 12px 14px 14px;
-      border-top: 1px solid rgba(84, 96, 90, .12);
-      background: #f0f2f5;
-    }
-
-    .choices {
-      gap: 8px;
-    }
-
-    .choice {
-      min-height: 44px;
-      padding: 10px 13px;
-      border: 1px solid #c6d5cf;
-      border-radius: 10px;
-      background: #fff;
-      color: #1f2d29;
-      box-shadow: 0 1px 1px rgba(60, 70, 65, .08);
-    }
-
-    .choice:hover,
-    .choice:focus-visible {
-      border-color: #00a884;
-      background: #f0fff8;
-      transform: translateY(-1px);
-    }
-
-    .choice.primary {
-      border-color: #00a884;
-      background: #00a884;
-      color: #fff;
-      box-shadow: 0 4px 10px rgba(0, 168, 132, .2);
-    }
-
-    .choice.primary:hover,
-    .choice.primary:focus-visible {
-      background: #008f72;
-    }
-
-    .choice.secondary {
-      color: #52615b;
-      background: transparent;
-      box-shadow: none;
-    }
-
-    .offer-head {
-      padding: 15px;
-      background: #f0fff8;
-    }
-
-    .checkout-slot {
-      border-color: #b9d9cc;
-      background: #f7fffb;
-    }
-
-    .demo-video-card,
-    .bubble.offer {
-      border-color: #cbd8d2;
-      box-shadow: 0 1px 2px rgba(60, 70, 65, .14);
-    }
-
-    .demo-video-card .offer-head {
-      background: #f0fff8;
-    }
-
-    @media (max-width: 560px) {
-      .page {
-        width: 100vw;
-        padding: 0;
-      }
-
-      .conversion-hero {
-        padding: 18px 16px 15px;
-        border-radius: 0;
-      }
-
-      .order-status-grid {
-        grid-template-columns: 1fr;
-        max-width: 280px;
-        margin-top: 14px;
-      }
-
-      h1 {
-        max-width: 15ch;
-        font-size: clamp(1.7rem, 8.5vw, 2.35rem);
-      }
-
-      .chat-shell {
-        min-height: calc(100dvh - 220px);
-        border-radius: 0;
-      }
-
-      .messages {
         min-height: 260px;
-        padding: 16px 10px 20px;
+        padding: 16px 12px 20px;
       }
 
       .bubble {
-        max-width: 91vw;
-        font-size: .92rem;
+        max-width: min(84vw, 340px);
+        font-size: 0.92rem;
       }
 
       .bubble.user {
-        max-width: 88vw;
+        max-width: min(86vw, 340px);
+      }
+
+      .bubble.offer,
+      .bubble.image-card {
+        width: min(90vw, 350px);
+        max-width: min(90vw, 350px);
       }
 
       .composer {
-        padding: 10px 10px calc(12px + env(safe-area-inset-bottom));
+        padding: 10px 12px calc(12px + env(safe-area-inset-bottom));
       }
 
       .choice {
-        min-height: 50px;
-        padding: 12px 13px;
-        font-size: .94rem;
+        min-height: 46px;
+        padding: 11px 13px;
+        font-size: 0.93rem;
+      }
+
+      .payt-btn {
+        font-size: 15px !important;
+        padding: 14px 14px !important;
       }
     }
-    /* Paleta modelada a partir do projeto downsell enviado. */
-    :root {
-      --bg: #100e13;
-      --surface: #17131a;
-      --surface-soft: #241524;
-      --ink: #f5edf2;
-      --muted: #b9aeb8;
-      --line: rgba(244, 184, 221, .18);
-      --red: #f04c9a;
-      --red-dark: #d93686;
-      --teal: #f04c9a;
-      --teal-soft: rgba(240, 76, 154, .13);
-      --gold: #ff856f;
-      --shadow: 0 20px 70px rgba(0, 0, 0, .42);
-    }
-
-    html,
-    body {
-      background: #100e13;
-      color: var(--ink);
-    }
-
-    body {
-      background:
-        radial-gradient(circle at 92% 8%, rgba(109, 32, 93, .18), transparent 28rem),
-        radial-gradient(circle at 10% 35%, rgba(240, 76, 154, .08), transparent 24rem),
-        #100e13;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: 20;
-      pointer-events: none;
-      opacity: .035;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.3'/%3E%3C/svg%3E");
-    }
-
-    .conversion-hero {
-      padding: 26px 24px 22px;
-      border: 1px solid rgba(240, 76, 154, .24);
-      background:
-        radial-gradient(circle at 84% 15%, rgba(240, 76, 154, .18), transparent 18rem),
-        linear-gradient(100deg, rgba(16, 14, 19, .98), rgba(45, 18, 39, .74));
-      box-shadow: 0 18px 60px rgba(0, 0, 0, .28);
-    }
-
-    .hero-kicker {
-      color: #17131a;
-      background: linear-gradient(90deg, #e994c5, #f04c9a, #ff856f, #e994c5);
-      background-size: 260% 100%;
-      box-shadow: 0 0 0 1px rgba(240, 76, 154, .28), 0 8px 22px rgba(240, 76, 154, .18);
-    }
-
-    h1 { color: #f5edf2; }
-    .danger-highlight { color: #f04c9a; }
-    .hero-copy { color: #d5c8d2; }
-    .hero-copy strong { color: #f4d6e8; }
-
-    .chat-shell {
-      border-color: rgba(240, 76, 154, .28);
-      background: #17131a;
-      box-shadow: 0 20px 80px rgba(0, 0, 0, .45), 0 0 60px rgba(240, 76, 154, .08);
-    }
-
-    .chat-header,
-    .composer {
-      border-color: rgba(244, 184, 221, .18);
-      background: #141117;
-    }
-
-    .profile h2,
-    .profile p,
-    .status-pill { color: #f5edf2; }
-    .profile p { color: #b9aeb8; }
-    .status-pill { background: rgba(240, 76, 154, .13); }
-    .progress { background: rgba(244, 184, 221, .12); }
-    .progress-bar { background: linear-gradient(90deg, #f04c9a, #ff856f); }
-
-    .messages {
-      background:
-        radial-gradient(circle at 75% 0%, rgba(109, 32, 93, .18), transparent 22rem),
-        #100e13;
-    }
-
-    .bubble:not(.user) { background: #211624; color: #f5edf2; }
-    .bubble.user { background: #6d205d; color: #fff7fb; }
-    .typing { background: #211624; }
-    .typing span { background: #e994c5; }
-
-    .choice {
-      border-color: rgba(240, 76, 154, .28);
-      background: #17131a;
-      color: #f5edf2;
-    }
-    .choice:hover,
-    .choice:focus-visible { border-color: #f04c9a; background: #241524; }
-    .choice.primary { border-color: #25d366; background: linear-gradient(100deg, #0f7a45, #25d366); }
-    .choice.primary:hover,
-    .choice.primary:focus-visible { border-color: #5ff08a; background: linear-gradient(100deg, #129650, #3ee47a); }
-    .choice.secondary { color: #b9aeb8; }
-
-    .bubble.offer,
-    .demo-video-card { border-color: rgba(240, 76, 154, .35); background: #141117; }
-    .offer-head,
-    .demo-video-card .offer-head { background: linear-gradient(135deg, rgba(109, 32, 93, .5), rgba(240, 76, 154, .12)); border-color: rgba(244, 184, 221, .18); }
-    .offer-head strong,
-    .offer-head span,
-    .offer-body,
-    .stack li { color: #f5edf2; }
-    .offer-head span,
-    .stack li { color: #b9aeb8; }
-    .check { background: #f04c9a; }
-    .price { border-color: rgba(244, 184, 221, .18); }
-    .price-installments { color: #ffffff; }
-    .price-installments .installments-amount { color: #25d366; }
-    .price del { color: #ff6b6b; }
-    .price small { color: #b9aeb8; }
-    .price strong { color: #25d366; }
-    .checkout-slot { border-color: rgba(240, 76, 154, .35); background: #100e13; }
-
-    .slot-label,
-    .video-caption { color: #b9aeb8; }
-
-    .modal { background: #17131a; color: #f5edf2; }
-    .modal-body p { color: #b9aeb8; }
-
   </style>
 </head>
 <body>
@@ -1162,15 +717,15 @@
       <p class="hero-copy"><strong>Antes de entrar, quero te mostrar uma recomendação opcional que pode complementar sua experiência.</strong></p>
     </section>
 
-    <section class="chat-shell" aria-label="Conversa com Sofia Vilar">
+    <section class="chat-shell" aria-label="Conversa com Sofia Villar">
       <div>
         <header class="chat-header">
           <div class="profile">
             <div class="avatar" aria-hidden="true">
-              <img src="/up1-sofia.webp" alt="">
+              <img src="/up1-sofia.webp" alt="Sofia Villar">
             </div>
             <div>
-              <h2>Sofia Vilar</h2>
+              <h2>Sofia Villar</h2>
               <p>on-line · guia do Protocolo Reconexão</p>
             </div>
           </div>
@@ -1197,8 +752,8 @@
       do chat, preservando o que a Payt tenha ligado neles.
     -->
     <div id="payt-oneclick" hidden>
-      <a href="#" payt_action="oneclick_buy" data-object="47XX2P-45WZJG" style="display: inline-block; background: #22c55e; color: #ffffff; font-family: system-ui, -apple-system, sans-serif; font-size: 17px; font-weight: 700; padding: 15px 22.5px; border-radius: 11px; text-decoration: none; text-align: center; cursor: pointer">SIM, QUERO GARANTIR MEU PLANO!</a>
-      <select payt_element="installment" data-object="47XX2P-45WZJG" style="display:block; margin:10px auto 0; max-width:240px; padding:10px; border:1px solid #cbd5e1; border-radius:6px; background:#fff; font-size:14px;"></select>
+      <a href="#" payt_action="oneclick_buy" data-object="47XX2P-45WZJG" class="payt-btn">SIM, QUERO GARANTIR MEU PLANO!</a>
+      <select payt_element="installment" data-object="47XX2P-45WZJG" class="payt-select"></select>
     </div>
   </main>
 
@@ -1206,17 +761,6 @@
     // Quem recusa o Protocolo cai no downsell (/down1), nao direto no acesso.
     const DECLINE_URL = "/down1";
     const avatarSrc = "/up1-sofia.webp";
-    const VTURB_PLAYER_SCRIPT = "https://scripts.converteai.net/078ca594-053b-427b-a22f-58f182182f25/players/PENDING-UP1-BR/v4/player.js";
-    const VTURB_PLAYER_ID = "vid-pending-up1-br";
-    // Ao aceitar a oferta aparece o bloco de 1 clique da Payt (oferta
-    // "Protocolo Reconexao a Dois", R$147). Nao leva link proprio: a Payt
-    // reconhece a compra anterior e cobra em um clique, e o <select> deixa a
-    // pessoa escolher o parcelamento no cartao (no PIX e sempre 1x). O script
-    // que ativa tudo carrega no rodape da pagina e precisa que os elementos ja
-    // existam no DOM, por isso eles ficam declarados desde o carregamento,
-    // ocultos, mais acima.
-    // TODO: para onde a Payt manda depois da compra aprovada se configura no
-    // painel dela, nao aqui. A pagina de obrigado deste upsell e /tks.up1.
 
     const messagesEl = document.querySelector("#messages");
     const choicesEl = document.querySelector("#choices");
@@ -1224,96 +768,106 @@
 
     const state = {
       answers: {},
-      progress: 8
-    };
-
-    // A primeira resposta depois da escolha reflete o que a usuaria marcou.
-    const profiles = {
-      momento: {
-        echo: "Você quer saber a hora certa de propor, sem forçar e sem deixar esfriar."
-      },
-      conversa: {
-        echo: "Você quer conseguir tocar no assunto sem o clima pesar."
-      },
-      rotina: {
-        echo: "Você quer tirar vocês dois do piloto automático."
-      }
+      progress: 10
     };
 
     const flow = {
-      intro: {
-        progress: 12,
+      etapa1: {
+        progress: 15,
         bot: [
-          "Sua compra e seu acesso já estão confirmados ✅",
-          "Antes de entrar, uma recomendação opcional que pode complementar sua experiência.",
-          "O Mapa te deu a técnica. Só que a técnica sozinha não resolve a parte mais difícil: criar o momento e propor sem que pareça cobrança.",
+          "Pronto, minha linda: sua compra e seu acesso ao Mapa já estão confirmados ✅",
+          "Antes de você entrar, uma recomendação opcional que vai complementar sua experiência.",
+          "O Mapa do Prazer Masculino te deu a técnica…Só que a técnica sozinha não resolve a parte mais difícil: criar o momento e propor sem que pareça cobrança.",
           "Me diz uma coisa: hoje, o que mais trava na hora de colocar em prática?"
         ],
         choices: [
-          { text: "Achar a hora certa de propor.", value: "momento", next: "diagnosis" },
-          { text: "Falar sobre isso sem o clima pesar.", value: "conversa", next: "diagnosis" },
-          { text: "A rotina — a gente nem tenta mais.", value: "rotina", next: "diagnosis" }
+          { text: "Achar a hora certa de propor.", value: "A", next: "etapa2" },
+          { text: "Falar sobre isso sem que o clima pese.", value: "B", next: "etapa2" },
+          { text: "A rotina, a gente nem tenta mais.", value: "C", next: "etapa2" }
         ],
-        store: "profile"
+        store: "etapa1_choice"
       },
-      diagnosis: {
-        progress: 32,
+      etapa2: {
+        progress: 35,
         bot: [
-          () => profiles[state.answers.profile].echo,
-          "E é justamente aí que quase todo mundo trava. Não é falta de vontade nem de técnica: é que ninguém ensina a reconstruir clima no meio da rotina, com cansaço e mil outras coisas na frente.",
-          "Foi por isso que eu criei o Protocolo Reconexão a Dois: um plano guiado de 14 dias que cuida da parte de antes."
+          () => {
+            if (state.answers.etapa1_choice === "B") {
+              return 'Você quer as palavras certas: para guiar ele na hora, e também para as noites em que ele chega dizendo "hoje não, amor".';
+            }
+            if (state.answers.etapa1_choice === "C") {
+              return "Você quer tirar vocês dois do piloto automático, mesmo nos dias em que o cansaço fala mais alto.";
+            }
+            return "Você quer saber a hora certa de convidar, com leveza, sem forçar e sem deixar esfriar.";
+          },
+          "E é justamente aí que quase toda mulher trava.",
+          "Não é falta de vontade nem de técnica: em dez anos acompanhando casais, eu vi que o inimigo nunca é você nem é ele, mas sim a rotina que come a energia dos dois, o cansaço e aquele medo silencioso de ser sempre a única que busca.",
+          "Foi por isso que eu criei o Protocolo Reconexão em Casal: um plano guiado de 14 dias que cuida exatamente dessa parte."
         ],
         choices: [
-          { text: "Me mostra como funciona", next: "demo" },
-          { text: "Quero entender rápido", next: "demo" }
+          { text: "Quero saber como funciona", primary: true, next: "etapa3" }
         ]
       },
-      demo: {
-        progress: 50,
-        video: true,
+      etapa3: {
+        progress: 55,
         bot: [
-          "Material educativo, para maiores de 18 anos. O conteúdo completo fica na área privada.",
+          "É um material educativo, para maiores de 18 anos. O conteúdo completo fica numa área de membros privada, e você recebe o acesso junto com o Mapa.",
           "Deixa eu te mostrar a lógica do plano.",
-          "Um passo curto por dia, na ordem.\nOs primeiros dias só reabrem o canal.\nO convite vem depois, quando já existe clima para ele.",
-          "Nada de conversa difícil no dia 1. É isso que costuma estragar a tentativa."
+          "É um passo curto por dia, na ordem. E cada dia tem três versões: 3, 7 ou 15 minutos e você adapta de acordo com o seu dia.",
+          "Os primeiros dias só reabrem o clima. Gestos pequenos, fora da cama, para a noite não começar fria.",
+          "O convite vem depois, quando já existe clima para ele, e com as palavras prontas, no seu jeito doce ou divertido.",
+          { type: "image", src: "/up1-protocolo-app.webp", alt: "Protocolo Reconexão em Casal — Área de Membros" },
+          "É assim que o Protocolo chega pra você: tudo organizado dentro do aplicativo que já encontra com o Mapa, sem precisar imprimir nada, montar ou decorar.",
+          "E os Roteiros de Conversa vêm prontos ali dentro."
         ],
         choices: [
-          { text: "Entendi a lógica", next: "mechanism" },
-          { text: "Como é o dia a dia?", next: "mechanism" }
-        ]
+          { text: "Entendi, quero ver mais", value: "A", next: "etapa4" },
+          { text: "Como é o dia a dia?", value: "B", next: "etapa4" }
+        ],
+        store: "etapa3_choice"
       },
-      mechanism: {
-        progress: 66,
+      etapa4: {
+        progress: 75,
         bot: [
-          "Não é sobre fazer mais. É sobre fazer na ordem certa.",
-          "São 14 dias, um passo por dia, cada um levando poucos minutos. Você não precisa combinar nada com ele antes — o plano é seu.",
-          "Resumindo:\nMapa → a técnica em si.\nProtocolo → criar o momento, convidar e propor sem pressão."
+          () => {
+            if (state.answers.etapa3_choice === "B") {
+              return "O dia a dia é mais simples do que parece. Olha só: Não é sobre fazer mais. É sobre fazer na ordem certa.";
+            }
+            return "Não é sobre fazer mais, é sobre fazer na ordem certa.";
+          },
+          "São 14 dias, um passo por dia, cada um levando pouco tempo, de 3, 7 ou 15 minutos adaptados conforme o seu dia. Você não precisa combinar nada com ele antes, o plano é seu.",
+          "Resumindo:\n\nO Mapa → a técnica em si.\nProtocolo Reconexão → criar o momento, convidar e propor sem pressão."
         ],
         choices: [
-          { text: "O que inclui?", next: "offer" },
-          { text: "Quero ver a recomendação", next: "offer" }
+          { text: "Quero ver a recomendação", primary: true, next: "etapa5" }
         ]
       },
-      offer: {
-        progress: 84,
+      etapa5: {
+        progress: 95,
         bot: [
           "Sua compra anterior e seu acesso já estão confirmados, mesmo que você decida não adicionar nada.",
-          "Se escolher somar, o Protocolo Reconexão a Dois fica disponível no mesmo acesso, por R$147. Você escolhe o parcelamento no cartão na hora de confirmar.",
-          "Material educativo. Não substitui orientação profissional. Vá no seu ritmo e com o consentimento dos dois.",
-          "Antes de decidir, algumas dúvidas frequentes:",
-          "É outro produto? Sim, é um complemento opcional. Sua compra anterior e seu acesso já estão confirmados mesmo que você não adicione.",
-          "É parecido com o Mapa? Não. O Mapa é a técnica. O Protocolo é o que vem antes dela: clima, conversa e convite.",
-          "Ele precisa saber que estou seguindo um plano? Não. Nenhum dos passos exige avisar ou combinar nada com ele antes.",
-          "E se ele não corresponder? O plano trabalha leitura de sinais justamente por isso: tem passo para avançar e tem passo para recuar sem desgaste.",
-          "É outra cobrança? Sim. Só se você aceitar adicionar é cobrado R$147, à vista ou parcelado no cartão. Não há cobrança adicional se escolher seguir só com a compra anterior.",
-          "Posso entrar sem adicionar nada? Sim. Seu acesso já está confirmado e você pode ir direto para ele."
+          "Então deixa eu te mostrar, com calma, tudo o que eu preparei aqui dentro.",
+          "Primeiro, o Planner de 14 Dias Anti-Rotina. Um passo por dia, na ordem certa, que vem com três versões: A de 3, 7 ou 15 minutos. No dia em que você chega arrasada, faz 3 minutos e pronto, o plano se adapta à sua vida, não o contrário.",
+          "A Semana 1 é só para reabrir o clima. Dentro dela vai o guia do “De colegas de quarto a Amantes” que mostra como fazer gestos diários no dia a dia para impedir que vocês comecem a noite de vocês de forma fria.",
+          "A Semana 2 é o convite. Quando já existe clima, você propõe e vive o encontro com leveza, sem que soe como cobrança, sem aquele peso de \"precisamos conversar\".",
+          "E junto você também recebe “Os 3 Roteiros de Conversa Sem Vergonha”. São frases prontas, para você adaptar ao seu jeito e começar a falar com ele do jeito que achar melhor pra você.",
+          "Dentro do plano você também receberá:\n\n• O Convite Brincalhão: como propor, com um sorriso, sem que jamais soe como exigência.\n\n• O Guia na Cama: como dizer suavemente o que fazer e pedir o que você gosta, sem quebrar a magia do momento.\n\n• O Amparo Amoroso: o que dizer na noite em que ele chega exausto, pra transformar aquele \"hoje não, amor\" num momento prazeroso. Sem que sua autoestima se machuque nem por um segundo.",
+          "E tem mais duas coisas que eu costumo vender separado. Hoje elas vão junto, sem custo nenhum.",
+          "Áudios de Bolso de 2 Minutos: mini-áudios com a minha voz, pra você colocar o fone dois minutos antes de entrar no quarto. Soltar a ansiedade, respirar fundo e entrar segura, presente, conectada com você mesma. Normalmente eu vendo esse tipo de conteúdo por R$97, hoje vai com você.",
+          "O Efeito Ímã: Como Despertar a Iniciativa Dele: esse é o mais especial, porque responde à coisa que mais dói: ser sempre a única que busca. Você aprende a fechar cada encontro deixando uma marca tão boa nele que, nos dias seguintes, a vontade de te procurar nasce dele. Normalmente eu vendo por R$147, hoje também vai com você.",
+          "Pra você ter uma ideia: uma única consulta de casal comigo custa entre R$300 e R$600, e quase nunca é só uma sessão.",
+          "Só os dois bônus já somam R$244. Com o plano completo de 14 dias e os três roteiros, tudo isso vale R$397.",
+          "Mas hoje, porque você acabou de entrar no Mapa e eu quero muito que isso funcione na sua casa já na primeira semana, você adiciona ao seu pedido por R$147 à vista - ou 12x de R$12,25.",
+          "Olha bem: é o mesmo preço que o Efeito Ímã sozinho. Só que você leva o pacote inteiro.",
+          "É menos do que um jantar simples para dois. Com um impacto que pode mudar os próximos anos de vocês.",
+          "E você ainda leva isso tudo com uma garantia incondicional de 7 dias. Você entra, abre o planner, ouve os áudios, e caso se arrependa você pode pedir todo seu dinheiro de volta.",
+          "É pagamento único, Você não digita o cartão de novo, o sistema adiciona à sua compra de hoje. E no extrato aparece com um nome neutro e discreto, igual à compra anterior."
         ],
         offer: true,
         checkout: true,
         choices: [
           { text: "Não, obrigada.", action: "decline", secondary: true }
         ]
-      },
+      }
     };
 
     function sleep(ms) {
@@ -1336,7 +890,7 @@
     function avatarNode() {
       const avatar = document.createElement("div");
       avatar.className = "mini-avatar";
-      avatar.innerHTML = `<img src="${avatarSrc}" alt="">`;
+      avatar.innerHTML = `<img src="${avatarSrc}" alt="Sofia">`;
       return avatar;
     }
 
@@ -1354,6 +908,20 @@
       scrollToBottom();
     }
 
+    function addImageMessage(src, alt = "") {
+      const row = document.createElement("div");
+      row.className = "row";
+      row.appendChild(avatarNode());
+
+      const card = document.createElement("div");
+      card.className = "bubble image-card";
+      card.innerHTML = `<img src="${src}" alt="${alt}" loading="eager">`;
+
+      row.appendChild(card);
+      messagesEl.appendChild(row);
+      scrollToBottom();
+    }
+
     function addOfferCard() {
       const row = document.createElement("div");
       row.className = "row";
@@ -1363,67 +931,27 @@
       card.className = "bubble offer";
       card.innerHTML = `
         <div class="offer-head">
-          <strong>Protocolo Reconexão a Dois</strong>
+          <strong>Protocolo Reconexão em Casal</strong>
           <span>O Plano Guiado de 14 Dias.</span>
         </div>
         <div class="offer-body">
           <ul class="stack">
-            <li><span class="check">1</span><span>Semana 1 — Reabrir o canal: 7 passos curtos para sair do automático, sem nenhuma conversa difícil.</span></li>
-            <li><span class="check">2</span><span>Semana 2 — Do clima ao convite: como propor sem soar cobrança, no momento em que há abertura.</span></li>
-            <li><span class="check">3</span><span>Roteiros de conversa: o que dizer para falar de desejo, limites e preferências sem travar.</span></li>
-            <li><span class="check">4</span><span>Leitura de sinais: quando avançar, quando recuar e como recuar sem desgaste.</span></li>
-            <li><span class="check">✓</span><span>Um passo por dia, poucos minutos, na ordem — sem pular etapas.</span></li>
-            <li><span class="check">✓</span><span>Garantia de 7 dias.</span></li>
+            <li><span class="check">1</span><span><strong>Semana 1:</strong> Guia "De colegas de quarto a Amantes" — gestos diários para reabrir o clima sem frieza.</span></li>
+            <li><span class="check">2</span><span><strong>Semana 2:</strong> O Convite — propor e viver o encontro com leveza, sem peso de cobrança.</span></li>
+            <li><span class="check">3</span><span><strong>Os 3 Roteiros de Conversa Sem Vergonha:</strong> Convite Brincalhão, Guia na Cama e Amparo Amoroso.</span></li>
+            <li><span class="check">🎁</span><span><strong>Bônus 1 (Incluso):</strong> Áudios de Bolso de 2 Minutos para soltar a ansiedade antes de entrar no quarto (R$97).</span></li>
+            <li><span class="check">🎁</span><span><strong>Bônus 2 (Incluso):</strong> O Efeito Ímã — Como Despertar a Iniciativa Dele nos dias seguintes (R$147).</span></li>
+            <li><span class="check">✓</span><span><strong>Garantia incondicional de 7 dias:</strong> risco zero para você testar.</span></li>
           </ul>
           <div class="price">
+            <span class="price-installments">12x de <span class="installments-amount">R$12,25</span></span>
             <strong>R$147</strong>
-            <small>à vista ou parcelado no cartão</small>
+            <small>à vista</small>
+            <del>R$397</del>
           </div>
-          <p class="video-caption">Acesso imediato, no mesmo login do Mapa · Garantia de 7 dias.</p>
+          <p class="video-caption">Acesso imediato · Pagamento único · Garantia incondicional de 7 dias</p>
         </div>
       `;
-
-      row.appendChild(card);
-      messagesEl.appendChild(row);
-      scrollToBottom();
-    }
-
-    function loadVturbPlayer() {
-      if (document.querySelector(`script[data-vturb-player="${VTURB_PLAYER_ID}"]`)) return;
-      const script = document.createElement("script");
-      script.type = "text/javascript";
-      script.src = VTURB_PLAYER_SCRIPT;
-      script.async = true;
-      script.dataset.vturbPlayer = VTURB_PLAYER_ID;
-      document.head.appendChild(script);
-    }
-
-    function addVturbVideo() {
-      loadVturbPlayer();
-
-      const row = document.createElement("div");
-      row.className = "row";
-      row.appendChild(avatarNode());
-
-      const card = document.createElement("div");
-      card.className = "demo-video-card";
-      card.innerHTML = `
-        <div class="offer-head">
-          <span class="demo-kicker">Como o plano funciona · 14 dias</span>
-          <strong>O Plano Guiado</strong>
-          <span>Material educativo. O conteúdo completo fica na área privada.</span>
-        </div>
-        <div class="offer-body">
-          <div class="vturb-frame"></div>
-          <p class="video-caption">Um passo por dia, na ordem. Sem pular etapas.</p>
-        </div>
-      `;
-
-      const player = document.createElement("vturb-smartplayer");
-      player.id = VTURB_PLAYER_ID;
-      player.setAttribute("style", "display: block; margin: 0 auto; width: 100%; max-width: 400px;");
-      player.innerHTML = '<div class="vturb-player-placeholder"></div>';
-      card.querySelector(".vturb-frame").appendChild(player);
 
       row.appendChild(card);
       messagesEl.appendChild(row);
@@ -1434,9 +962,6 @@
       const widget = document.getElementById("payt-oneclick");
       if (!widget) return;
 
-      // Se ja houve um balao de checkout, ele fica com o slot vazio depois que
-      // o bloco da Payt e movido daqui. Some com ele em vez de deixar a caixa
-      // pontilhada vazia na conversa.
       messagesEl.querySelectorAll(".row.checkout-row").forEach(old => old.remove());
 
       const row = document.createElement("div");
@@ -1453,20 +978,10 @@
         </div>
       `;
 
-      // appendChild MOVE o bloco, nao clona - e isso que preserva o que a Payt
-      // ligou nos elementos. Por isso ele tambem pode ser remontado mais abaixo
-      // quando a pessoa recusa e a oferta volta.
       const slot = card.querySelector(".checkout-slot");
-      if (paytCanOneClick()) {
-        widget.hidden = false;
-        slot.appendChild(widget);
-        blockEmptyAnchorJump(widget);
-      } else {
-        // Sem _o/_m a Payt aborta antes de ligar o clique e o botao fica inerte.
-        // Melhor dizer o que houve do que exibir um botao que nao faz nada.
-        card.querySelector(".slot-label").remove();
-        slot.innerHTML = '<p class="checkout-unavailable"><strong>Esta oferta só pode ser confirmada a partir da sua compra.</strong><br>Abra esta página pelo link que apareceu logo depois do pagamento, para o pedido anterior ser reconhecido.</p>';
-      }
+      widget.hidden = false;
+      slot.appendChild(widget);
+      blockEmptyAnchorJump(widget);
 
       const declineWrap = card.querySelector(".inline-decline-wrap");
       (step.choices || []).forEach(choice => {
@@ -1484,37 +999,20 @@
       scrollToBottom();
     }
 
-    // A Payt so consegue cobrar em 1 clique se souber o pedido anterior. Ela le
-    // isso de _o (id do pedido) e _m (meio de pagamento), que chegam na URL
-    // vinda do passo anterior do funil, ou de cookie gravado por essa URL. Sem
-    // os dois o init() dela lanca erro antes de ligar o clique no botao.
-    function paytCanOneClick() {
-      const q = new URLSearchParams(window.location.search);
-      const cookie = name => document.cookie
-        .split("; ")
-        .some(c => c.startsWith(name + "=") && c.slice(name.length + 1).length > 0);
-      const has = name => !!q.get(name) || cookie(name);
-      return has("_o") && has("_m");
-    }
-
-    // href="#" e o que a Payt manda usar, e o script dela intercepta o clique
-    // quando consegue ler o token da compra anterior na URL. Quando nao
-    // consegue (teste direto, link aberto fora do funil), ele nao intercepta e
-    // o "#" rola a pagina para o topo, o que parece defeito. Isto so barra a
-    // navegacao para "#": qualquer handler da Payt continua rodando normal.
     function blockEmptyAnchorJump(widget) {
       const anchor = widget.querySelector("[payt_action]");
       if (!anchor || anchor.dataset.noJump) return;
       anchor.dataset.noJump = "1";
       anchor.addEventListener("click", e => {
-        if ((anchor.getAttribute("href") || "") === "#") e.preventDefault();
+        if ((anchor.getAttribute("href") || "") === "#") {
+          // Se nao ha token anterior, impede salto para o topo
+          if (!window.location.search.includes("_o")) {
+            e.preventDefault();
+          }
+        }
       });
     }
 
-    // O <select> de parcelas nasce vazio: a Payt so o preenche depois de ler o
-    // token da compra anterior na URL. Vazio ele renderiza como uma caixinha
-    // branca sem opcao nenhuma, que parece defeito. Entao ele fica escondido
-    // ate ter opcao de verdade.
     function watchInstallments(widget) {
       const select = widget.querySelector("[payt_element='installment']");
       if (!select) return;
@@ -1541,11 +1039,20 @@
 
     async function botSpeak(lines) {
       for (const item of lines) {
+        if (typeof item === "object" && item.type === "image") {
+          const typing = addTyping();
+          await sleep(400);
+          typing.remove();
+          addImageMessage(item.src, item.alt || "");
+          await sleep(200);
+          continue;
+        }
+        const text = resolveText(item);
         const typing = addTyping();
-        await sleep(520 + Math.min(resolveText(item).length * 8, 700));
+        await sleep(Math.min(280 + text.length * 3.5, 600));
         typing.remove();
-        addMessage(resolveText(item));
-        await sleep(180);
+        addMessage(text);
+        await sleep(150);
       }
     }
 
@@ -1583,11 +1090,8 @@
       const step = flow[id];
       setProgress(step.progress);
       await botSpeak(step.bot || []);
-      if (step.video) addVturbVideo();
       if (step.offer) addOfferCard();
       if (step.checkout) {
-        // A recusa vai dentro do balao, junto do botao da Payt - o rodape de
-        // escolhas fica vazio para nao existir um segundo CTA na tela.
         choicesEl.innerHTML = "";
         mountPaytCheckout(step);
       } else {
@@ -1595,7 +1099,7 @@
       }
     }
 
-    goTo("intro");
+    goTo("etapa1");
   </script>
 
   <script type="text/javascript" src="https://checkout.payt.com.br/multiple-oneclickbuyscript/45GX73.js"></script>
