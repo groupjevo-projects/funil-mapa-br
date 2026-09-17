@@ -6,6 +6,28 @@
 <title>A Cavalgada Proibida liberada | Mapa do Prazer Masculino</title>
 <meta name="robots" content="noindex">
 <meta name="description" content="Confirmação de compra do programa A Cavalgada Proibida.">
+
+<!-- Group Jevo Funnel Telemetry: safe non-blocking tks_view tracking -->
+<script>
+  (function () {
+    try {
+      var SUPABASE_URL = 'https://ahtvpfunglhhtfpefsyi.supabase.co';
+      var SUPABASE_KEY = 'sb_publishable_MuW-XY0uxvizJ3zqtJKy5A_YMdJNrln';
+      var sessionId = localStorage.getItem('funnel_session_id') || ('sess_' + Math.random().toString(36).substring(2, 12));
+      fetch(SUPABASE_URL + '/rest/v1/funnel_events', {
+        method: 'POST',
+        keepalive: true,
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Authorization': 'Bearer ' + SUPABASE_KEY,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify([{ offer_id: 'br', event_type: 'tks_view', session_id: sessionId }])
+      }).catch(function () {});
+    } catch (e) {}
+  })();
+</script>
 <style>
 :root{
   --bg:#100e13; --surface:#17131a; --surface-2:#1e1822;
