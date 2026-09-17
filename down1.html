@@ -3,10 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>A Cavalgada Proibida: Condição Especial | Sofia Villar</title>
+  <title>Pompoarismo das Deusas | Condição Especial</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- UTMify: persistência de UTMs nas páginas pós-compra para atribuição -->
+  <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" async defer data-utmify-prevent-subids></script>
 
   <!-- Group Jevo Funnel Telemetry: safe non-blocking down1_view tracking -->
   <script>
@@ -30,19 +33,23 @@
     })();
   </script>
   <style>
+    /* Identidade visual Dark Luxury idêntica ao Upsell 1 (up1.html) */
     :root {
       --bg: #100e13;
       --surface: #17131a;
       --surface-soft: #241524;
-      --surface-2: #1e1822;
       --ink: #f5edf2;
       --muted: #b9aeb8;
-      --line: rgba(244, 184, 221, .18);
+      --line: rgba(244, 184, 221, 0.18);
       --red: #f04c9a;
       --red-dark: #d93686;
+      --teal: #f04c9a;
+      --teal-soft: rgba(240, 76, 154, 0.13);
+      --gold: #ff856f;
       --pink: #f04c9a;
-      --green: #22c55e;
-      --shadow: 0 20px 70px rgba(0, 0, 0, .42);
+      --green: #25d366;
+      --green-dark: #15803d;
+      --shadow: 0 20px 70px rgba(0, 0, 0, 0.42);
       --radius: 12px;
     }
 
@@ -50,26 +57,29 @@
       box-sizing: border-box;
     }
 
-    html,
-    body {
+    html {
       min-height: 100%;
       width: 100%;
       max-width: 100%;
-      margin: 0;
-      background: #100e13;
-      color: var(--ink);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      line-height: 1.55;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
+      background: var(--bg);
+      scroll-behavior: smooth;
     }
 
     body {
       min-height: 100vh;
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      letter-spacing: 0;
+      overflow-x: hidden;
       background:
-        radial-gradient(circle at 92% 8%, rgba(109, 32, 93, .22), transparent 28rem),
-        radial-gradient(circle at 10% 35%, rgba(240, 76, 154, .1), transparent 24rem),
+        radial-gradient(circle at 92% 8%, rgba(109, 32, 93, 0.18), transparent 28rem),
+        radial-gradient(circle at 10% 35%, rgba(240, 76, 154, 0.08), transparent 24rem),
         #100e13;
+      -webkit-font-smoothing: antialiased;
     }
 
     body::before {
@@ -78,149 +88,164 @@
       inset: 0;
       z-index: 20;
       pointer-events: none;
-      opacity: .035;
+      opacity: 0.035;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.3'/%3E%3C/svg%3E");
     }
 
-    button,
-    input,
-    select {
+    button, input, select {
       font: inherit;
     }
 
+    button {
+      cursor: pointer;
+    }
+
     .page {
-      width: 100%;
-      max-width: 640px;
+      width: min(720px, calc(100% - 32px));
       margin: 0 auto;
-      padding: 32px 20px 48px;
+      padding: 24px 0 60px;
+      display: grid;
+      gap: 24px;
     }
 
-    section {
-      padding: 36px 0;
+    /* ---------- Barra superior de estado ---------- */
+    .topline-wrap {
+      text-align: center;
     }
 
-    section + section {
-      border-top: 1px solid var(--line);
-    }
-
-    .badge-topline {
+    .topline {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
       padding: 6px 14px;
-      border: 1px solid rgba(240, 76, 154, .35);
       border-radius: 999px;
-      color: #fce7f3;
-      background: rgba(240, 76, 154, .14);
-      font-size: .8rem;
+      background: rgba(37, 211, 102, 0.14);
+      border: 1px solid rgba(183, 246, 207, 0.3);
+      color: #d9fdd3;
+      font-size: 0.8rem;
       font-weight: 800;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      margin-bottom: 16px;
+      letter-spacing: 0.02em;
     }
 
-    .badge-dot {
-      width: 8px;
-      height: 8px;
+    .topline-check {
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
-      background: var(--pink);
+      background: #d9fdd3;
+      color: #075e54;
+      display: grid;
+      place-items: center;
+      font-size: 0.75rem;
+      font-weight: 900;
+    }
+
+    /* ---------- Hero / Cabeçalho ---------- */
+    .hero {
+      text-align: center;
+      display: grid;
+      gap: 14px;
+      justify-items: center;
+    }
+
+    @keyframes highlightShift {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    .hero-kicker {
       display: inline-block;
+      margin: 0;
+      padding: 5px 12px;
+      color: #17131a;
+      font-size: 0.78rem;
+      font-weight: 950;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 4px;
+      background: linear-gradient(90deg, #e994c5, #f04c9a, #ff856f, #e994c5);
+      background-size: 260% 100%;
+      box-shadow: 0 0 0 1px rgba(240, 76, 154, 0.28), 0 8px 22px rgba(240, 76, 154, 0.18);
+      animation: highlightShift 1800ms linear infinite;
     }
 
     h1 {
-      margin: 0 0 16px;
-      color: #f5edf2;
-      font-size: clamp(1.85rem, 5vw, 2.75rem);
+      margin: 0;
+      font-size: clamp(1.85rem, 5vw, 2.65rem);
       line-height: 1.15;
+      font-weight: 900;
       letter-spacing: -0.02em;
+      color: #f5edf2;
       text-wrap: balance;
     }
 
     .danger-highlight {
       color: var(--pink);
+      text-shadow: 0 0 24px rgba(240, 76, 154, 0.35);
     }
 
-    .lead {
+    .hero-lead {
       margin: 0;
-      color: var(--muted);
-      font-size: 1.02rem;
-      line-height: 1.5;
+      max-width: 54ch;
+      color: #d5c8d2;
+      font-size: 1.05rem;
+      line-height: 1.55;
     }
 
     /* ---------- Card de Oferta ---------- */
-    .offer-card {
-      border: 1px solid rgba(240, 76, 154, .35);
-      border-radius: 16px;
-      background: #141117;
-      box-shadow: 0 20px 80px rgba(0, 0, 0, .45), 0 0 60px rgba(240, 76, 154, .08);
+    .card-shell {
+      border: 1px solid rgba(240, 76, 154, 0.28);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.45), 0 0 60px rgba(240, 76, 154, 0.08);
       overflow: hidden;
-      text-align: center;
+      display: grid;
     }
 
     .offer-head {
-      padding: 22px 22px 18px;
-      background: linear-gradient(135deg, rgba(109, 32, 93, .5), rgba(240, 76, 154, .14));
-      border-bottom: 1px solid rgba(244, 184, 221, .18);
-    }
-
-    .offer-badge {
-      display: inline-block;
-      margin-bottom: 8px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(37, 211, 102, .15);
-      border: 1px solid rgba(37, 211, 102, .3);
-      color: #d9fdd3;
-      font-size: 0.74rem;
-      font-weight: 800;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    .offer-card h2 {
-      margin: 0;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(109, 32, 93, 0.5), rgba(240, 76, 154, 0.12)), #141117;
       color: #f5edf2;
-      font-size: clamp(1.5rem, 4.5vw, 2rem);
-      line-height: 1.15;
+    }
+
+    .offer-head strong {
+      display: block;
+      font-size: 1.35rem;
+      font-weight: 900;
       letter-spacing: -0.01em;
+      color: #f5edf2;
     }
 
-    .offer-name-sub {
-      margin: 6px 0 0;
-      color: #d5c8d2;
-      font-size: 0.96rem;
-    }
-
-    .offer-desc {
-      max-width: 42ch;
-      margin: 12px auto 0;
-      color: var(--muted);
+    .offer-head span {
+      display: block;
+      margin-top: 6px;
       font-size: 0.94rem;
-      line-height: 1.45;
+      color: #b9aeb8;
     }
 
     .offer-body {
-      padding: 22px;
-      background: #17131a;
-      text-align: left;
+      padding: 24px 22px;
+      background: var(--surface);
+      display: grid;
+      gap: 20px;
     }
 
     .stack {
-      display: grid;
-      gap: 11px;
-      margin: 0 0 22px;
+      margin: 0;
       padding: 0;
       list-style: none;
+      display: grid;
+      gap: 14px;
     }
 
     .stack li {
       display: grid;
       grid-template-columns: 24px 1fr;
-      gap: 10px;
+      gap: 12px;
       align-items: start;
+      font-size: 0.95rem;
       color: #d5c8d2;
-      font-size: 0.92rem;
-      line-height: 1.4;
+      line-height: 1.45;
     }
 
     .stack li strong {
@@ -228,89 +253,110 @@
     }
 
     .check {
-      width: 24px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
       border-radius: 50%;
+      background: var(--pink);
+      color: #fff;
       display: grid;
       place-items: center;
-      color: #fff;
-      background: var(--pink);
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       font-weight: 900;
-      flex-shrink: 0;
+      margin-top: 1px;
+      box-shadow: 0 2px 8px rgba(240, 76, 154, 0.35);
     }
 
+    /* ---------- Caixa de Preço: Centralizada e em Verde ---------- */
     .price-box {
+      padding: 24px 20px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #141117;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
+      gap: 8px;
       text-align: center;
-      padding-top: 18px;
-      border-top: 1px solid rgba(244, 184, 221, .18);
-      margin-bottom: 18px;
     }
 
-    .price-old {
-      color: #ff6b6b;
-      font-size: 0.92rem;
-      font-weight: 600;
+    .price-normal {
+      color: #b9aeb8;
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
+    .price-normal del {
+      color: #8e838d;
       text-decoration: line-through;
     }
 
+    .price-main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 4px;
+      width: 100%;
+    }
+
     .price-now {
-      margin: 4px 0 2px;
-      color: #25d366;
-      font-size: clamp(2.4rem, 8vw, 3.4rem);
+      color: var(--green);
+      font-size: clamp(3rem, 9vw, 4.2rem);
       font-weight: 900;
       line-height: 1;
       letter-spacing: -0.02em;
+      text-align: center;
+      text-shadow: 0 0 30px rgba(37, 211, 102, 0.35);
     }
 
     .price-now small {
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       font-weight: 800;
     }
 
     .price-tag {
-      color: var(--muted);
-      font-size: 0.76rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .discount-badge {
-      display: inline-block;
-      margin: 12px auto 0;
-      padding: 6px 14px;
-      border-radius: 999px;
-      background: rgba(240, 76, 154, .18);
-      border: 1px solid rgba(240, 76, 154, .35);
-      color: #fce7f3;
-      font-size: 0.78rem;
-      font-weight: 850;
-      letter-spacing: 0.06em;
+      color: #d5c8d2;
+      font-size: 0.92rem;
+      font-weight: 600;
       text-align: center;
     }
 
-    /* ---------- Slot de Checkout Payt ---------- */
-    .checkout-slot {
-      margin-top: 18px;
-      padding: 16px;
-      border: 1px dashed rgba(240, 76, 154, .35);
-      border-radius: var(--radius);
+    .discount-pill {
+      display: inline-block;
+      margin-top: 6px;
+      padding: 7px 18px;
+      border-radius: 999px;
+      background: var(--green);
+      color: #ffffff;
+      font-size: 0.8rem;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-align: center;
+      box-shadow: 0 4px 18px rgba(37, 211, 102, 0.35);
+    }
+
+    /* ---------- Container Checkout Payt ---------- */
+    .widget-container {
+      margin-top: 6px;
+      padding: 18px;
+      border: 1px solid rgba(240, 76, 154, 0.35);
+      border-radius: 10px;
       background: #100e13;
+      color: #f5edf2;
+      display: grid;
+      gap: 12px;
       text-align: center;
     }
 
     .slot-label {
-      display: block;
-      margin-bottom: 12px;
-      color: var(--muted);
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
+      font-size: 0.86rem;
+      color: #b9aeb8;
+      text-align: center;
+      margin: 0;
+      font-weight: 600;
     }
 
     .payt-btn {
@@ -328,7 +374,7 @@
       text-decoration: none !important;
       text-align: center !important;
       cursor: pointer !important;
-      box-shadow: 0 6px 24px rgba(34, 197, 94, .35) !important;
+      box-shadow: 0 6px 24px rgba(34, 197, 94, 0.35) !important;
       transition: transform 160ms ease, box-shadow 160ms ease !important;
       letter-spacing: 0.02em !important;
       line-height: 1.2 !important;
@@ -337,7 +383,7 @@
 
     .payt-btn:hover {
       transform: translateY(-1px) !important;
-      box-shadow: 0 8px 28px rgba(34, 197, 94, .5) !important;
+      box-shadow: 0 8px 28px rgba(34, 197, 94, 0.5) !important;
     }
 
     .payt-select {
@@ -346,7 +392,7 @@
       width: 100%;
       max-width: 260px;
       padding: 10px 12px;
-      border: 1px solid rgba(240, 76, 154, .3);
+      border: 1px solid rgba(240, 76, 154, 0.3);
       border-radius: 8px;
       background: #17131a;
       color: #f5edf2;
@@ -361,221 +407,230 @@
       100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
     }
 
-    .cta-note {
-      margin: 12px 0 4px;
-      color: var(--muted);
-      font-size: 0.82rem;
-      text-align: center;
-    }
-
-    .secure {
-      margin: 0 0 14px;
-      color: rgba(245, 237, 242, 0.45);
-      font-size: 0.75rem;
-      text-align: center;
-    }
-
-    .decline-wrap {
-      margin-top: 14px;
-      text-align: center;
-    }
-
     .decline-link {
-      display: inline-block;
-      background: transparent;
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 600;
-      padding: 8px 12px;
+      display: block;
+      width: 100%;
+      margin: 8px 0 0;
+      padding: 8px;
       border: 0;
+      background: none;
+      color: var(--muted);
+      font-size: 0.86rem;
       text-align: center;
-      cursor: pointer;
       text-decoration: underline;
       text-underline-offset: 3px;
-      transition: color 140ms ease;
+      cursor: pointer;
+      transition: color 0.2s ease;
     }
 
-    .decline-link:hover,
-    .decline-link:focus-visible {
+    .decline-link:hover {
       color: #f5edf2;
-      outline: 0;
     }
 
-    /* ---------- Seções Informativas ---------- */
-    .section-kicker {
+    /* ---------- Seção de mensagem pessoal (Sofia Villar) ---------- */
+    .author-note {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      padding: 22px;
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .author-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(240, 76, 154, 0.4);
+    }
+
+    .author-text h3 {
+      margin: 0 0 6px;
+      font-size: 1.08rem;
+      font-weight: 800;
+      color: #f5edf2;
+    }
+
+    .author-text p {
+      margin: 0;
+      font-size: 0.94rem;
+      color: #d5c8d2;
+      line-height: 1.5;
+    }
+
+    /* ---------- Garantia ---------- */
+    .guarantee-box {
+      border: 1px dashed rgba(37, 211, 102, 0.4);
+      border-radius: var(--radius);
+      background: rgba(37, 211, 102, 0.08);
+      padding: 18px 20px;
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin: 0 0 14px;
-      color: var(--pink);
-      font-size: 0.76rem;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      gap: 16px;
     }
 
-    .section-kicker::before {
-      content: "";
-      width: 24px;
-      height: 2px;
-      background: var(--pink);
+    .guarantee-icon {
+      font-size: 2rem;
+      flex-shrink: 0;
     }
 
-    h3 {
-      margin: 0 0 14px;
-      color: #f5edf2;
-      font-size: clamp(1.4rem, 4vw, 1.85rem);
-      line-height: 1.25;
-      letter-spacing: -0.01em;
-      text-wrap: balance;
-    }
-
-    h3 em {
-      font-style: normal;
-      color: var(--pink);
-    }
-
-    .ds-why p,
-    .ds-final p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.98rem;
-      line-height: 1.55;
-    }
-
-    .ds-footer {
-      text-align: center;
-      padding: 34px 0 20px;
-    }
-
-    .ds-footer .respect {
-      margin: 0 0 18px;
-      color: #d5c8d2;
+    .guarantee-text strong {
+      display: block;
+      color: var(--green);
       font-size: 0.96rem;
-      font-style: italic;
+      font-weight: 800;
     }
 
-    .ds-footer .brand {
-      margin: 0;
-      color: #f5edf2;
-      font-weight: 700;
-      font-size: 1.15rem;
+    .guarantee-text p {
+      margin: 3px 0 0;
+      color: #d5c8d2;
+      font-size: 0.86rem;
+      line-height: 1.4;
     }
 
-    .ds-footer .brand-sub {
-      margin: 4px 0 0;
-      color: var(--muted);
-      font-size: 0.82rem;
+    /* ---------- Footer ---------- */
+    footer {
+      text-align: center;
+      padding-top: 16px;
+      color: #7a707a;
+      font-size: 0.78rem;
+      line-height: 1.6;
     }
 
-    .ds-footer .copy {
-      margin: 18px 0 0;
-      color: rgba(245, 237, 242, 0.3);
-      font-size: 0.74rem;
-    }
-
-    @media (max-width: 560px) {
+    @media (max-width: 600px) {
       .page {
-        padding: 24px 16px 36px;
+        padding: 16px 0 40px;
       }
-
-      .offer-body {
-        padding: 18px 16px;
+      .author-note {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
       }
-
-      .payt-btn {
-        font-size: 16px !important;
-        padding: 15px 16px !important;
+      .guarantee-box {
+        flex-direction: column;
+        text-align: center;
       }
     }
   </style>
 </head>
 <body>
   <main class="page">
-    <section class="ds-intro">
-      <div class="badge-topline">
-        <span class="badge-dot"></span>
-        <span>Uma condição especial para você</span>
+    
+    <!-- Topline -->
+    <div class="topline-wrap">
+      <div class="topline">
+        <span class="topline-check">✓</span>
+        <span>Seu acesso principal ao Mapa do Prazer está confirmado</span>
       </div>
-      <h1>Sei que o preço talvez tenha te feito <span class="danger-highlight">pensar duas vezes.</span></h1>
-      <p class="lead">Por isso, antes de ir para o seu acesso, liberei uma condição única para que o investimento não seja o motivo de você deixar de dominar a penetração e se transformar em uma verdadeira leoa na cama.</p>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero" aria-label="Condição especial de Pompoarismo">
+      <div class="hero-kicker">Oportunidade Única · Condição Especial</div>
+      <h1>Sei que o preço te fez <span class="danger-highlight">pensar duas vezes.</span></h1>
+      <p class="hero-lead">
+        Não quero que o investimento te impeça de aprender a continuar quando o momento avança.
+        Por isso liberei esta condição especial com desconto direto para você ter acesso imediato às técnicas.
+      </p>
     </section>
 
-    <section class="ds-offer" id="oferta">
-      <div class="offer-card">
-        <div class="offer-head">
-          <span class="offer-badge">Condição especial liberada</span>
-          <h2>A Cavalgada Proibida</h2>
-          <p class="offer-name-sub">O Guia Definitivo da Penetração Tântrica</p>
-          <p class="offer-desc">O mesmo acesso completo, a técnica da Sentada da Donzela, os 5 estímulos vaginais e todos os bônus inclusos, agora por uma condição que cabe melhor no seu momento.</p>
-        </div>
+    <!-- Card de Oferta (Estrutura Pompoarismo Dark) -->
+    <section class="card-shell" aria-label="Oferta Pompoarismo das Deusas">
+      <div class="offer-head">
+        <strong>Pompoarismo das Deusas · Acesso Essencial</strong>
+        <span>A etapa que completa o Mapa quando as mãos saem de cena.</span>
+      </div>
 
-        <div class="offer-body">
-          <ul class="stack">
-            <li><span class="check">1</span><span><strong>Os 5 Estímulos Vaginais:</strong> aperto, sucção, compressão, massagem e pulsação no pênis dele.</span></li>
-            <li><span class="check">2</span><span><strong>A Sentada da Donzela:</strong> a técnica de cavalgada para ditar o ritmo sem cansar as pernas.</span></li>
-            <li><span class="check">3</span><span><strong>Retardo e Clímax Represado:</strong> como ditar o tempo dele e provocar espasmos musculares intensos.</span></li>
-            <li><span class="check">🎁</span><span><strong>Bônus 1 & 2:</strong> O Hiperorgasmo Tântrico + Os Pontos de Kamara.</span></li>
-            <li><span class="check">🎁</span><span><strong>Bônus 3, 4 & 5:</strong> Pompoarismo Invisível + Dominância Doce + Sussurros de Comando.</span></li>
-            <li><span class="check">✓</span><span><strong>Garantia incondicional de 7 dias:</strong> se arrepender, devolvemos 100% do seu valor.</span></li>
-          </ul>
+      <div class="offer-body">
+        <ul class="stack">
+          <li>
+            <span class="check">✓</span>
+            <span><strong>25 técnicas práticas</strong> de contração, relaxamento, respiração e ritmo guiadas passo a passo.</span>
+          </li>
+          <li>
+            <span class="check">✓</span>
+            <span><strong>Controle Duplo:</strong> movimento por fora + consciência por dentro para controlar os tempos.</span>
+          </li>
+          <li>
+            <span class="check">✓</span>
+            <span><strong>O movimento APERTA E SOLTA:</strong> como sincronizar e prolongar o clímax sem improvisar.</span>
+          </li>
+          <li>
+            <span class="check">✓</span>
+            <span><strong>Mapa visual com 15 posições</strong> práticas para aplicar de imediato.</span>
+          </li>
+          <li>
+            <span class="check">✓</span>
+            <span><strong>Garantia incondicional de 7 dias:</strong> se sentir que não é para você, reembolso de 100% sem perguntas.</span>
+          </li>
+        </ul>
 
-          <div class="price-box">
-            <span class="price-old">De R$147,00</span>
-            <div class="price-now">R$97<small>,00</small></div>
-            <span class="price-tag">À VISTA OU PARCELADO NO CARTÃO</span>
-            <span class="discount-badge">34% DE DESCONTO EXCEPCIONAL</span>
+        <!-- Caixa de Preço: Centralizada, Grande e em Verde -->
+        <div class="price-box">
+          <div class="price-normal">Preço normal: <del>R$147,00</del></div>
+          <div class="price-main">
+            <span class="price-now">R$67<small>,00</small></span>
+            <span class="price-tag">pagamento único · condição especial</span>
           </div>
-
-          <div class="checkout-slot">
-            <span class="slot-label">Confirme sua adesão com 1 clique</span>
-
-            <!-- Botão de compra Payt: cole onde quiser que o cliente clique -->
-            <a href="#" payt_action="oneclick_buy" data-object="RB55ZE-45WZJG" class="payt-btn" style="display: inline-block; background: #22c55e; color: #ffffff; font-family: system-ui, -apple-system, sans-serif; font-size: 18px; font-weight: 700; padding: 16px 24px; border-radius: 8px; text-decoration: none; text-align: center; cursor: pointer">ADQUIRIR COM DESCONTO</a>
-
-            <!-- Select de parcelas visível: o comprador escolhe quantas parcelas no cartão.
-                 Para PIX é sempre 1x; o script ignora esse select. -->
-            <select payt_element="installment" data-object="RB55ZE-45WZJG" class="payt-select" style="display:block; margin:10px auto 0; max-width:240px; padding:10px; border:1px solid #cbd5e1; border-radius:6px; background:#fff; font-size:14px;"></select>
-
-            <p class="cta-note">Acesso imediato no mesmo login do Mapa · Pagamento único</p>
-            <p class="secure">🔒 Pagamento seguro processado pela Payt</p>
-
-            <div class="decline-wrap">
-              <a href="/tks" class="decline-link">Não, obrigada. Vou seguir apenas com o Mapa do Prazer.</a>
-            </div>
-          </div>
+          <!-- Badge/caixa verde com letras em branco -->
+          <span class="discount-pill">CONDIÇÃO EXCEPCIONAL POR TEMPO LIMITADO</span>
         </div>
+
+        <!-- PAYT - 1 Click Widget Slot -->
+        <div class="widget-container">
+          <p class="slot-label">Confirme sua compra de 1 clique com a Payt</p>
+          
+          <a href="#" payt_action="oneclick_buy" data-object="RB55ZE-45WZJG" class="payt-btn">ADQUIRIR COM DESCONTO</a>
+          <select payt_element="installment" data-object="RB55ZE-45WZJG" class="payt-select"></select>
+        </div>
+
+        <!-- Link de recusa -->
+        <button class="decline-link" type="button" id="declineBtn">
+          Não, obrigada. Prefiro continuar para o acesso da minha compra sem esta condição.
+        </button>
       </div>
     </section>
 
-    <section class="ds-why">
-      <p class="section-kicker">Por que esta condição existe?</p>
-      <h3>Não é uma nova cobrança.<br><em>É uma nova possibilidade.</em></h3>
-      <p>Sei que cada pessoa vive um momento diferente. Por isso esta condição com desconto foi pensada para reduzir a barreira do investimento e te permitir começar no seu ritmo, com acompanhamento, sem deixar esta decisão para um futuro indefinido.</p>
-    </section>
-
-    <section class="ds-final">
-      <p class="section-kicker">A decisão continua sendo sua</p>
-      <h3>Se fizer sentido para você,<br><em>esta condição está disponível agora.</em></h3>
-      <p>Você pode acessar o plano completo por apenas R$97,00 à vista (ou parcelado no cartão), ou seguir direto para o seu acesso original.</p>
-      
-      <div style="margin-top: 24px; text-align: center;">
-        <button type="button" class="payt-btn" onclick="document.getElementById('oferta').scrollIntoView({behavior: 'smooth', block: 'center'})" style="border: 0;">QUERO APROVEITAR O DESCONTO</button>
-        <div class="decline-wrap" style="margin-top: 14px;">
-          <a href="/tks" class="decline-link">Não, obrigada. Vou seguir apenas com o Mapa do Prazer.</a>
-        </div>
+    <!-- Nota pessoal de Sofia Villar -->
+    <section class="author-note">
+      <img src="/up1-sofia.webp" alt="Sofia Villar" class="author-avatar">
+      <div class="author-text">
+        <h3>Uma mensagem de Sofia Villar</h3>
+        <p>
+          "O Mapa do Prazer te ensina a despertar com as mãos, mas o Pompoarismo é o que te permite dominar o ritmo quando a intimidade se aprofunda. Esta condição reduzida foi criada para que você dê esse passo sem dúvidas."
+        </p>
       </div>
     </section>
 
-    <footer class="ds-footer">
-      <p class="respect">Tudo bem. Sua decisão merece ser respeitada.</p>
-      <p class="brand">A Cavalgada Proibida</p>
-      <p class="brand-sub">Sofia Villar · Guia da Cavalgada Proibida · Mapa do Prazer Masculino</p>
-      <p class="copy">© 2026</p>
+    <!-- Garantia -->
+    <section class="guarantee-box">
+      <div class="guarantee-icon">🛡️</div>
+      <div class="guarantee-text">
+        <strong>Garantia Incondicional de 7 Dias</strong>
+        <p>Você tem uma semana completa para ver os módulos e experimentar as técnicas. Se sentir que não é para você, você solicita o reembolso e devolvemos 100%.</p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>
+        Pompoarismo das Deusas · Sofia Villar<br>
+        Mapa do Prazer Masculino · Todos os direitos reservados © 2026
+      </p>
     </footer>
+
   </main>
 
   <script>
+    const DECLINE_URL = "/tks";
+    document.getElementById("declineBtn").addEventListener("click", function () {
+      window.location.href = DECLINE_URL;
+    });
+
     // Gerenciamento do select de parcelas da Payt
     const select = document.querySelector("[payt_element='installment'][data-object='RB55ZE-45WZJG']");
     if (select) {
@@ -595,7 +650,7 @@
     }
   </script>
 
-  <!-- Script da Payt - cole UMA VEZ antes do </body> da página -->
+  <!-- Script Payt One-Click -->
   <script type="text/javascript" src="https://checkout.payt.com.br/multiple-oneclickbuyscript/45GX73.js"></script>
 </body>
 </html>

@@ -3,10 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>A Cavalgada Proibida | Sofia Villar</title>
+  <title>Pompoarismo das Deusas | Sofia Villar</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- UTMify: persistência de UTMs nas páginas pós-compra para atribuição -->
+  <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" async defer data-utmify-prevent-subids></script>
 
   <!-- Group Jevo Funnel Telemetry: safe non-blocking up1_view tracking -->
   <script>
@@ -29,6 +32,7 @@
       } catch (e) {}
     })();
   </script>
+
   <style>
     :root {
       --bg: #100e13;
@@ -36,41 +40,45 @@
       --surface-soft: #241524;
       --ink: #f5edf2;
       --muted: #b9aeb8;
-      --line: rgba(244, 184, 221, .18);
+      --line: rgba(244, 184, 221, 0.18);
       --red: #f04c9a;
       --red-dark: #d93686;
       --teal: #f04c9a;
-      --teal-soft: rgba(240, 76, 154, .13);
+      --teal-soft: rgba(240, 76, 154, 0.13);
       --gold: #ff856f;
-      --green: #22c55e;
-      --shadow: 0 20px 70px rgba(0, 0, 0, .42);
-      --radius: 12px;
+      --pink: #f04c9a;
+      --green: #25d366;
+      --green-dark: #15803d;
+      --shadow: 0 20px 70px rgba(0, 0, 0, 0.42);
+      --radius: 8px;
     }
 
     * {
       box-sizing: border-box;
     }
 
-    html,
-    body {
+    html {
       min-height: 100%;
       width: 100%;
       max-width: 100%;
-      margin: 0;
-      background: #100e13;
-      color: var(--ink);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      line-height: 1.45;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
+      background: var(--bg);
     }
 
     body {
       min-height: 100vh;
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.45;
+      letter-spacing: 0;
+      overflow-x: hidden;
       background:
-        radial-gradient(circle at 92% 8%, rgba(109, 32, 93, .22), transparent 28rem),
-        radial-gradient(circle at 10% 35%, rgba(240, 76, 154, .1), transparent 24rem),
-        #100e13;
+        radial-gradient(circle at 92% 8%, rgba(109, 32, 93, 0.18), transparent 28rem),
+        radial-gradient(circle at 10% 35%, rgba(240, 76, 154, 0.08), transparent 24rem),
+        var(--bg);
+      -webkit-font-smoothing: antialiased;
     }
 
     body::before {
@@ -79,7 +87,7 @@
       inset: 0;
       z-index: 20;
       pointer-events: none;
-      opacity: .035;
+      opacity: 0.035;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.3'/%3E%3C/svg%3E");
     }
 
@@ -94,27 +102,25 @@
     }
 
     .page {
-      width: min(760px, calc(100% - 28px));
+      width: min(820px, calc(100% - 32px));
       min-height: 100vh;
       margin: 0 auto;
-      padding: 24px 0 34px;
+      padding: 16px 0;
       display: grid;
       grid-template-columns: 1fr;
-      gap: 0;
+      gap: 6px;
       align-items: start;
       align-content: start;
       min-width: 0;
     }
 
     .conversion-hero {
-      padding: 22px 24px 20px;
-      text-align: left;
-      border-radius: 16px 16px 0 0;
-      border: 1px solid rgba(240, 76, 154, .24);
-      background:
-        radial-gradient(circle at 84% 15%, rgba(240, 76, 154, .18), transparent 18rem),
-        linear-gradient(100deg, rgba(16, 14, 19, .98), rgba(45, 18, 39, .74));
-      box-shadow: 0 18px 60px rgba(0, 0, 0, .28);
+      padding: 10px 0 0;
+      text-align: center;
+      border: 0;
+      border-radius: var(--radius);
+      background: transparent;
+      box-shadow: none;
       min-width: 0;
     }
 
@@ -123,13 +129,12 @@
       align-items: center;
       gap: 7px;
       padding: 6px 12px;
-      border: 1px solid rgba(183, 246, 207, .3);
+      border: 1px solid rgba(183, 246, 207, 0.3);
       border-radius: 999px;
       color: #d9fdd3;
-      background: rgba(37, 211, 102, .14);
-      font-size: .8rem;
+      background: rgba(37, 211, 102, 0.14);
+      font-size: 0.8rem;
       font-weight: 800;
-      letter-spacing: 0.02em;
     }
 
     .confirmation-check {
@@ -140,45 +145,46 @@
       border-radius: 50%;
       color: #075e54;
       background: #d9fdd3;
-      font-size: .75rem;
+      font-size: 0.75rem;
       font-weight: 900;
     }
 
     h1 {
-      margin: 10px 0 0;
+      margin: 6px auto 0;
+      font-size: clamp(2rem, 4.9vw, 4rem);
+      line-height: 0.95;
+      letter-spacing: 0;
+      max-width: 18ch;
       color: #f5edf2;
-      font-size: clamp(1.85rem, 4.2vw, 3.2rem);
-      line-height: 1.05;
-      letter-spacing: -0.01em;
-      max-width: 22ch;
     }
 
     .danger-highlight {
-      color: #f04c9a;
+      color: var(--pink);
     }
 
     .hero-copy {
-      max-width: 38rem;
-      margin: 10px 0 0;
-      color: #d5c8d2;
-      font-size: 0.96rem;
-      line-height: 1.45;
+      max-width: 31rem;
+      margin: 8px auto 0;
+      color: var(--muted);
+      font-size: 1rem;
       overflow-wrap: break-word;
     }
 
     .hero-copy strong {
       display: block;
+      margin-bottom: 3px;
       color: #f4d6e8;
-      font-weight: 600;
+      font-size: 1.05rem;
+      font-weight: 900;
+      overflow-wrap: break-word;
     }
 
     .chat-shell {
-      min-height: min(650px, calc(100vh - 210px));
-      border: 1px solid rgba(240, 76, 154, .28);
-      border-top: 0;
-      border-radius: 0 0 16px 16px;
-      background: #17131a;
-      box-shadow: 0 20px 80px rgba(0, 0, 0, .45), 0 0 60px rgba(240, 76, 154, .08);
+      min-height: min(500px, calc(100vh - 270px));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
       overflow: hidden;
       display: grid;
       grid-template-rows: auto 1fr auto;
@@ -186,12 +192,12 @@
     }
 
     .chat-header {
-      padding: 14px 18px;
+      padding: 16px 18px;
       display: flex;
       justify-content: space-between;
       gap: 14px;
       align-items: center;
-      border-bottom: 1px solid rgba(244, 184, 221, .18);
+      border-bottom: 1px solid var(--line);
       background: #141117;
       color: #fff;
     }
@@ -199,64 +205,62 @@
     .profile {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       min-width: 0;
     }
 
     .avatar {
-      width: 44px;
-      height: 44px;
+      width: 46px;
+      height: 46px;
       flex: 0 0 auto;
       border-radius: 50%;
       overflow: hidden;
-      border: 2px solid rgba(240, 76, 154, .6);
+      border: 2px solid #fff;
       background: var(--surface-soft);
-      box-shadow: 0 0 0 1px rgba(0, 0, 0, .2), 0 4px 14px rgba(240, 76, 154, .25);
+      box-shadow: 0 0 0 1px var(--line), 0 8px 18px rgba(240, 76, 154, 0.18);
     }
 
     .avatar img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 20%;
+      object-position: center 24%;
       display: block;
     }
 
     .profile h2 {
       margin: 0;
+      font-size: 1rem;
+      line-height: 1.1;
       color: #f5edf2;
-      font-size: 1.02rem;
-      line-height: 1.15;
-      font-weight: 700;
     }
 
     .profile p {
-      margin: 3px 0 0;
-      color: #b9aeb8;
-      font-size: 0.8rem;
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 0.82rem;
     }
 
     .status-pill {
       min-width: max-content;
-      padding: 6px 11px;
+      padding: 8px 10px;
       border-radius: 999px;
-      background: rgba(240, 76, 154, .14);
+      background: rgba(240, 76, 154, 0.13);
       color: #fce7f3;
-      font-size: 0.76rem;
+      font-size: 0.78rem;
       font-weight: 800;
-      border: 1px solid rgba(240, 76, 154, .25);
     }
 
     .progress {
       height: 3px;
-      background: rgba(244, 184, 221, .12);
+      background: rgba(244, 184, 221, 0.12);
     }
 
     .progress-bar {
-      width: 12%;
+      width: 8%;
       height: 100%;
       background: linear-gradient(90deg, #f04c9a, #ff856f);
-      transition: width 320ms ease;
+      transition: width 280ms ease;
     }
 
     .messages {
@@ -265,7 +269,7 @@
       overflow-x: hidden;
       padding: 22px 18px 28px;
       background:
-        radial-gradient(circle at 75% 0%, rgba(109, 32, 93, .18), transparent 22rem),
+        radial-gradient(circle at 75% 0%, rgba(109, 32, 93, 0.18), transparent 22rem),
         #100e13;
     }
 
@@ -283,274 +287,111 @@
     }
 
     .mini-avatar {
-      width: 28px;
-      height: 28px;
-      flex: 0 0 auto;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 1px solid rgba(240, 76, 154, .5);
-      background: var(--surface-soft);
-    }
-
-    .mini-avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 20%;
-      display: block;
+      display: none;
     }
 
     .bubble {
       max-width: min(570px, 86%);
-      padding: 12px 15px;
-      border-radius: 16px 16px 16px 5px;
+      padding: 12px 14px;
+      border-radius: 16px 16px 16px 6px;
       background: #211624;
       color: #f5edf2;
-      font-size: 0.95rem;
-      line-height: 1.45;
+      font-size: 0.96rem;
       white-space: pre-line;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, .24);
-      border: 1px solid rgba(244, 184, 221, .1);
     }
 
     .bubble.user {
       max-width: min(520px, 88%);
-      border-radius: 16px 16px 5px 16px;
+      border-radius: 16px 16px 6px 16px;
       background: #6d205d;
       color: #fff7fb;
-      border-color: rgba(240, 76, 154, .3);
-    }
-
-    .bubble.image-card {
-      width: min(520px, 92%);
-      max-width: min(520px, 92%);
-      padding: 8px;
-      overflow: hidden;
-      background: #17131a;
-      border: 1px solid rgba(240, 76, 154, .35);
-      border-radius: 14px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, .4);
-    }
-
-    .bubble.image-card img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 10px;
     }
 
     .bubble.offer {
-      width: min(540px, 92%);
-      max-width: min(540px, 92%);
+      width: min(540px, 90%);
+      max-width: min(540px, 90%);
       padding: 0;
       overflow: hidden;
       background: #141117;
-      border: 1px solid rgba(240, 76, 154, .35);
-      box-shadow: 0 12px 36px rgba(0, 0, 0, .45);
-      border-radius: 14px;
-    }
-
-    .bubble.bonus-box {
-      width: min(540px, 92%);
-      max-width: min(540px, 92%);
-      padding: 0;
-      overflow: hidden;
-      background: #151118;
-      border: 1px solid rgba(240, 76, 154, .38);
-      border-radius: 14px;
-      box-shadow: 0 14px 40px rgba(0, 0, 0, .5), 0 0 30px rgba(240, 76, 154, .14);
-    }
-
-    .bonus-box-head {
-      padding: 13px 16px;
-      background: linear-gradient(135deg, rgba(109, 32, 93, .65), rgba(240, 76, 154, .25));
-      border-bottom: 1px solid rgba(244, 184, 221, .2);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .bonus-box-head strong {
-      color: #f5edf2;
-      font-size: 0.95rem;
-      font-weight: 800;
-      letter-spacing: 0.02em;
-    }
-
-    .bonus-box-body {
-      padding: 12px 14px;
-      display: grid;
-      gap: 8px;
-      background: #17131a;
-    }
-
-    .bonus-pill {
-      padding: 10px 12px;
-      background: rgba(255, 255, 255, .03);
-      border: 1px solid rgba(240, 76, 154, .22);
-      border-radius: 10px;
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      transition: transform 140ms ease, border-color 140ms ease, background 140ms ease;
-    }
-
-    .bonus-pill:hover {
-      border-color: rgba(240, 76, 154, .5);
-      transform: translateY(-1px);
-      background: rgba(240, 76, 154, .06);
-    }
-
-    .bonus-pill-icon {
-      font-size: 1.15rem;
-      line-height: 1;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-
-    .bonus-pill-content {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .bonus-pill-title {
-      color: #f5edf2;
-      font-size: 0.88rem;
-      font-weight: 700;
-      margin: 0 0 2px;
-      line-height: 1.25;
-    }
-
-    .bonus-pill-desc {
-      color: #b9aeb8;
-      font-size: 0.8rem;
-      line-height: 1.35;
-      margin: 0;
-    }
-
-    .bonus-box-foot {
-      padding: 10px 14px;
-      background: rgba(240, 76, 154, .08);
-      border-top: 1px solid rgba(244, 184, 221, .14);
-      text-align: center;
-      color: #f4b8dd;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.01em;
+      border: 1px solid rgba(240, 76, 154, 0.35);
     }
 
     .offer-head {
-      padding: 18px 18px 16px;
-      background: linear-gradient(135deg, rgba(109, 32, 93, .5), rgba(240, 76, 154, .14));
-      border-bottom: 1px solid rgba(244, 184, 221, .18);
+      padding: 16px;
+      background: linear-gradient(135deg, rgba(109, 32, 93, 0.5), rgba(240, 76, 154, 0.12));
+      border-bottom: 1px solid rgba(244, 184, 221, 0.18);
+      color: #f5edf2;
     }
 
     .offer-head strong {
       display: block;
-      font-size: 1.15rem;
-      color: #f5edf2;
-      letter-spacing: -0.01em;
+      font-size: 1.08rem;
     }
 
     .offer-head span {
       display: block;
       margin-top: 4px;
-      color: #d5c8d2;
-      font-size: 0.92rem;
+      color: #b9aeb8;
+      font-size: 0.9rem;
     }
 
     .offer-body {
-      padding: 16px 18px 18px;
-      background: #17131a;
+      padding: 14px 16px 16px;
+      color: #f5edf2;
     }
 
     .stack {
       display: grid;
-      gap: 11px;
-      margin: 0 0 16px;
+      gap: 9px;
+      margin: 0 0 14px;
       padding: 0;
       list-style: none;
     }
 
     .stack li {
       display: grid;
-      grid-template-columns: 24px 1fr;
-      gap: 10px;
+      grid-template-columns: 20px 1fr;
+      gap: 9px;
       align-items: start;
       color: #d5c8d2;
       font-size: 0.92rem;
-      line-height: 1.4;
-    }
-
-    .stack li strong {
-      color: #f5edf2;
     }
 
     .check {
-      width: 24px;
-      height: 24px;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
       display: grid;
       place-items: center;
       color: #fff;
-      background: #f04c9a;
-      font-size: 0.78rem;
+      background: var(--pink);
+      font-size: 0.8rem;
       font-weight: 900;
-      flex-shrink: 0;
     }
 
     .price {
       display: flex;
       flex-wrap: wrap;
       align-items: baseline;
-      gap: 6px 10px;
-      padding-top: 14px;
-      border-top: 1px solid rgba(244, 184, 221, .18);
-    }
-
-    .price-installments {
-      flex-basis: 100%;
-      margin-bottom: 3px;
-      color: #ffffff;
-      font-size: 1.05rem;
-      font-weight: 700;
-    }
-
-    .price-installments .installments-amount {
-      color: #25d366;
-      font-size: 1.25rem;
-      font-weight: 900;
+      gap: 8px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(244, 184, 221, 0.18);
     }
 
     .price del {
-      order: 3;
-      margin-left: auto;
-      align-self: flex-start;
-      color: #ff6b6b;
-      font-size: 0.88rem;
-      font-weight: 600;
+      color: rgba(240, 76, 154, 0.7);
+      font-size: 0.9rem;
     }
 
     .price strong {
-      order: 1;
       color: #25d366;
-      font-size: 1.95rem;
+      font-size: 1.55rem;
       line-height: 1;
-      font-weight: 900;
     }
 
     .price small {
-      order: 2;
-      color: #b9aeb8;
-      font-size: 0.85rem;
-    }
-
-    .video-caption {
-      margin: 12px 0 0;
-      color: #b9aeb8;
+      color: var(--muted);
       font-size: 0.82rem;
-      line-height: 1.35;
-      text-align: center;
     }
 
     .typing {
@@ -560,7 +401,6 @@
       gap: 4px;
       border-radius: 14px 14px 14px 5px;
       background: #211624;
-      border: 1px solid rgba(244, 184, 221, .1);
     }
 
     .typing span {
@@ -581,7 +421,7 @@
     }
 
     .composer {
-      border-top: 1px solid rgba(244, 184, 221, .18);
+      border-top: 1px solid rgba(244, 184, 221, 0.18);
       background: #141117;
       padding: 16px 18px;
     }
@@ -594,15 +434,12 @@
     .choice {
       width: 100%;
       min-height: 48px;
-      padding: 12px 16px;
-      border: 1px solid rgba(240, 76, 154, .28);
-      border-radius: 10px;
+      padding: 12px 14px;
+      border: 1px solid rgba(240, 76, 154, 0.28);
+      border-radius: var(--radius);
       background: #17131a;
       color: #f5edf2;
-      font-weight: 600;
-      font-size: 0.95rem;
       text-align: left;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, .2);
       transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
     }
 
@@ -620,7 +457,6 @@
       color: #fff;
       font-weight: 850;
       text-align: center;
-      box-shadow: 0 4px 14px rgba(37, 211, 102, .25);
     }
 
     .choice.primary:hover,
@@ -629,31 +465,90 @@
       background: linear-gradient(100deg, #129650, #3ee47a);
     }
 
-    .checkout-slot {
-      margin-top: 12px;
-      padding: 14px;
-      border: 1px dashed rgba(240, 76, 154, .35);
+    .choice.secondary {
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .demo-video-card {
+      width: min(540px, 90%);
+      max-width: min(540px, 90%);
+      padding: 0;
+      overflow: hidden;
+      background: #141117;
+      border: 1px solid rgba(240, 76, 154, 0.35);
+    }
+
+    .demo-video-card .offer-head {
+      background: linear-gradient(135deg, rgba(109, 32, 93, 0.5), rgba(240, 76, 154, 0.12));
+    }
+
+    .demo-kicker {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--pink);
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .vturb-frame {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 6px;
+      background: #211f20;
+    }
+
+    .vturb-frame vturb-smartplayer {
+      display: block;
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .vturb-player-placeholder {
+      position: relative;
+      width: 100%;
+      padding: 125% 0 0;
+      z-index: 0;
+      background: #000;
+    }
+
+    .video-caption {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.35;
+      text-align: center;
+    }
+
+    /* ---------- Slot Payt Checkout ---------- */
+    .payt-slot {
+      margin-top: 10px;
+      padding: 16px;
+      border: 1px dashed rgba(240, 76, 154, 0.35);
       border-radius: var(--radius);
       background: #100e13;
-      display: grid;
-      gap: 8px;
-      justify-items: center;
+      text-align: center;
     }
 
     .slot-label {
       display: block;
-      margin-bottom: 10px;
-      color: #b9aeb8;
-      font-size: 0.8rem;
+      margin-bottom: 12px;
+      color: var(--muted);
+      font-size: 0.82rem;
       text-align: center;
       font-weight: 600;
-      letter-spacing: 0.02em;
     }
 
     .payt-btn {
       display: block !important;
       width: 100% !important;
-      max-width: 380px !important;
+      max-width: 420px !important;
       margin: 0 auto !important;
       background: linear-gradient(100deg, #16a34a, #22c55e) !important;
       color: #ffffff !important;
@@ -661,28 +556,29 @@
       font-size: 16px !important;
       font-weight: 850 !important;
       padding: 15px 18px !important;
-      border-radius: 10px !important;
+      border-radius: 8px !important;
       text-decoration: none !important;
       text-align: center !important;
       cursor: pointer !important;
-      box-shadow: 0 6px 20px rgba(34, 197, 94, .32) !important;
+      box-shadow: 0 4px 20px rgba(34, 197, 94, 0.35) !important;
       transition: transform 160ms ease, box-shadow 160ms ease !important;
       letter-spacing: 0.02em !important;
       line-height: 1.2 !important;
+      animation: ctaPulse 2.4s infinite;
     }
 
     .payt-btn:hover {
       transform: translateY(-1px) !important;
-      box-shadow: 0 8px 24px rgba(34, 197, 94, .45) !important;
+      box-shadow: 0 6px 24px rgba(34, 197, 94, 0.5) !important;
     }
 
     .payt-select {
       display: none;
-      margin: 10px auto 0;
+      margin: 12px auto 0;
       width: 100%;
       max-width: 280px;
       padding: 10px 12px;
-      border: 1px solid rgba(240, 76, 154, .3);
+      border: 1px solid rgba(240, 76, 154, 0.3);
       border-radius: 8px;
       background: #17131a;
       color: #f5edf2;
@@ -691,35 +587,30 @@
       outline: none;
     }
 
-    .inline-decline-wrap {
-      margin-top: 14px;
-      text-align: center;
+    @keyframes ctaPulse {
+      0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.55); }
+      70% { box-shadow: 0 0 0 14px rgba(34, 197, 94, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
     }
 
-    .inline-decline {
-      display: inline-block;
-      background: transparent;
-      color: #b9aeb8;
-      font-size: 13px;
-      font-weight: 600;
-      padding: 8px 14px;
+    .decline-link {
+      display: block;
+      width: 100%;
+      margin: 12px 0 0;
+      padding: 6px;
       border: 0;
+      background: none;
+      color: var(--muted);
+      font-size: 0.84rem;
       text-align: center;
-      cursor: pointer;
       text-decoration: underline;
       text-underline-offset: 3px;
-      transition: color 140ms ease;
+      cursor: pointer;
+      transition: color 0.2s ease;
     }
 
-    .inline-decline:hover,
-    .inline-decline:focus-visible {
+    .decline-link:hover {
       color: #f5edf2;
-      outline: 0;
-    }
-
-    .inline-decline[disabled] {
-      opacity: .45;
-      cursor: default;
     }
 
     @keyframes rise {
@@ -750,28 +641,31 @@
         max-width: 100vw;
         min-height: 100vh;
         padding: 0;
+        gap: 0;
         overflow: hidden;
       }
 
       .conversion-hero {
-        padding: 18px 16px 16px;
-        border-radius: 0;
-        border-left: 0;
-        border-right: 0;
-        border-top: 0;
+        width: 100vw;
+        max-width: 100vw;
+        padding: 16px 18px 8px;
       }
 
       h1 {
-        font-size: clamp(1.7rem, 8.5vw, 2.35rem);
-        max-width: 15ch;
+        font-size: clamp(1.75rem, 9vw, 2.45rem);
+        max-width: 12ch;
       }
 
       .hero-copy {
-        font-size: 0.92rem;
+        font-size: 0.96rem;
+        width: auto;
+        max-width: 320px;
       }
 
       .chat-shell {
-        min-height: calc(100dvh - 200px);
+        width: 100vw;
+        max-width: 100vw;
+        min-height: calc(100vh - 264px);
         border: 0;
         border-radius: 0;
       }
@@ -781,13 +675,17 @@
       }
 
       .messages {
-        min-height: 260px;
-        padding: 16px 12px 20px;
+        padding: 18px 12px 24px;
+      }
+
+      .composer {
+        padding: 12px;
       }
 
       .bubble {
-        max-width: min(84vw, 340px);
-        font-size: 0.92rem;
+        max-width: min(83vw, 330px);
+        min-width: 0;
+        overflow-wrap: break-word;
       }
 
       .bubble.user {
@@ -795,20 +693,9 @@
       }
 
       .bubble.offer,
-      .bubble.bonus-box,
-      .bubble.image-card {
-        width: min(90vw, 350px);
-        max-width: min(90vw, 350px);
-      }
-
-      .composer {
-        padding: 10px 12px calc(12px + env(safe-area-inset-bottom));
-      }
-
-      .choice {
-        min-height: 46px;
-        padding: 11px 13px;
-        font-size: 0.93rem;
+      .demo-video-card {
+        width: min(86vw, 340px);
+        max-width: min(86vw, 340px);
       }
 
       .payt-btn {
@@ -823,10 +710,10 @@
     <section class="conversion-hero" aria-label="Confirmação de compra e recomendação opcional">
       <div class="confirmation-topline">
         <span class="confirmation-check">✓</span>
-        <span>Compra e acesso confirmados</span>
+        <span>Pagamento aprovado</span>
       </div>
-      <h1>Sua compra e seu acesso <span class="danger-highlight">já estão confirmados!</span></h1>
-      <p class="hero-copy"><strong>Antes de entrar, quero te mostrar uma recomendação opcional que vai transformar sua experiência na cama.</strong></p>
+      <h1>Seu pagamento foi confirmado!<br><span class="danger-highlight">Mas seu acesso ainda não.</span></h1>
+      <p class="hero-copy"><strong>Responda abaixo para liberar o seu acesso.</strong></p>
     </section>
 
     <section class="chat-shell" aria-label="Conversa com Sofia Villar">
@@ -834,14 +721,14 @@
         <header class="chat-header">
           <div class="profile">
             <div class="avatar" aria-hidden="true">
-              <img src="/up1-sofia.webp" alt="Sofia Villar">
+              <img src="/up1-sofia.webp" alt="Sofia">
             </div>
             <div>
               <h2>Sofia Villar</h2>
-              <p>on-line · guia da Cavalgada Proibida</p>
+              <p>online · guia antes do acesso</p>
             </div>
           </div>
-          <div class="status-pill">Acesso confirmado</div>
+          <div class="status-pill">Acesso seguro</div>
         </header>
         <div class="progress" aria-hidden="true">
           <div id="progressBar" class="progress-bar"></div>
@@ -857,15 +744,17 @@
 
     <!-- Bloco de 1 clique Payt (UP1) -->
     <div id="payt-oneclick" hidden>
-      <a href="#" payt_action="oneclick_buy" data-object="47XX2P-45WZJG" class="payt-btn">SIM, QUERO DOMINAR A CAVALGADA!</a>
+      <a href="#" payt_action="oneclick_buy" data-object="47XX2P-45WZJG" class="payt-btn">SIM, QUERO O POMPOARISMO DAS DEUSAS!</a>
       <select payt_element="installment" data-object="47XX2P-45WZJG" class="payt-select"></select>
     </div>
   </main>
 
   <script>
-    // Quem recusa a Cavalgada Proibida cai no downsell (/down1)
-    const DECLINE_URL = "/down1";
+    const THANK_YOU_URL = "/tks";
+    const DOWNSELL_URL = "/down1";
     const avatarSrc = "/up1-sofia.webp";
+    const VTURB_PLAYER_SCRIPT = "https://scripts.converteai.net/078ca594-053b-427b-a22f-58f182182f25/players/6a8f684dbaae9f36546bdc5f/v4/player.js";
+    const VTURB_PLAYER_ID = "vid-6a8f684dbaae9f36546bdc5f";
 
     const messagesEl = document.querySelector("#messages");
     const choicesEl = document.querySelector("#choices");
@@ -873,131 +762,124 @@
 
     const state = {
       answers: {},
-      progress: 10
+      progress: 8
+    };
+
+    const profiles = {
+      continuar: {
+        diagnosis: "sua prioridade é não perder a continuidade",
+        echo: "Você quer saber o que fazer quando o toque evolui e o momento pede outra forma de condução.",
+        bridge: "Então o complemento deve te dar uma sequência simples para continuar, não uma lista de movimentos difíceis."
+      },
+      manos: {
+        diagnosis: "sua prioridade é não depender apenas das mãos",
+        echo: "Você quer sentir que o Mapa não termina quando suas mãos deixam de guiar o estímulo.",
+        bridge: "Então você precisa de uma habilidade que leve a mesma intenção do toque para o controle do corpo."
+      },
+      seguridad: {
+        diagnosis: "sua prioridade é se sentir segura com seu próprio corpo",
+        echo: "Você quer aplicar sem ficar pensando se está fazendo demais, de menos ou do jeito errado.",
+        bridge: "Então o complemento deve te ensinar consciência, respiração e ritmo antes de exigir intensidade."
+      }
     };
 
     const flow = {
-      etapa1: {
-        progress: 10,
+      intro: {
+        progress: 12,
         bot: [
-          "Parabéns, minha linda! Com essa decisão, você acabou de se tornar uma mulher muito diferente da maioria.",
-          "Uma mulher que se importa com o seu relacionamento, entende a importância da vida íntima e quer dominar habilidades que vão te transformar em uma verdadeira leoa na cama.",
-          "O Mapa do Prazer Masculino te deu a técnica da massagem com as mãos para levá-lo ao delírio.",
-          "Só que deixa eu te falar uma coisa com total honestidade: você não pode fazer sexo só com as mãos, né?",
-          "Mas antes, preciso que me conte uma coisa: como costuma ser o momento da penetração entre vocês?"
+          "Seu pagamento do Mapa do Prazer Masculino foi aprovado com sucesso ✅",
+          "Seu acesso ainda não foi liberado.",
+          "Responda a estas perguntas rápidas para liberá-lo. Quando as mãos já despertaram o corpo dele e o momento avança, o que você gostaria de dominar melhor?"
         ],
         choices: [
-          { text: "Sinto que caiu na repetição do vai-e-vem.", value: "A", next: "etapa2" },
-          { text: "Ele empurra rápido demais só pra conseguir terminar.", value: "B", next: "etapa2" },
-          { text: "É gostoso, mas sinto que falta aquela loucura selvagem.", value: "C", next: "etapa2" }
+          { text: "Continuar sem que a sensação seja interrompida", value: "continuar", next: "diagnosis" },
+          { text: "Não depender apenas das minhas mãos", value: "manos", next: "diagnosis" },
+          { text: "Me sentir mais segura com o meu corpo", value: "seguridad", next: "diagnosis" }
         ],
-        store: "etapa1_choice"
+        store: "profile"
       },
-      etapa2: {
-        progress: 25,
+      diagnosis: {
+        progress: 34,
         bot: [
-          () => {
-            if (state.answers.etapa1_choice === "B") {
-              return "Entendi perfeitamente... Esse é o sinal mais claro de que o estímulo de sempre já não é suficiente para a mente dele.";
-            }
-            if (state.answers.etapa1_choice === "C") {
-              return "Entendi exatamente o que você quer dizer: falta aquela chama ardente e incontrolável que faz um homem perder o juízo.";
-            }
-            return "Entendi com clareza. É exatamente isso o que acontece com quase todo casal com o passar dos anos.";
-          },
-          "Na sexologia clínica e nas pesquisas com casais, existe um dado comprovado que assusta quase todo mundo: mais de 98% dos homens passam a vida inteira conhecendo apenas um único tipo de estímulo mecânico durante o sexo, que é o atrito linear do vai-e-vem.",
-          "E sabe por que isso acontece? Porque a maioria das pessoas acredita que o prazer dele depende apenas de empurrar para dentro e para fora. Só que esse atrito repetitivo ativa apenas a camada superficial de terminações nervosas da pele do pênis, deixando os receptores mais profundos completamente adormecidos.",
-          "Com o tempo, o cérebro dele se acostuma com essa mesma sensação repetida. É por isso que muitos homens acabam precisando ir cada vez mais rápido só para conseguir terminar, enquanto outros perdem a ereção ou sentem que o sexo virou automático.",
-          "Mas e se eu te disser que a sua anatomia íntima foi desenhada para criar 5 tipos de estímulos simultâneos: aperto, sucção, compressão contínua, massagem circular e pulsação ritmada, usando apenas a sua musculatura no pênis dele?",
-          "Sem você precisar fazer força, sem cansar as pernas e sem dor na lombar.",
-          "Me diz com sinceridade: você já imaginava que era possível ter esse nível de controle por cima?"
+          () => profiles[state.answers.profile].echo,
+          () => `Em uma frase: ${profiles[state.answers.profile].diagnosis}.`,
+          "E faz todo sentido. O Mapa te ensina a despertar com as mãos; a próxima etapa é saber continuar quando as mãos saem de cena."
         ],
         choices: [
-          { text: "Nunca imaginei que isso fosse possível!", value: "A", next: "etapa3" },
-          { text: "Quero muito saber como funciona na prática!", value: "B", next: "etapa3" },
-          { text: "Eu sempre achei que precisava cansar as pernas...", value: "C", next: "etapa3" }
-        ],
-        store: "etapa2_choice"
-      },
-      etapa3: {
-        progress: 45,
-        bot: [
-          () => {
-            if (state.answers.etapa2_choice === "A") {
-              return "Pois é! Quase nenhuma mulher é ensinada sobre isso, mas quando você ativa esses pontos de contato, o jogo vira na mesma hora.";
-            }
-            if (state.answers.etapa2_choice === "B") {
-              return "E você vai ver que é surpreendentemente natural e gostoso de fazer quando você aprende o encaixe certo.";
-            }
-            return "Você não tem culpa nenhuma de pensar assim! Quase todo mundo acha que subir por cima é exercício físico, quando na verdade é pura física de alinhamento pélvico.";
-          },
-          "E deixa eu te fazer uma pergunta que eu amo fazer para as minhas alunas...",
-          "Quando você subir por cima aplicando essa técnica pela primeira vez e ele sentir essa pressão profunda, qual dessas reações você mais sonha em ver nele?"
-        ],
-        choices: [
-          { text: "Os olhos dele arregalarem de choque e surpresa.", value: "A", next: "etapa4" },
-          { text: "Ele agarrar minha cintura com força e gemer sem ar.", value: "B", next: "etapa4" },
-          { text: "Ele ficar louco de medo de me perder para outro.", value: "C", next: "etapa4" }
-        ],
-        store: "etapa3_choice"
-      },
-      etapa4: {
-        progress: 65,
-        bot: [
-          () => {
-            if (state.answers.etapa3_choice === "A") {
-              return "Entendi perfeitamente! E você vai amar ver isso acontecendo ao vivo...\n\nA reação clássica dele é essa: os olhos arregalam na hora, a respiração dele trava por alguns segundos e a boca fica entreaberta, sem entender de onde veio tanta intensidade e controle.";
-            }
-            if (state.answers.etapa3_choice === "B") {
-              return "Nossa, entendi exatamente o que você busca... e é uma das sensações mais poderosas para uma mulher!\n\nQuando a sucção interna e o aperto começam a pulsar, a reação involuntária dele é cravar os dedos na sua cintura ou no lençol para tentar se segurar, porque a sensação de perda de controle é absoluta.";
-            }
-            return "Entendi muito bem. Esse é um reflexo psicológico comprovado na mente masculina.\n\nQuando um homem percebe que a parceira dele domina habilidades tão raras na cama, nasce nele uma admiração profunda e um medo inconsciente de perdê-la, porque ele sabe que nunca mais vai encontrar nada igual.";
-          },
-          "Todo homem que encontra uma mulher verdadeiramente habilidosa, que sabe inovar e faz coisas selvagens, passa a enxergá-la como única no mundo. Isso libera hormônios no cérebro dele semelhantes ao apego profundo.",
-          "E a chave mestra para comandar esse jogo é a técnica que eu chamo de Sentada da Donzela dentro do treinamento A Cavalgada Proibida.",
-          { type: "image", src: "/up1-cavalgada-app.webp", alt: "A Cavalgada Proibida: Área de Membros" },
-          "Tudo em vídeo-aulas práticas e discretas organizadas dentro da sua Área de Membros, exatamente no mesmo aplicativo do Mapa do Prazer, sem complicação e direto ao ponto."
-        ],
-        choices: [
-          { text: "Mas se eu apertar tanto, ele não vai gozar rápido demais?", value: "A", next: "etapa5" },
-          { text: "Quero muito aprender a fazer isso sem me cansar!", value: "B", next: "etapa5" }
-        ],
-        store: "etapa4_choice"
-      },
-      etapa5: {
-        progress: 80,
-        bot: [
-          () => {
-            if (state.answers.etapa4_choice === "A") {
-              return "Essa é a dúvida que quase toda aluna tem, e a resposta é exatamente o segredo do método!\n\nMuitas mulheres pensam que ao apertar e sugar, o homem vai ejacular em 2 minutos. Mas é o contrário! A Cavalgada Proibida ensina técnicas de compressão rítmica para retardar a ejaculação dele quantas vezes você quiser.";
-            }
-            return "É muito mais simples e confortável do que você imagina, e você nunca mais vai cansar as pernas!\n\nCom o alinhamento pélvico correto, o peso do seu corpo faz a pressão pelo encaixe, e não pela força muscular das coxas.";
-          },
-          "É como abrir uma torneira forte com o ralo completamente tampado: a pressão vai acumulando, acumulando e represando...",
-          "E quando você finalmente libera a Sentada da Donzela, ele atinge um clímax com tanta intensidade que o corpo inteiro dele entra em espasmos musculares de puro êxtase.",
-          "Ele simplesmente nunca mais vai esquecer o que viveu com você."
-        ],
-        choices: [
-          { text: "Quero ver como garantir A Cavalgada Proibida com os Bônus", primary: true, next: "etapa6" }
+          { text: "Me mostre essa próxima etapa", next: "demo" },
+          { text: "Quero entender rápido", next: "demo" }
         ]
       },
-      etapa6: {
-        progress: 95,
+      demo: {
+        progress: 56,
+        video: true,
         bot: [
-          "Sua compra anterior e seu acesso ao Mapa já estão 100% confirmados e garantidos.",
-          "Mas hoje, para você completar o ciclo, das mãos até a penetração definitiva, preparei uma condição única e exclusiva nesta tela.",
-          "O treinamento completo A Cavalgada Proibida custa originalmente R$297.",
-          "E para quebrar qualquer dúvida e te entregar a experiência mais completa da sua vida, eu liberei uma caixinha especial com 5 Bônus Exclusivos inclusos de presente para você:",
-          { type: "bonus_box" },
-          "E você ainda leva 2 presentes surpresa adicionais que já deixei preparados dentro da plataforma!",
-          "Tudo isso somado vale mais de R$497.",
-          "Mas hoje, nesta oportunidade exclusiva de confirmação, você adiciona o pacote completo por apenas R$197 à vista (ou 12x de R$19,70).",
-          "É pagamento único em 1 clique: você não digita o cartão de novo, o sistema adiciona com total discrição e segurança, com 7 dias de garantia incondicional."
+          "Veja a lógica da demonstração prática: A Envolvente.",
+          "Ao subir: contração suave.\nAo descer: relaxamento.\nLento. Sem saltos. Sem exagerar.",
+          "Por fora parece um movimento pequeno. Por dentro, cria uma alternância: pressão… alívio… pressão… alívio.",
+          "Isso é Controle Duplo: coordenar quadril, ritmo e pausa com os músculos íntimos."
+        ],
+        choices: [
+          { text: "Agora entendi a diferença", next: "mechanism" },
+          { text: "Como aprendo a fazer isso?", next: "mechanism" }
+        ]
+      },
+      mechanism: {
+        progress: 72,
+        bot: [
+          "O ciclo completo é simples:",
+          "As mãos despertam.\nOs músculos íntimos continuam.\nO pós-toque prolonga.",
+          "O Mapa cobre o toque e o pós-toque. O Pompoarismo das Deusas completa o momento do meio, com respiração, contração, relaxamento, pressão e ritmo.",
+          "Não é outra oferta desconectada. É a habilidade que completa o que você acabou de adquirir."
+        ],
+        choices: [
+          { text: "O que inclui exatamente?", next: "offer" },
+          { text: "Quero ver a oferta", next: "offer" }
+        ]
+      },
+      offer: {
+        progress: 88,
+        bot: [
+          "Como você acabou de entrar para o Mapa, pode adicioná-lo agora por uma condição especial.",
+          "Seu acesso ao Mapa está confirmado mesmo se você decidir não adicionar nada. Se adicionar, fica tudo no mesmo acesso."
         ],
         offer: true,
+        choices: [
+          { text: "Sim, quero dominar o APERTA E SOLTA", next: "checkout", primary: true },
+          { text: "Não, prefiro continuar sem saber como prosseguir.", next: "decline", secondary: true }
+        ]
+      },
+      checkout: {
+        progress: 96,
+        bot: [
+          "Perfeito. Ao confirmar abaixo, adicionamos o Pompoarismo das Deusas ao seu acesso.",
+          "Assim você entra com o ciclo completo: despertar, continuar e prolongar."
+        ],
         checkout: true,
         choices: [
-          { text: "Não, obrigada. Prefiro ficar só com as massagens com as mãos.", action: "decline", secondary: true }
+          { text: "Voltar e revisar o que inclui", next: "offer", secondary: true }
+        ]
+      },
+      decline: {
+        progress: 94,
+        bot: [
+          "Perfeito. Seu acesso ao Mapa continua confirmado ✅",
+          "Apenas lembre-se da diferença: o Mapa te ensina a despertar com as mãos; o Pompoarismo te ensina a continuar quando o momento avança.",
+          "Se quiser completar o ciclo a partir de hoje, você ainda pode adicioná-lo."
+        ],
+        choices: [
+          { text: "Sim, quero dominar o APERTA E SOLTA", next: "checkout", primary: true },
+          { text: "Não, prefiro continuar sem saber como prosseguir.", action: "downsell", secondary: true }
+        ]
+      },
+      thanks: {
+        progress: 100,
+        bot: [
+          "Pronto. Você pode continuar para o acesso do Mapa do Prazer Masculino ✅",
+          "Te espero lá dentro.\nCom carinho,\nSofia Villar"
+        ],
+        choices: [
+          { text: "Ir para o meu acesso do Mapa", action: "thanks", primary: true }
         ]
       }
     };
@@ -1022,7 +904,7 @@
     function avatarNode() {
       const avatar = document.createElement("div");
       avatar.className = "mini-avatar";
-      avatar.innerHTML = `<img src="${avatarSrc}" alt="Sofia">`;
+      avatar.innerHTML = `<img src="${avatarSrc}" alt="">`;
       return avatar;
     }
 
@@ -1040,79 +922,6 @@
       scrollToBottom();
     }
 
-    function addImageMessage(src, alt = "") {
-      const row = document.createElement("div");
-      row.className = "row";
-      row.appendChild(avatarNode());
-
-      const card = document.createElement("div");
-      card.className = "bubble image-card";
-      card.innerHTML = `<img src="${src}" alt="${alt}" loading="eager">`;
-
-      row.appendChild(card);
-      messagesEl.appendChild(row);
-      scrollToBottom();
-    }
-
-    function addBonusBox() {
-      const row = document.createElement("div");
-      row.className = "row";
-      row.appendChild(avatarNode());
-
-      const box = document.createElement("div");
-      box.className = "bubble bonus-box";
-      box.innerHTML = `
-        <div class="bonus-box-head">
-          <span style="font-size:1.15rem;">🎁</span>
-          <strong>PACOTE VIP: 5 BÔNUS EXCLUSIVOS INCLUSOS</strong>
-        </div>
-        <div class="bonus-box-body">
-          <div class="bonus-pill">
-            <div class="bonus-pill-icon">🎁</div>
-            <div class="bonus-pill-content">
-              <div class="bonus-pill-title">Bônus 1: O Hiperorgasmo Tântrico</div>
-              <div class="bonus-pill-desc">Como atingir orgasmos 10x mais intensos que o comum.</div>
-            </div>
-          </div>
-          <div class="bonus-pill">
-            <div class="bonus-pill-icon">🎁</div>
-            <div class="bonus-pill-content">
-              <div class="bonus-pill-title">Bônus 2: Os Pontos de Kamara</div>
-              <div class="bonus-pill-desc">Os pontos energéticos secretos do corpo feminino para explodir sua sensibilidade.</div>
-            </div>
-          </div>
-          <div class="bonus-pill">
-            <div class="bonus-pill-icon">🎁</div>
-            <div class="bonus-pill-content">
-              <div class="bonus-pill-title">Bônus 3: Pompoarismo Invisível do Dia a Dia</div>
-              <div class="bonus-pill-desc">Micro-exercícios de 2 minutos para fazer em qualquer lugar e turbinar seu tônus e aperto sem aparelhos.</div>
-            </div>
-          </div>
-          <div class="bonus-pill">
-            <div class="bonus-pill-icon">🎁</div>
-            <div class="bonus-pill-content">
-              <div class="bonus-pill-title">Bônus 4: As 7 Variações da Dominância Doce</div>
-              <div class="bonus-pill-desc">Ângulos por cima que não cansam as pernas nem a lombar.</div>
-            </div>
-          </div>
-          <div class="bonus-pill">
-            <div class="bonus-pill-icon">🎁</div>
-            <div class="bonus-pill-content">
-              <div class="bonus-pill-title">Bônus 5: Roteiro de Sussurros de Comando</div>
-              <div class="bonus-pill-desc">Palavras e provocações para sussurrar no ouvido dele durante o ato e fazê-lo perder o controle.</div>
-            </div>
-          </div>
-        </div>
-        <div class="bonus-box-foot">
-          ✨ Total em Bônus: R$ 388 · Hoje: R$ 0 (Incluso de Presente)
-        </div>
-      `;
-
-      row.appendChild(box);
-      messagesEl.appendChild(row);
-      scrollToBottom();
-    }
-
     function addOfferCard() {
       const row = document.createElement("div");
       row.className = "row";
@@ -1122,25 +931,22 @@
       card.className = "bubble offer";
       card.innerHTML = `
         <div class="offer-head">
-          <strong>A Cavalgada Proibida</strong>
-          <span>O Guia Definitivo da Penetração Tântrica</span>
+          <strong>Pompoarismo das Deusas</strong>
+          <span>A etapa que completa o Mapa quando as mãos saem de cena.</span>
         </div>
         <div class="offer-body">
           <ul class="stack">
-            <li><span class="check">1</span><span><strong>Os 5 Estímulos Vaginais:</strong> aperto, sucção, compressão, massagem e pulsação no pênis dele.</span></li>
-            <li><span class="check">2</span><span><strong>A Sentada da Donzela:</strong> a técnica para cavalgar sem cansar e levar o homem ao delírio.</span></li>
-            <li><span class="check">3</span><span><strong>Retardo e Clímax Represado:</strong> como ditar o tempo dele e provocar espasmos intensos.</span></li>
-            <li><span class="check">🎁</span><span><strong>Caixinha VIP com 5 Bônus:</strong> Hiperorgasmo, Pontos de Kamara, Pompoarismo, Dominância Doce e Sussurros.</span></li>
-            <li><span class="check">🎁</span><span><strong>2 Presentes Surpresa:</strong> Efeito Ímã + Playlist Frequência Secreta.</span></li>
-            <li><span class="check">✓</span><span><strong>Garantia Incondicional de 7 Dias:</strong> risco zero para você experimentar.</span></li>
+            <li><span class="check">✓</span><span>25 técnicas práticas de contração, relaxamento, respiração e ritmo.</span></li>
+            <li><span class="check">✓</span><span>Demonstrações passo a passo para aplicar sem improvisar.</span></li>
+            <li><span class="check">✓</span><span>Controle Duplo: movimento por fora + consciência por dentro.</span></li>
+            <li><span class="check">✓</span><span>Mapa visual com 15 posições e acesso junto ao Mapa.</span></li>
+            <li><span class="check">✓</span><span>7 dias de garantia incondicional.</span></li>
           </ul>
           <div class="price">
-            <span class="price-installments">12x de <span class="installments-amount">R$19,70</span></span>
-            <strong>R$197</strong>
-            <small>à vista</small>
-            <del>R$497</del>
+            <del>R$297</del>
+            <strong>R$147</strong>
+            <small>à vista ou até 12x no cartão</small>
           </div>
-          <p class="video-caption">Acesso imediato no mesmo login do Mapa · Pagamento único · Garantia de 7 dias</p>
         </div>
       `;
 
@@ -1159,32 +965,32 @@
       row.className = "row checkout-row";
       row.appendChild(avatarNode());
 
-      const card = document.createElement("div");
-      card.className = "bubble offer";
-      card.innerHTML = `
+      const slot = document.createElement("div");
+      slot.className = "bubble offer";
+      slot.innerHTML = `
         <div class="offer-body">
-          <span class="slot-label">Confirme sua inscrição em 1 clique</span>
-          <div class="checkout-slot"></div>
+          <span class="slot-label">Escolha como deseja continuar</span>
+          <div class="payt-slot"></div>
           <div class="inline-decline-wrap"></div>
         </div>
       `;
 
-      const slot = card.querySelector(".checkout-slot");
+      const paytSlot = slot.querySelector(".payt-slot");
       widget.hidden = false;
-      slot.appendChild(widget);
+      paytSlot.appendChild(widget);
       blockEmptyAnchorJump(widget);
 
-      const declineWrap = card.querySelector(".inline-decline-wrap");
+      const declineWrap = slot.querySelector(".inline-decline-wrap");
       (step.choices || []).forEach(choice => {
         const button = document.createElement("button");
         button.type = "button";
-        button.className = "inline-decline";
+        button.className = "decline-link";
         button.textContent = choice.text;
         button.addEventListener("click", () => choose(choice, step));
         declineWrap.appendChild(button);
       });
 
-      row.appendChild(card);
+      row.appendChild(slot);
       messagesEl.appendChild(row);
       watchInstallments(widget);
       scrollToBottom();
@@ -1211,6 +1017,48 @@
       new MutationObserver(sync).observe(select, { childList: true });
     }
 
+    function loadVturbPlayer() {
+      if (document.querySelector(`script[data-vturb-player="${VTURB_PLAYER_ID}"]`)) return;
+      const script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = VTURB_PLAYER_SCRIPT;
+      script.async = true;
+      script.dataset.vturbPlayer = VTURB_PLAYER_ID;
+      document.head.appendChild(script);
+    }
+
+    function addVturbVideo() {
+      loadVturbPlayer();
+
+      const row = document.createElement("div");
+      row.className = "row";
+      row.appendChild(avatarNode());
+
+      const card = document.createElement("div");
+      card.className = "demo-video-card";
+      card.innerHTML = `
+        <div class="offer-head">
+          <span class="demo-kicker">Demonstração prática</span>
+          <strong>A Envolvente</strong>
+          <span>Observe o ritmo: subir, contrair suavemente; descer, relaxar.</span>
+        </div>
+        <div class="offer-body">
+          <div class="vturb-frame"></div>
+          <p class="video-caption">Não se trata de se mover mais. Trata-se de saber coordenar.</p>
+        </div>
+      `;
+
+      const player = document.createElement("vturb-smartplayer");
+      player.id = VTURB_PLAYER_ID;
+      player.setAttribute("style", "display: block; margin: 0 auto; width: 100%; max-width: 400px;");
+      player.innerHTML = '<div class="vturb-player-placeholder"></div>';
+      card.querySelector(".vturb-frame").appendChild(player);
+
+      row.appendChild(card);
+      messagesEl.appendChild(row);
+      scrollToBottom();
+    }
+
     function addTyping() {
       const row = document.createElement("div");
       row.className = "row";
@@ -1227,41 +1075,13 @@
       return row;
     }
 
-    function calcDelay(text) {
-      const len = text.length;
-      if (len <= 70) {
-        return 2800 + Math.min(len * 6, 400); // 2.8s a 3.2s
-      } else if (len <= 150) {
-        return 3200 + Math.round((len - 70) * 12); // 3.2s a 4.1s
-      } else {
-        return Math.min(4200 + Math.round((len - 150) * 8), 5400); // 4.2s a 5.4s
-      }
-    }
-
     async function botSpeak(lines) {
       for (const item of lines) {
-        if (typeof item === "object" && item.type === "image") {
-          const typing = addTyping();
-          await sleep(3000);
-          typing.remove();
-          addImageMessage(item.src, item.alt || "");
-          await sleep(350);
-          continue;
-        }
-        if (typeof item === "object" && item.type === "bonus_box") {
-          const typing = addTyping();
-          await sleep(3000);
-          typing.remove();
-          addBonusBox();
-          await sleep(350);
-          continue;
-        }
-        const text = resolveText(item);
         const typing = addTyping();
-        await sleep(calcDelay(text));
+        await sleep(520 + Math.min(resolveText(item).length * 8, 700));
         typing.remove();
-        addMessage(text);
-        await sleep(300);
+        addMessage(resolveText(item));
+        await sleep(180);
       }
     }
 
@@ -1279,19 +1099,23 @@
 
     async function choose(choice, step) {
       choicesEl.innerHTML = "";
-      messagesEl.querySelectorAll(".inline-decline").forEach(b => { b.disabled = true; });
       addMessage(choice.text, "user");
 
       if (step.store) {
         state.answers[step.store] = choice.value;
       }
 
-      if (choice.action === "decline") {
-        window.location.href = DECLINE_URL;
+      if (choice.action === "thanks") {
+        window.location.href = THANK_YOU_URL;
         return;
       }
 
-      await sleep(500);
+      if (choice.action === "downsell") {
+        window.location.href = DOWNSELL_URL;
+        return;
+      }
+
+      await sleep(180);
       goTo(choice.next);
     }
 
@@ -1299,19 +1123,20 @@
       const step = flow[id];
       setProgress(step.progress);
       await botSpeak(step.bot || []);
+      if (step.video) addVturbVideo();
       if (step.offer) addOfferCard();
       if (step.checkout) {
         choicesEl.innerHTML = "";
         mountPaytCheckout(step);
       } else {
-        await sleep(400);
         renderChoices(step);
       }
     }
 
-    goTo("etapa1");
+    goTo("intro");
   </script>
 
+  <!-- Script Payt One-Click -->
   <script type="text/javascript" src="https://checkout.payt.com.br/multiple-oneclickbuyscript/45GX73.js"></script>
 </body>
 </html>

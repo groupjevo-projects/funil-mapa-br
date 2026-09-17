@@ -15,8 +15,8 @@ Domínio de produção: `https://mapadoprazer.site` (apex). `www` redireciona 30
 | Rota       | Arquivo         | Papel                                                     |
 |------------|-----------------|-----------------------------------------------------------|
 | `/`        | `index.html` + `index.js` + `style.css` | Gate de toque + página de vendas com VSL |
-| `/up1`     | `up1.html`      | Upsell 1 — A Cavalgada Proibida (chat guiado interativo Sofia Villar) |
-| `/down1`   | `down1.html`    | Downsell 1 — A Cavalgada Proibida (condição especial R$97)       |
+| `/up1`     | `up1.html`      | Upsell 1 — Pompoarismo das Deusas (chat guiado interativo Sofia Villar) |
+| `/down1`   | `down1.html`    | Downsell 1 — Pompoarismo das Deusas (condição especial R$67)       |
 | `/up2`, `/upsell2` | `upsell2.html` | Upsell 2 — Método das Deusas (chat guiado)         |
 | `/tks`     | `tks.html`      | Obrigado / instruções de acesso                            |
 
@@ -24,7 +24,7 @@ Domínio de produção: `https://mapadoprazer.site` (apex). `www` redireciona 30
 
 ## Escada de preços
 
-Front-end em teste A/B (R$47 / R$67 / R$97, definido no nível da oferta — não aparece em copy na página) → UP1 R$197 → DS1 R$97 (âncora R$197) → UP2 R$297 (5x de R$59,40, âncora R$897).
+Front-end em teste A/B (R$47 / R$67 / R$97, definido no nível da oferta — não aparece em copy na página) → UP1 R$147 (à vista ou até 12x no cartão, âncora R$297) → DS1 R$67 (âncora R$147) → UP2 R$297 (5x de R$59,40, âncora R$897).
 
 ## Tracking
 
