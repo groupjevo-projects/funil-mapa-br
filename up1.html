@@ -742,6 +742,13 @@
 
     <!-- Bloco de 1 clique Payt (UP1) -->
     <div id="payt-oneclick" hidden>
+      <!-- Preço visível exigido pela Payt -->
+      <div class="payt-price-box" style="margin-bottom: 12px; text-align: center;">
+        <span style="font-size: 14px; color: #b9aeb8;">Apenas </span>
+        <strong style="font-size: 22px; color: #25d366; font-weight: 800;">R$ 147,00</strong>
+        <span style="font-size: 13px; color: #b9aeb8;"> à vista ou em até 12x no cartão</span>
+      </div>
+
       <!-- Botão de compra Payt — cole onde quiser que o cliente clique -->
       <a href="#" payt_action="oneclick_buy" data-object="47XXNG-LJA5KP" class="payt-btn" style="display: inline-block; background: #22c55e; color: #ffffff; font-family: system-ui, -apple-system, sans-serif; font-size: 16px; font-weight: 700; padding: 16px 24px; border-radius: 8px; text-decoration: none; text-align: center; cursor: pointer">SIM, QUERO O POMPOARISMO DAS DEUSAS!</a>
 
@@ -756,6 +763,9 @@
         <option value="6">6x de R$ 27,76</option>
         <option value="12" selected>12x de R$ 15,22</option>
       </select>
+
+      <!-- Link de recusa exigido pela Payt -->
+      <a href="?refused=1" class="decline-link" style="display: block; margin-top: 14px; color: #b9aeb8; font-size: 13px; text-decoration: underline; text-align: center; cursor: pointer;">Não, prefiro continuar sem esta condição especial</a>
     </div>
   </main>
 
@@ -995,6 +1005,17 @@
       widget.hidden = false;
       paytSlot.appendChild(widget);
       blockEmptyAnchorJump(widget);
+
+      const declineLink = widget.querySelector("a[href*='refused=1']");
+      if (declineLink && !declineLink.dataset.bound) {
+        declineLink.dataset.bound = "1";
+        declineLink.addEventListener("click", e => {
+          if (!window.location.search.includes("_o")) {
+            e.preventDefault();
+            window.location.href = DOWNSELL_URL;
+          }
+        });
+      }
 
       const declineWrap = slot.querySelector(".inline-decline-wrap");
       (step.choices || []).forEach(choice => {
