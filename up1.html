@@ -747,7 +747,15 @@
 
       <!-- Select de parcelas visível — o comprador escolhe quantas parcelas no cartão.
            Para PIX é sempre 1x; o script ignora esse select. -->
-      <select payt_element="installment" data-object="47XXNG-LJA5KP" class="payt-select" style="display:block; margin:10px auto 0; max-width:240px; padding:10px; border:1px solid #cbd5e1; border-radius:6px; background:#fff; font-size:14px;"></select>
+      <select payt_element="installment" data-object="47XXNG-LJA5KP" class="payt-select" style="display:block; margin:10px auto 0; max-width:240px; padding:10px; border:1px solid #cbd5e1; border-radius:6px; background:#fff; font-size:14px;">
+        <option value="1">1x de R$ 147,00</option>
+        <option value="2">2x de R$ 77,18</option>
+        <option value="3">3x de R$ 52,43</option>
+        <option value="4">4x de R$ 40,08</option>
+        <option value="5">5x de R$ 32,68</option>
+        <option value="6">6x de R$ 27,76</option>
+        <option value="12" selected>12x de R$ 15,22</option>
+      </select>
     </div>
   </main>
 
@@ -1020,7 +1028,10 @@
     function watchInstallments(widget) {
       const select = widget.querySelector("[payt_element='installment']");
       if (!select) return;
-      const sync = () => { select.style.display = select.options.length ? "block" : "none"; };
+      const sync = () => {
+        select.style.display = select.options.length ? "block" : "none";
+        select.style.visibility = "visible";
+      };
       sync();
       new MutationObserver(sync).observe(select, { childList: true });
     }
